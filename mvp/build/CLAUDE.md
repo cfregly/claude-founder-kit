@@ -10,7 +10,7 @@ The `build/` module of claude-startup-mvp is a founder's 15-minute path from a f
 
 ```bash
 make setup    # install deps, one time
-make demo     # the reproducible cost receipt: the cost table from sample data, the one CI re-runs
+make demo     # measure the cost table live: 04_cost_engineering.py --live, about 36 real calls, needs ANTHROPIC_API_KEY
 make test     # the eval-set self-test
 make check    # the doc-correctness gate
 ```
@@ -24,6 +24,7 @@ Verify each path with `ls` before you rely on it.
 | Path | What it is |
 |---|---|
 | `01_first_call.py` ... `05_agent_sdk_repo_doctor.py` | The five numbered acts, in order. |
+| `06_structured_output.py` | The output contract: structured outputs with a JSON schema, the companion to Act 2. |
 | `models.py` | The four-rung model ladder (junior to distinguished). The one place model ids live. |
 | `eval_lint.py` | Gate the quality of your eval set. The bundled golden set scores 97/100. |
 | `mcp_server/` | The same tools exposed over MCP. |

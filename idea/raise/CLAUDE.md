@@ -14,7 +14,7 @@ make test     # the rule test suite
 make check    # the doc-correctness gate
 ```
 
-The score is the gate and needs no key: `make demo`, `make test`, and `make check` all run offline. The claude-opus-4-8 narrative read reviews every interactive run, and the gate (check_docs, CI, `--min-score`) stays deterministic and never calls the API. Rendering a deck needs Node: `npm install --prefix render` once, then `node render/deck_from_spec.mjs deck.json` (add `NO_NOTES=1` for the share-safe variant).
+The score is the gate and needs no key: `make check` and `--min-score` run offline. `make demo` passes `--judge`, so it runs the live claude-opus-4-8 narrative read and needs `ANTHROPIC_API_KEY`. The narrative read reviews every interactive run, and the gate (check_docs, CI, `--min-score`) stays deterministic and never calls the API. Rendering a deck needs Node: `npm install --prefix render` once, then `node render/deck_from_spec.mjs deck.json` (add `NO_NOTES=1` for the share-safe variant).
 
 ## Where things are
 

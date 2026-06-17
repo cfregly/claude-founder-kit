@@ -9,7 +9,7 @@ claude-deslop is a deterministic de-slop linter. One canonical ruleset finds AI-
 ## Run it
 
 ```bash
-make demo     # before and after: a sloppy doc (F) then clean prose (A)
+make demo     # before and after: a sloppy doc (F) then clean prose (A), with the live judge (needs ANTHROPIC_API_KEY)
 make test     # the rule test suite
 make check    # the doc gate plus a self-deslop of the README
 ```

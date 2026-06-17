@@ -24,7 +24,7 @@ make check   # both deterministic gates: the doc-correctness checks
 4. Cost is architecture: the same workload three ways (naive, cached, routed), measured rather than asserted.
 5. An MCP encore: the same tools made portable over MCP for Claude Code and Desktop, plus an Agent SDK repo doctor.
 
-Every act runs Claude. The model ladder runs from `claude-haiku-4-5` for cheap lookups up to `claude-opus-4-8`, the stable default for high-consequence work, with the access-gated `claude-fable-5` as the top rung. The model ids live in one place, [`build/models.py`](build/models.py). The live acts need `ANTHROPIC_API_KEY`. `make demo` renders the cost table from sample data, which is the reproducible receipt CI re-runs, so no key is needed for the gate. The [`build/starter/`](build/starter/) directory is a forkable FastAPI app you deploy to ship a product of your own.
+Every act runs Claude. The model ladder runs from `claude-haiku-4-5` for cheap lookups up to `claude-opus-4-8`, the stable default for high-consequence work, with the access-gated `claude-fable-5` as the top rung. The model ids live in one place, [`build/models.py`](build/models.py). The live acts need `ANTHROPIC_API_KEY`. `make demo` runs `04_cost_engineering.py --live`, which measures the cost table with about 36 real calls, so it needs `ANTHROPIC_API_KEY` and fails fast without it. The [`build/starter/`](build/starter/) directory is a forkable FastAPI app you deploy to ship a product of your own.
 
 ## harden: the security review before any user
 

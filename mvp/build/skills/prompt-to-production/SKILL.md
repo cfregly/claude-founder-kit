@@ -21,8 +21,8 @@ engineering, an MCP server. It is the fullest use of the Claude Developer Platfo
 act runs Claude. A four-rung model ladder (claude-haiku-4-5 up to the
 access-gated claude-fable-5, with claude-opus-4-8 the stable default), the
 Messages API, and an Agent SDK repo doctor. The live acts need ANTHROPIC_API_KEY.
-`make demo` renders the cost table from sample data as the reproducible receipt
-CI re-runs.
+`make demo` measures the cost table live (about 36 real calls, needs
+ANTHROPIC_API_KEY). The keyless sample path is the reproducible receipt CI re-runs.
 
 The engineering discipline behind a Claude product: build the agent, gate it
 with evals, measure the cost. AI startups stall in four places: the demo that

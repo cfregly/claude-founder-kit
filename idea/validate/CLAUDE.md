@@ -9,12 +9,12 @@ The `validate/` module (startup signal lab) of claude-startup-idea scores a star
 ## Run it
 
 ```bash
-make demo     # score a strong pitch (8/10) then a weaker one, offline, no API key
+make demo     # score a strong pitch (8/10) deterministically, then write the live intervention (needs ANTHROPIC_API_KEY)
 make test     # the test suite
 make check    # the doc-correctness gate
 ```
 
-The full app is `streamlit run app.py` after `pip install -r requirements.txt`. The Streamlit app and the eval harness run Claude on every analysis and need `ANTHROPIC_API_KEY` set. The `make` targets above stay offline: they exercise the deterministic gate, not the Claude layer.
+The full app is `streamlit run app.py` after `pip install -r requirements.txt`. The Streamlit app and the eval harness run Claude on every analysis and need `ANTHROPIC_API_KEY` set. `make demo` prints the deterministic score and then runs the live founder intervention, so it needs the key too and fails fast without it. `make check` is the doc-correctness gate and stays deterministic offline.
 
 ## Where things are
 

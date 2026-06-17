@@ -11,28 +11,30 @@ run the weekly metrics brief, using the whole Claude Developer Platform to do it
   accounts ready for sales, decide the one motion, draft it, gate every outward
   step, remember last week, and produce the report.
 - The deterministic stages are stdlib only: capture, measure, the gate, the audit,
-  and the report template. They carry the receipt and the CI gate, so `make demo`
-  produces the report offline with no key and no install.
+  and the report template. They carry the receipt and the CI gate, so the gate runs
+  offline with no key and no install.
 - The generative stages run Claude (`claude-opus-4-8`) on every run: enrich, decide,
-  and draft. They raise a clear error when the key or the SDK is missing, so a
-  misconfiguration is loud, not a silent downgrade.
+  and draft. `make demo` runs the whole live pipeline through them, so it needs
+  `ANTHROPIC_API_KEY` and raises a clear error when the key or the SDK is missing,
+  so a misconfiguration is loud, not a silent downgrade.
 - It is a command-line and scheduled-agent system, not a dashboard or UI.
 
 ## Run it
 
 ```bash
-make demo       # capture -> measure -> gate -> the weekly report, offline
+make demo       # the whole live pipeline -> the weekly report (needs ANTHROPIC_API_KEY)
 make test       # the test suite
 make check      # the doc-correctness gate
 make coverage   # the platform-surface coverage map
 make deploy     # dry-run the Managed Agents weekly deployment plan
 ```
 
-`make demo` is deterministic at seed 7: 165 events from 12 accounts, the funnel
+`make demo` runs the live pipeline and needs `ANTHROPIC_API_KEY`. The deterministic
+spine is seeded at 7: 165 events from 12 accounts, the funnel
 12 / 12 / 10 / 8 / 5 / 4 / 3 / 1, Q9 (the second-build API key) at 5, activation
 67%, retention 62%, an 8-day time-to-second-build, time-to-first-value 2.0 days,
-and 2 product-qualified accounts ready for handoff. The numbers here are
-reproducible from the demo, so re-run before changing one.
+and 2 product-qualified accounts ready for handoff. These numbers are reproducible
+from the spine, so re-run before changing one.
 
 ## The pipeline
 
@@ -135,8 +137,8 @@ The same pipeline runs two ways.
   report names the AI-native band instead of inventing a number.
 - The generative stages need ANTHROPIC_API_KEY and a current anthropic SDK, and the
   effort and advisor path in decide needs the newest SDK. With no key or no SDK
-  those stages raise a clear error rather than degrade. The deterministic spine and
-  `make demo` need neither.
+  those stages raise a clear error rather than degrade. `make demo` runs them, so it
+  needs both. The deterministic spine alone needs neither.
 
 ## Where this fits
 

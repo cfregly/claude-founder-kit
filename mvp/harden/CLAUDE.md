@@ -22,13 +22,13 @@ make test     # the rule test suite
 make check    # the doc-correctness and rule-count gate
 ```
 
-No API key is needed for any of the above: the rule score is the deterministic gate, and it is
-what these targets run. Claude (`claude-opus-4-8`) reviews every interactive run and rewrites the
-worst tool, and the same rules re-score it. The gate (check_docs, CI, `--min-score`) stays
-deterministic and never calls the API, because the rewrite fires by default only when stdout is a
-TTY. With no key that rewrite is skipped and the score is identical, so CI stays green offline.
-Pass `--no-judge` to force the deterministic-only path, or `--judge` to force it on regardless of
-the TTY.
+`make demo` passes `--judge`, so it runs the live Claude (`claude-opus-4-8`) rewrite of the worst
+tool and needs `ANTHROPIC_API_KEY`. The same rules re-score the rewrite, so the score reproduces.
+`make check`, `make test`, and `--min-score` are the deterministic gate and need no key. The gate
+(check_docs, CI, `--min-score`) stays deterministic and never calls the API, because the rewrite
+fires by default only when stdout is a TTY. With no key the rewrite is skipped and the score is
+identical, so CI stays green offline. Pass `--no-judge` to force the deterministic-only path, or
+`--judge` to force it on regardless of the TTY.
 
 ## Where things are
 

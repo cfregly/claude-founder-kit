@@ -1,0 +1,46 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  gates:
+    # Deterministic gates: doc-correctness and linter rule scores. No API key.
+    # Runs on every push and pull request, including from forks.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -e quality
+      - name: Deterministic gates
+        run: make check
+      - name: Tests
+        run: make test
+
+  live:
+    # The online path: real Claude calls on the repository secret. GitHub does not
+    # expose secrets to pull requests from forks, so this runs on push only.
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -e quality
+      - name: Live smoke (real Claude calls)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          test -n "$ANTHROPIC_API_KEY" || { echo "ANTHROPIC_API_KEY secret is not set"; exit 1; }
+          python mvp/build/06_structured_output.py
+          (cd first_hour && python tour/step1_message.py)
+          (cd quality && python -m deslop examples/clean.md --judge)

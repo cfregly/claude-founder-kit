@@ -11,22 +11,24 @@ Developer Platform to do it. One pipeline (capture, measure,
 enrich, decide, draft, gate, remember, render) turns a founder cohort into the
 weekly startup-signal report. It is a command-line and scheduled-agent system, not
 a dashboard or UI. The deterministic stages (capture, measure, the gate, the audit,
-the report template) are stdlib only and carry the receipt, so the demo runs
-offline. The generative stages (enrich, decide, draft) run Claude on every run and
-raise a clear error with no key, so a misconfiguration is loud, not a silent
-downgrade.
+the report template) are stdlib only and carry the receipt, so the gate runs
+offline in CI. `make demo` runs the whole live pipeline (enrich, decide, draft,
+render), so it needs `ANTHROPIC_API_KEY` and fails fast without it. The generative
+stages (enrich, decide, draft) run Claude on every run and raise a clear error with
+no key, so a misconfiguration is loud, not a silent downgrade.
 
 ## Run it
 
 ```bash
-make demo       # capture -> measure -> gate -> the weekly report, offline
+make demo       # the whole live pipeline -> the weekly report (needs ANTHROPIC_API_KEY)
 make test       # the test suite
 make check      # the doc-correctness gate
 make coverage   # the platform-surface coverage map
 make deploy     # dry-run the Managed Agents weekly deployment plan
 ```
 
-No dependencies and no key for the demo. `python -m activation measure
+`make demo` runs the live pipeline (enrich, decide, draft, render), so it needs
+`ANTHROPIC_API_KEY` and fails fast without it. `python -m activation measure
 cohort.json`, `operate readout.json`, `enrich`, `decide`, `draft`, `agent`, `mcp`,
 and `deploy` are the other subcommands. The generative stages (enrich, decide,
 draft) need `ANTHROPIC_API_KEY` and a current anthropic SDK and raise without them,
@@ -65,11 +67,11 @@ and the local agent harness needs `claude-agent-sdk`.
 ## Conventions
 
 - Run `make check` and `make test` before you commit.
-- The demo is deterministic at seed 7. The numbers in the README and the docs are
-  reproducible from the demo, so re-run before you change a number, do not edit it
-  by hand.
-- Telemetry is opt-out and the demo runs offline. Never make emit track silently,
-  and never commit a key. `.env` stays git-ignored.
+- The deterministic spine is seeded at 7. The funnel and activation numbers in the
+  README and the docs are reproducible from it, so re-run before you change a number,
+  do not edit it by hand.
+- Telemetry is opt-out. Never make emit track silently, and never commit a key.
+  `.env` stays git-ignored.
 - Prose is plain: no em-dashes, no semicolons in prose, no buzzwords. The deslop
   gate enforces it on the README. Numbers over adjectives.
 - Surgical changes only. Match the existing style. Do not refactor what is not broken.

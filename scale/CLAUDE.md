@@ -15,15 +15,16 @@ clear error with no key, so a misconfiguration is loud, not a silent downgrade.
 ## Run it
 
 ```bash
-make demo    # the deterministic moat readout from the sample cohort, offline
+make demo    # the live moat readout and GTM motion from the sample cohort (needs ANTHROPIC_API_KEY)
 make test    # the test suite
 make check   # the doc-correctness gate
 ```
 
-No dependencies and no key for the demo. `python3 -m scale examples/cohort.json`
-prints the human readout and runs Claude for the GTM motion and the moat narrative.
-Add `--json` for the raw deterministic readout offline, or `--min-moat N` for a CI
-gate on the median moat that runs before any Claude call.
+`make demo` runs `python3 -m scale examples/cohort.json`, which prints the human
+readout and runs Claude for the GTM motion and the moat narrative, so it needs
+`ANTHROPIC_API_KEY` and fails fast without it. Add `--json` for the raw
+deterministic readout offline, or `--min-moat N` for a CI gate on the median moat
+that runs offline before any Claude call.
 
 ## How to extend
 

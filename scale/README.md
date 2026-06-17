@@ -13,7 +13,8 @@ one GTM motion to run next.
   recurring workflows run through it, and how much proprietary data has accrued. The
   moat score is a switching-cost proxy built from exactly those signals.
 - The deterministic moat core is stdlib only. It carries the receipt and the CI
-  gate, so `make demo` produces the readout offline with no key and no install.
+  gate, so the `--json` readout and the `--min-moat` gate run offline with no key and
+  no install.
 - The Claude layer runs on every human readout: it reads the deterministic numbers
   and writes the GTM motion (which accounts to target, the one play) and the moat
   narrative (why a well-funded incumbent copying this product today would not catch
@@ -24,17 +25,18 @@ one GTM motion to run next.
 ## Run it
 
 ```bash
-make demo    # the deterministic moat readout from the sample cohort, offline
+make demo    # the live moat readout and GTM motion from the sample cohort (needs ANTHROPIC_API_KEY)
 make test    # the test suite
 make check   # the doc-correctness gate
 ```
 
-`make demo` runs `python3 -m scale examples/cohort.json --json`, the raw
-deterministic readout, with no key. On the sample cohort of 10 accounts the top
-account scores a moat of 100, the median moat is 60, the distribution is 5 / 3 / 2
-across the deep, forming, and shallow bands, and 3 accounts are expansion-ready: a
-deep moat, rising spend, and sustained weekly use. The numbers here are reproducible
-from the cohort, so re-run before changing one.
+`make demo` runs `python3 -m scale examples/cohort.json`, the human readout plus the
+Claude GTM motion and moat narrative, so it needs `ANTHROPIC_API_KEY` and fails fast
+without it. Add `--json` for the raw deterministic readout with no key. On the sample
+cohort of 10 accounts the top account scores a moat of 100, the median moat is 60,
+the distribution is 5 / 3 / 2 across the deep, forming, and shallow bands, and 3
+accounts are expansion-ready: a deep moat, rising spend, and sustained weekly use.
+These numbers come from the deterministic core, so re-run before changing one.
 
 ## The deterministic core is the gate
 
@@ -103,8 +105,9 @@ embedded, the weekly-active depth, a spend trend (up, flat, down), a data volume
   value. Point it at a real cohort export, and use the data-integrity flags to catch
   a messy export before its scores get trusted.
 - The Claude layer needs `ANTHROPIC_API_KEY` and a current anthropic SDK. With no
-  key or no SDK it raises a clear error rather than degrade. The deterministic core
-  and `make demo` need neither.
+  key or no SDK it raises a clear error rather than degrade. `make demo` runs that
+  layer, so it needs both. The deterministic core alone (`--json`, `--min-moat`)
+  needs neither.
 
 ## Where this fits
 

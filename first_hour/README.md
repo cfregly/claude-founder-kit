@@ -7,18 +7,20 @@ real token counts. Built to run in your first hour with the platform.
 ## What this answers
 
 - **Question it answers:** what are the layers of the Claude platform, and how do they stack from one API call up to an agent
-- **Input:** your `ANTHROPIC_API_KEY` (or nothing, for the recorded tour)
+- **Input:** your `ANTHROPIC_API_KEY`
 - **Output:** five runnable steps that print real responses and measured token counts, ending in a Managed Agent that runs a tool inside a hosted sandbox
 - **What it is worth:** the platform mental model in one sitting, as code you can run and extend, not slides
 
-## Run it in under a minute (no key)
+## Run it in under a minute
 
 ```
+cp .env.example .env        # add your ANTHROPIC_API_KEY
 make demo
 ```
 
-Replays a recorded run of the full tour with real output and token counts. No key and
-no beta required.
+Runs the live tour, steps 1 to 4, with real output and token counts. Needs
+`ANTHROPIC_API_KEY` and fails fast without it. Step 5 (the Managed Agent) also needs the
+managed-agents beta.
 
 ## Run it live
 
