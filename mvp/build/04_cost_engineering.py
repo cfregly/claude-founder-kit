@@ -152,9 +152,10 @@ def main() -> None:
     parser.add_argument("--live", action="store_true", help="make real API calls (~36 requests)")
     args = parser.parse_args()
 
-    if not args.live or not os.environ.get("ANTHROPIC_API_KEY"):
-        if args.live:
-            console.print("[red]--live requested but ANTHROPIC_API_KEY is not set; falling back to sample.[/red]")
+    if args.live and not os.environ.get("ANTHROPIC_API_KEY"):
+        console.print("[red]--live needs ANTHROPIC_API_KEY. This makes ~36 real API calls and has no offline fallback.[/red]")
+        raise SystemExit(1)
+    if not args.live:
         sample = json.loads((ROOT / "data" / "sample_run.json").read_text())
         render(sample["arms"], sample=True)
         return

@@ -17,7 +17,7 @@ setup:
 	cd build && $(MAKE) setup
 
 demo:
-	@printf '== build: the reproducible cost receipt (sample data, no API key needed) ==\n'
+	@printf '== build: the cost receipt, measured live (needs ANTHROPIC_API_KEY) ==\n'
 	cd build && $(MAKE) demo
 	@printf '\n== harden: a vague server (14) then the contract-grade rewrite (100) ==\n'
 	cd harden && $(MAKE) demo

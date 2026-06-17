@@ -2,12 +2,12 @@
 
 help:
 	@printf 'claude-startup-scale\n\n'
-	@printf '  make demo   the deterministic moat readout from the sample cohort, offline\n'
+	@printf '  make demo   the live moat readout and GTM motion (needs ANTHROPIC_API_KEY)\n'
 	@printf '  make test   run the test suite\n'
 	@printf '  make check  run the doc-correctness gate\n'
 
 demo:
-	python3 -m scale examples/cohort.json --json
+	python3 -m scale examples/cohort.json
 
 test:
 	python3 -m pytest tests/ -q

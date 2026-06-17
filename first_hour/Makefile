@@ -3,13 +3,11 @@ PY ?= python3
 .PHONY: help demo tour agent check
 
 help:
-	@echo "make demo   - replay the recorded tour (no key, no beta)"
-	@echo "make tour   - run steps 1-4 live (needs ANTHROPIC_API_KEY)"
-	@echo "make agent  - run step 5, a Managed Agent, live (needs key and beta)"
+	@echo "make demo   - run the live tour, steps 1-4 (needs ANTHROPIC_API_KEY)"
+	@echo "make agent  - step 5, a Managed Agent, live (needs key and the beta)"
 	@echo "make check  - prose gate for README and CLAUDE.md"
 
-demo:
-	@$(PY) tour/replay.py
+demo: tour
 
 tour:
 	@$(PY) tour/step1_message.py

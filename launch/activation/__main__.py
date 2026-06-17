@@ -1,6 +1,6 @@
 """The unified CLI: one entry point for every step of the weekly report.
 
-    python -m activation demo                 the whole pipeline, offline -> the report
+    python -m activation demo                 the whole pipeline, live -> the report
     python -m activation capture              emit the sample cohort to a backend
     python -m activation measure cohort.json  the activation readout
     python -m activation operate readout.json the gated plan and report
@@ -45,15 +45,16 @@ def _print_readout(readout: dict) -> None:
 
 
 def cmd_demo(args) -> int:
+    if not os.getenv("ANTHROPIC_API_KEY"):
+        print("ANTHROPIC_API_KEY is not set. The launch demo runs the live pipeline "
+              "(enrich, decide, draft, render) and has no offline mode.", file=sys.stderr)
+        return 1
     prev = memory.load_prev_state(PREV_STATE)
-    live = getattr(args, "live", False)
-    result = pipeline.run(seed=args.seed, prev_state=prev, week_of=args.week_of, live=live)
+    result = pipeline.run(seed=args.seed, prev_state=prev, week_of=args.week_of, live=True)
     sys.stdout.write(result["report"])
-    if live:
-        r = result.get("rendered")
-        where = f"{r['format']}: {r['path']}" if r else "skipped"
-        print(f"\n[live layers ran Claude (enrich, decide, draft); render {where}]",
-              file=sys.stderr)
+    r = result.get("rendered")
+    where = f"{r['format']}: {r['path']}" if r else "skipped"
+    print(f"\n[live: ran Claude for enrich, decide, draft; render {where}]", file=sys.stderr)
     return 0
 
 

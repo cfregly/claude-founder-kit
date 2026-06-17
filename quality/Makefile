@@ -9,10 +9,10 @@ help:
 	@printf '  make check   Run the doc-correctness gate and self-deslop the README\n'
 
 demo:
-	@printf '== before: a sloppy doc ==\n'
-	-python -m deslop examples/sloppy.md
+	@printf '== before: a sloppy doc, with the live Claude judge ==\n'
+	-python -m deslop examples/sloppy.md --judge
 	@printf '\n== after: clean prose ==\n'
-	python -m deslop examples/clean.md
+	python -m deslop examples/clean.md --judge
 
 test:
 	python tests/test_rules.py
