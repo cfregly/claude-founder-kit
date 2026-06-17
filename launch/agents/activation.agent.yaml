@@ -1,0 +1,56 @@
+# Version-controlled Managed Agents definition. Apply with the ant CLI:
+#   AGENT_ID=$(ant beta:agents create < agents/activation.agent.yaml --transform id -r)
+# Update on change (optimistic lock on the current version):
+#   ant beta:agents update --agent-id "$AGENT_ID" --version N < agents/activation.agent.yaml
+name: activation-operator
+model: claude-opus-4-8
+system: |
+  You are a growth operator for a founder cohort. Each Monday you produce the
+  weekly startup-signal report: the activation and retention funnel, the biggest
+  leak, time-to-second-build, the product-qualified accounts ready for handoff,
+  and the one motion that moves the biggest leak. Measurement and drafting are
+  yours to do unattended. You never send a founder email, grant credits, spend on
+  any channel, post in public, or hand off an account without explicit approval.
+  State every line as a decision.
+mcp_servers:
+  - type: url
+    name: activation
+    url: https://activation.example.com/mcp
+tools:
+  # Read and measure run on their own; bash asks.
+  - type: agent_toolset_20260401
+    default_config:
+      enabled: true
+      permission_policy:
+        type: always_allow
+    configs:
+      - name: bash
+        permission_policy:
+          type: always_ask
+  - type: mcp_toolset
+    mcp_server_name: activation
+  # The two outward tools are gated always_ask. Spend, credits, and public posts
+  # are deliberately absent: the never gate is the absence of the capability.
+  - type: custom
+    name: send_founder_nudge
+    description: Send a drafted nudge to a founder. Requires your approval.
+    input_schema:
+      type: object
+      properties:
+        account: { type: string }
+        subject: { type: string }
+        body: { type: string }
+      required: [account, subject, body]
+  - type: custom
+    name: gtm_handoff
+    description: Hand a product-qualified account to a named GTM owner. Requires your approval.
+    input_schema:
+      type: object
+      properties:
+        account: { type: string }
+        owner: { type: string }
+      required: [account, owner]
+skills:
+  - type: custom
+    skill_id: activation
+    version: latest

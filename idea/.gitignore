@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual envs
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Secrets / local state
+.env
+.env.*
+!.env.example
+.DS_Store
+.streamlit/secrets.toml
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+*.pptx

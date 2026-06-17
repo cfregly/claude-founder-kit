@@ -1,0 +1,6 @@
+{
+  "name": "claude-pitch-deck-linter-render",
+  "private": true,
+  "type": "module",
+  "dependencies": { "pptxgenjs": "^4.0.1" }
+}

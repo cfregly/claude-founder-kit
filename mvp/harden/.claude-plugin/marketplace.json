@@ -1,0 +1,13 @@
+{
+  "name": "agent-linter-plugins",
+  "owner": {
+    "name": "Chris Fregly"
+  },
+  "plugins": [
+    {
+      "name": "agent-linter",
+      "source": "./",
+      "description": "Lint MCP tool contracts, the agent harness, the skill, and the protocol, with an OWASP and STRIDE security lens."
+    }
+  ]
+}

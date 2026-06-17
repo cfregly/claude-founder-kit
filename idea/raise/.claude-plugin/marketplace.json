@@ -1,0 +1,13 @@
+{
+  "name": "pitch-deck-plugins",
+  "owner": {
+    "name": "Chris Fregly"
+  },
+  "plugins": [
+    {
+      "name": "pitch-deck",
+      "source": "./",
+      "description": "Build and lint a Sequoia-arc pitch deck where every word fights for its place."
+    }
+  ]
+}

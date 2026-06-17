@@ -1,0 +1,39 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Demo runs offline and reproduces the report
+        run: make demo
+
+      - name: Test suite
+        run: python -m pytest tests/ -q
+
+      - name: Doc-correctness gate
+        run: python scripts/check_docs.py
+
+      - name: Gate audit (nothing outward ran unattended)
+        run: |
+          python -m activation gen-examples
+          python -m activation operate examples/readout.json --audit-gates
+
+      - name: Platform coverage map
+        run: make coverage
+
+      - name: De-slop the README
+        run: |
+          pip install --quiet "git+https://github.com/cfregly/claude-deslop"
+          python -m deslop README.md

@@ -1,0 +1,10 @@
+{
+  "activation_rate": 0.62,
+  "engagement_retention": 0.5,
+  "pqas_ready_for_handoff": [
+    "acct_02"
+  ],
+  "retention_rate": 0.57,
+  "signups_total": 9,
+  "time_to_second_build_days": 9
+}

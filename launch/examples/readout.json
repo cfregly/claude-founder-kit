@@ -1,0 +1,88 @@
+{
+  "cohort": "Founder day (sample, fictional)",
+  "accounts": 12,
+  "funnel": [
+    {
+      "stage": "touchpoint",
+      "label": "ecosystem touchpoint",
+      "count": 12,
+      "pct_of_top": 1.0,
+      "conv_from_prev": 1.0
+    },
+    {
+      "stage": "signup",
+      "label": "signup / account",
+      "count": 12,
+      "pct_of_top": 1.0,
+      "conv_from_prev": 1.0
+    },
+    {
+      "stage": "first_call",
+      "label": "first API call",
+      "count": 10,
+      "pct_of_top": 0.83,
+      "conv_from_prev": 0.83
+    },
+    {
+      "stage": "first_build",
+      "label": "first working build",
+      "count": 8,
+      "pct_of_top": 0.67,
+      "conv_from_prev": 0.8
+    },
+    {
+      "stage": "second_build",
+      "label": "second build (unprompted)",
+      "count": 5,
+      "pct_of_top": 0.42,
+      "conv_from_prev": 0.62
+    },
+    {
+      "stage": "weekly_active",
+      "label": "weekly active builder",
+      "count": 4,
+      "pct_of_top": 0.33,
+      "conv_from_prev": 0.8
+    },
+    {
+      "stage": "production",
+      "label": "production pilot",
+      "count": 3,
+      "pct_of_top": 0.25,
+      "conv_from_prev": 0.75
+    },
+    {
+      "stage": "handoff",
+      "label": "GTM handoff (PQA)",
+      "count": 1,
+      "pct_of_top": 0.08,
+      "conv_from_prev": 0.33
+    }
+  ],
+  "activation_rate": 0.67,
+  "retention_rate": 0.62,
+  "engagement_retention": 0.5,
+  "expansion_to_production": 0.75,
+  "leaky_bucket": false,
+  "engagement_leak": false,
+  "time_to_second_build_days": 8,
+  "biggest_dropoff": {
+    "from": "first_build",
+    "to": "second_build",
+    "lost_pct": 0.38
+  },
+  "pqas_ready_for_handoff": [
+    "acct_02",
+    "acct_03"
+  ],
+  "the_number": {
+    "primary": "qualified PQA handoffs",
+    "handoffs_this_cohort": 1,
+    "leading_indicator": "time-to-second-build (days)",
+    "value": 8
+  },
+  "flags": [
+    "Biggest leak is the second build, your activation signal. Tighten the 72-hour follow-up to shorten time-to-second-build.",
+    "2 product-qualified account(s) not handed off. Package context and hand to a named GTM owner within 5 business days."
+  ]
+}

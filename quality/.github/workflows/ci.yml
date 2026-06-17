@@ -1,0 +1,22 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tests
+        run: python tests/test_rules.py
+      - name: Doc-correctness gate
+        run: python scripts/check_docs.py
+      - name: Self-deslop the README
+        run: python -m deslop README.md
+      - name: Marquee reproduces (sloppy F, clean A)
+        run: |
+          if python -m deslop examples/sloppy.md; then
+            echo "examples/sloppy.md should fail the gate" && exit 1
+          fi
+          python -m deslop examples/clean.md

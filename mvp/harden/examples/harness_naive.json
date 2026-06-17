@@ -1,0 +1,9 @@
+{
+  "name": "do-everything-bot",
+  "task": "long-running",
+  "subagents": [],
+  "context": {"compaction": "none", "window": "200k"},
+  "memory": [],
+  "skills": [{"name": "everything", "disclosure": "inlined"}],
+  "governance": {"gates_outward_actions": false}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "deslop",
+  "version": "0.1.0",
+  "description": "Strip AI-writing tells such as em-dashes, prose semicolons, and buzzwords from any text, the way the linters do.",
+  "author": {
+    "name": "Chris Fregly"
+  },
+  "keywords": [
+    "writing",
+    "linter",
+    "style",
+    "claude-code"
+  ]
+}

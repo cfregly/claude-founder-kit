@@ -1,0 +1,37 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test suite
+        run: python tests/test_rules.py
+      - name: Vague example must fail the gate
+        run: |
+          if python -m contract_doctor examples/vague_tools.json; then
+            echo "expected exit 1 for vague server" && exit 1
+          fi
+      - name: Contract-grade example must pass the gate
+        run: python -m contract_doctor examples/contract_grade_tools.json
+      - name: Harness - good architecture passes, naive monolith fails
+        run: |
+          python -m contract_doctor.harness examples/harness_good.json
+          if python -m contract_doctor.harness examples/harness_naive.json; then
+            echo "expected exit 1 for the naive monolith" && exit 1
+          fi
+      - name: Skill - a well-formed skill passes, a bad one fails
+        run: |
+          python -m contract_doctor.skill skills/agent-linter/SKILL.md
+          if python -m contract_doctor.skill examples/skill_bad.md; then
+            echo "expected exit 1 for the bad skill" && exit 1
+          fi
+      - name: Doc-correctness gate
+        run: python scripts/check_docs.py
+      - name: De-slop the README
+        run: |
+          pip install --quiet "git+https://github.com/cfregly/claude-deslop"
+          python -m deslop README.md

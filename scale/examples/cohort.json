@@ -1,0 +1,95 @@
+{
+  "cohort": "Scale cohort (sample, fictional)",
+  "accounts": [
+    {
+      "name": "acct_01",
+      "integrations_built": 5,
+      "workflows_embedded": 4,
+      "weekly_active_depth": 6,
+      "spend_trend": "up",
+      "data_volume": "high",
+      "contract_tier": "enterprise"
+    },
+    {
+      "name": "acct_02",
+      "integrations_built": 4,
+      "workflows_embedded": 3,
+      "weekly_active_depth": 5,
+      "spend_trend": "up",
+      "data_volume": "high",
+      "contract_tier": "business"
+    },
+    {
+      "name": "acct_03",
+      "integrations_built": 4,
+      "workflows_embedded": 3,
+      "weekly_active_depth": 4,
+      "spend_trend": "up",
+      "data_volume": "medium",
+      "contract_tier": "business"
+    },
+    {
+      "name": "acct_04",
+      "integrations_built": 4,
+      "workflows_embedded": 3,
+      "weekly_active_depth": 2,
+      "spend_trend": "flat",
+      "data_volume": "high",
+      "contract_tier": "business"
+    },
+    {
+      "name": "acct_05",
+      "integrations_built": 5,
+      "workflows_embedded": 2,
+      "weekly_active_depth": 1,
+      "spend_trend": "down",
+      "data_volume": "low",
+      "contract_tier": "team"
+    },
+    {
+      "name": "acct_06",
+      "integrations_built": 3,
+      "workflows_embedded": 2,
+      "weekly_active_depth": 3,
+      "spend_trend": "up",
+      "data_volume": "medium",
+      "contract_tier": "team"
+    },
+    {
+      "name": "acct_07",
+      "integrations_built": 2,
+      "workflows_embedded": 2,
+      "weekly_active_depth": 3,
+      "spend_trend": "up",
+      "data_volume": "low",
+      "contract_tier": "team"
+    },
+    {
+      "name": "acct_08",
+      "integrations_built": 2,
+      "workflows_embedded": 1,
+      "weekly_active_depth": 2,
+      "spend_trend": "flat",
+      "data_volume": "low",
+      "contract_tier": "pilot"
+    },
+    {
+      "name": "acct_09",
+      "integrations_built": 1,
+      "workflows_embedded": 1,
+      "weekly_active_depth": 1,
+      "spend_trend": "flat",
+      "data_volume": "none",
+      "contract_tier": "pilot"
+    },
+    {
+      "name": "acct_10",
+      "integrations_built": 1,
+      "workflows_embedded": 0,
+      "weekly_active_depth": 1,
+      "spend_trend": "down",
+      "data_volume": "none",
+      "contract_tier": "pilot"
+    }
+  ]
+}

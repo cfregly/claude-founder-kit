@@ -1,0 +1,14 @@
+claude-deslop
+Copyright (c) 2026 Chris Fregly. MIT License.
+
+The canonical word, phrase, and visual-slop lists in deslop/slop_rules.json
+merge this project's own de-slop canon with material from:
+
+- gstack (https://github.com/garrytan/gstack), Copyright (c) 2026 Garry Tan,
+  MIT License. Its "writing rules" AI-vocabulary and banned-phrase lists, and
+  its visual AI-slop blacklist.
+- The visual blacklist gstack cites from OpenAI's "Designing Delightful
+  Frontends with GPT-5.4" (developers.openai.com, March 2026).
+
+These sources are used under the MIT License. This project is not affiliated
+with or endorsed by Garry Tan, gstack, or OpenAI.

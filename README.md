@@ -1,0 +1,45 @@
+# claude-founder-kit
+
+Build a startup on Claude, from the first API call to reading the data moat. One repo, one command,
+and every step makes a real call to the Claude Developer Platform.
+
+This is Anthropic's Founder's Playbook as runnable code. Each stage is a tool a founder actually
+uses, and the stages run in order: get to first value, build the product, review the tools, launch
+and measure activation, then read the data moat and the next move.
+
+## Run it
+
+```bash
+make setup                     # install every stage's deps
+export ANTHROPIC_API_KEY=...   # required, every demo makes real calls
+make demo                      # run the whole arc live, first hour to scale
+make demo-mvp                  # run one stage on its own
+make test                      # every stage's tests
+make check                     # every stage's gates
+```
+
+There is no offline mode. Every demo calls the API and fails fast without a key. CI runs the same
+live path on a repository secret, so the numbers here are reproduced, not asserted.
+
+## The stages
+
+| Stage | Dir | What it does |
+| --- | --- | --- |
+| First hour | `first_hour/` | the platform ladder, one API call up to a managed agent |
+| Idea | `idea/` | score the startup signal, then lint the raise on the Sequoia arc |
+| MVP | `mvp/` | prompt to production, then a security review of the agent tools |
+| Launch | `launch/` | capture a cohort, measure activation, gate the weekly motion |
+| Scale | `scale/` | score the data moat and the GTM motion to run next |
+| Quality | `quality/` | the de-slop linter every document in this repo passes |
+| Cost | `cost/` | the Claude platform cost levers, each read off the usage object |
+
+Each stage keeps its own README, Makefile, tests, and gate. To work on one alone, `cd` into it.
+
+## What ships with it
+
+The Claude Code skills for these stages are bundled under `.claude/skills/`, so the whole set
+installs in one step.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

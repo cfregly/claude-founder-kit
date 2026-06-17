@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "claude-deslop"
+version = "0.1.0"
+description = "Deterministic de-slop linter: AI-slop tells in prose and rendered output, from one canonical ruleset."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Chris Fregly" }]
+keywords = ["linter", "ai-slop", "writing", "claude", "claude-code"]
+dependencies = []
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.urls]
+Homepage = "https://github.com/cfregly/claude-deslop"
+Source = "https://github.com/cfregly/claude-deslop"
+
+[project.scripts]
+deslop = "deslop.__main__:cli"
+
+[tool.setuptools]
+packages = ["deslop"]
+
+[tool.setuptools.package-data]
+deslop = ["slop_rules.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

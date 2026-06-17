@@ -1,0 +1,45 @@
+{
+  "company": "Brickline (sloppy draft)",
+  "claims": {},
+  "entities": { "MegaBuild": "anonymize" },
+  "slides": [
+    {
+      "arc": "purpose",
+      "headline": "Revolutionizing the construction industry with cutting-edge AI on our journey to transform how the world builds",
+      "lines": [
+        "We are passionate about leveraging next-generation artificial intelligence to fundamentally disrupt the construction inspection space and unlock the full potential of every job site"
+      ],
+      "notes": "NEVER mention the MegaBuild pilot numbers — internal only until the ledger clears them."
+    },
+    {
+      "arc": "problem",
+      "headline": "Construction inspection is broken",
+      "lines": [
+        "Inspections are slow and manual — costing the industry $47B every single year",
+        "Rework is a massive problem"
+      ]
+    },
+    {
+      "arc": "solution",
+      "headline": "Our state-of-the-art platform delights users",
+      "lines": [
+        "MegaBuild saw a 73% reduction in inspection time and saved $2.3M in the first quarter alone"
+      ]
+    },
+    {
+      "arc": "product",
+      "headline": "A world-class product experience",
+      "lines": ["Computer vision, drones, and a dashboard"]
+    },
+    {
+      "arc": "market",
+      "headline": "The market is enormous",
+      "lines": ["Construction is one of the biggest industries in the world"]
+    },
+    {
+      "arc": "ask",
+      "headline": "We are raising",
+      "lines": ["Funds will be used for growth and hiring"]
+    }
+  ]
+}

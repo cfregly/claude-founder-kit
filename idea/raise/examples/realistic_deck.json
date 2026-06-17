@@ -1,0 +1,102 @@
+{
+  "company": "Helm",
+  "_comment": "A realistic mid-stage deck: strong, well-sourced, but with real gaps. It scores in the C band, not 0 and not 100. This is the example to study -- the sloppy and sharp decks show the extremes; a real founder deck lives here, and the findings that remain (source the NRR figure, add a number to the problem slide, tighten one headline) are the ones worth a founder's time.",
+  "claims": {
+    "10x fewer review cycles": "measured",
+    "$0.04 per merged change": "measured",
+    "$900K ARR": "measured",
+    "40% of pull requests": "measured",
+    "100K developers": "public",
+    "$500B spent on software labor": "public",
+    "~$7M ARR": "modeled"
+  },
+  "entities": {
+    "Vercel": "named-ok"
+  },
+  "slides": [
+    {
+      "arc": "purpose",
+      "headline": "Helm ships the pull request, not the suggestion.",
+      "lines": ["An autonomous engineer that opens, tests, and merges changes."],
+      "notes": "Lead with the outcome: merged code, not autocomplete."
+    },
+    {
+      "arc": "problem",
+      "headline": "Senior engineers spend half their week in review.",
+      "lines": [
+        "Review is the bottleneck once a team passes ten engineers.",
+        "Autocomplete sped up typing, not the slow part: review and rework."
+      ],
+      "notes": "The pain is review throughput, not keystrokes."
+    },
+    {
+      "arc": "why-now",
+      "headline": "Agents crossed the merge-without-edits bar.",
+      "lines": [
+        "In 2024, 40% of pull requests from Helm merged with no human edits.",
+        "$0.04 per merged change makes autonomy cheaper than the review it removes."
+      ],
+      "notes": "Anchor why-now in a measured capability jump, with the unit economics."
+    },
+    {
+      "arc": "solution",
+      "headline": "10x fewer review cycles per change.",
+      "lines": [
+        "Helm drives 10x fewer review cycles by testing before it asks for review.",
+        "Runs on Python 3.11 and Node 20 stacks, SOC 2 Type II from day one."
+      ],
+      "notes": "The version and compliance line is incidental, not a metric claim."
+    },
+    {
+      "arc": "product",
+      "headline": "It reads the repo, writes the test, opens the PR.",
+      "lines": [
+        "Every change ships with a test and a reverted-on-red guarantee.",
+        "p95 review-to-merge under five minutes on partner repos."
+      ],
+      "notes": "Show a real merged PR in the live demo."
+    },
+    {
+      "arc": "market",
+      "headline": "$500B is spent on software labor each year.",
+      "lines": [
+        "$500B spent on software labor each year is the real budget we attack.",
+        "We meet 100K developers where they already work: the pull request."
+      ],
+      "notes": "Frame the market as labor spend, not IDE seats."
+    },
+    {
+      "arc": "business-model",
+      "headline": "Priced per merged change, so spend tracks output.",
+      "lines": [
+        "$900K ARR with net revenue retention of 155% across teams.",
+        "Usage expands as teams route more of the backlog through Helm."
+      ],
+      "notes": "Retention answers the leaky-bucket question up front."
+    },
+    {
+      "arc": "competition",
+      "headline": "Why not Copilot, or the model labs?",
+      "lines": [
+        "Copilot optimizes keystrokes inside the editor; we optimize merged output.",
+        "We own the test-and-merge workflow and the eval set, not the model itself."
+      ],
+      "notes": "Platform risk: the workflow of record and the customer evals are the moat."
+    },
+    {
+      "arc": "team",
+      "headline": "We built CI at Vercel and GitHub.",
+      "lines": ["Engineers who shipped merge automation to millions of repositories."],
+      "notes": "Founder-market fit on the exact workflow."
+    },
+    {
+      "arc": "ask",
+      "headline": "Raising $20M to reach ~$7M ARR.",
+      "lines": [
+        "Raising $20M to expand from 30 teams to the broad mid-market.",
+        "Projected ~$7M ARR within two years on current expansion rates."
+      ],
+      "notes": "Use of funds: eval platform and design-partner GTM."
+    }
+  ]
+}

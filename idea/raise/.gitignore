@@ -1,0 +1,9 @@
+node_modules
+*.pptx
+__pycache__/
+.DS_Store
+
+# secrets (never commit keys)
+.env
+.env.*
+!.env.example

@@ -1,0 +1,14 @@
+{
+  "name": "startup-linter",
+  "version": "0.1.0",
+  "description": "Diagnose a startup pitch: the PMF path, the platform-risk answer, the Relationship-Activation-Retention loop, and the Dot-Dash-Star use-case sort.",
+  "author": {
+    "name": "Chris Fregly"
+  },
+  "keywords": [
+    "startups",
+    "pmf",
+    "growth",
+    "claude-code"
+  ]
+}

@@ -1,0 +1,10 @@
+# claude-founder-kit: the union of every stage's runtime deps.
+# Each stage also keeps its own requirements file for standalone use.
+anthropic>=0.109.0
+claude-agent-sdk>=0.2.0
+mcp>=1.28.0
+python-dotenv>=1.0.0
+pydantic>=2.8.0
+rich>=13.7.0
+streamlit>=1.41.0
+pytest>=8.0.0

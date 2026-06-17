@@ -1,0 +1,6 @@
+{
+  "_comment": "Copy to .desloprc at your repo root. It blesses intentional choices so the linter stops nagging. An advisor can ship one house-style file across a portfolio.",
+  "allow_words": ["robust"],
+  "allow_phrases": [],
+  "disable_rules": ["DS013"]
+}

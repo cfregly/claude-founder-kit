@@ -1,0 +1,56 @@
+{
+  "name": "deep-research-agent",
+  "task": "long-running",
+  "subagents": [
+    {
+      "name": "searcher",
+      "returns": "structured",
+      "parallel": true,
+      "context": "isolated"
+    },
+    {
+      "name": "reader",
+      "returns": "structured",
+      "parallel": true,
+      "context": "isolated"
+    },
+    {
+      "name": "verifier",
+      "returns": "structured",
+      "parallel": true,
+      "context": "isolated"
+    },
+    {
+      "name": "synthesizer",
+      "returns": "structured",
+      "parallel": false,
+      "context": "isolated"
+    }
+  ],
+  "context": {
+    "compaction": "model-controlled",
+    "compaction_scope": "selective",
+    "offload": "filesystem",
+    "window": "1M",
+    "caching": true,
+    "durable": true
+  },
+  "memory": [
+    "episodic",
+    "procedural",
+    "semantic"
+  ],
+  "skills": [
+    {
+      "name": "deslop",
+      "disclosure": "progressive"
+    },
+    {
+      "name": "cite",
+      "disclosure": "progressive"
+    }
+  ],
+  "governance": {
+    "gates_outward_actions": true
+  }
+}

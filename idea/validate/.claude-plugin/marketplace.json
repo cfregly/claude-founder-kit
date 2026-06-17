@@ -1,0 +1,13 @@
+{
+  "name": "startup-linter-plugins",
+  "owner": {
+    "name": "Chris Fregly"
+  },
+  "plugins": [
+    {
+      "name": "startup-linter",
+      "source": "./",
+      "description": "Diagnose a startup pitch: the PMF path, the platform-risk answer, the Relationship-Activation-Retention loop, and the Dot-Dash-Star use-case sort."
+    }
+  ]
+}

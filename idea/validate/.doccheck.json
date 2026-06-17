@@ -1,0 +1,14 @@
+{
+  "owner": "cfregly",
+  "repo": "claude-startup-idea",
+  "old_names": [
+    "claude-startup-linter",
+    "claude-startup-signal-lab"
+  ],
+  "docs": [
+    "README.md"
+  ],
+  "score_modules": [
+    "startup_signal_lab.score"
+  ]
+}

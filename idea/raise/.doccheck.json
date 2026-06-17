@@ -1,0 +1,21 @@
+{
+  "owner": "cfregly",
+  "repo": "claude-startup-idea",
+  "old_names": [
+    "claude-pitch-deck-linter",
+    "claude-pitch-linter"
+  ],
+  "docs": [
+    "README.md"
+  ],
+  "rule_module": "pitch_lint/rules.py",
+  "rule_prefix": "PD",
+  "rule_check": "count",
+  "rule_count_patterns": [
+    "(\\d+)\\s+lint rules",
+    "The\\s+(\\d+)\\s+rules"
+  ],
+  "score_modules": [
+    "pitch_lint"
+  ]
+}

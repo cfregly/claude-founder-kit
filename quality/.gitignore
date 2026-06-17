@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.venv/
+*.egg-info/
+
+# secrets (never commit keys)
+.env
+.env.*
+!.env.example

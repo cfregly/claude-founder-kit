@@ -1,0 +1,13 @@
+{
+  "name": "deslop-plugins",
+  "owner": {
+    "name": "Chris Fregly"
+  },
+  "plugins": [
+    {
+      "name": "deslop",
+      "source": "./",
+      "description": "Strip AI-writing tells such as em-dashes, prose semicolons, and buzzwords from any text, the way the linters do."
+    }
+  ]
+}

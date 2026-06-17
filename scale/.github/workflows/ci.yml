@@ -1,0 +1,28 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Demo runs offline and reproduces the readout
+        run: make demo
+
+      - name: Doc-correctness gate
+        run: make check
+
+      - name: Test suite
+        run: |
+          pip install --quiet pytest
+          make test
+
+      - name: De-slop the README
+        run: |
+          pip install --quiet "git+https://github.com/cfregly/claude-deslop"
+          python -m deslop README.md

@@ -1,0 +1,85 @@
+{
+  "company": "Brickline",
+  "claims": {
+    "31 sites": "measured",
+    "11 minutes": "measured",
+    "4.1 hours": "measured",
+    "$8,400": "measured",
+    "92%": "measured",
+    "~$140K": "modeled",
+    "$47B": "public",
+    "880K": "public",
+    "$1,500/site": "measured",
+    "78%": "measured",
+    "$2.5M": "attested",
+    "18 months": "attested",
+    "1,000": "attested"
+  },
+  "entities": { "MegaBuild": "anonymize" },
+  "slides": [
+    {
+      "arc": "purpose",
+      "headline": "Brickline turns site photos into signed-off inspections",
+      "lines": ["Live on 31 sites today."],
+      "notes": "One sentence, then stop. Let them ask how."
+    },
+    {
+      "arc": "problem",
+      "headline": "Every inspection costs a site 4.1 hours",
+      "lines": [
+        "Measured across our pilot sites: 4.1 hours idle per inspection, $8,400 per failed one.",
+        "US rework bill: $47B a year (FMI, public)."
+      ]
+    },
+    {
+      "arc": "solution",
+      "headline": "Photo to signed inspection in 11 minutes",
+      "lines": [
+        "Median across 31 live sites: 11 minutes, 92% first-pass acceptance.",
+        "A national builder cut idle time 78% in month one."
+      ],
+      "notes": "The builder stays unnamed until written permission lands."
+    },
+    {
+      "arc": "why-now",
+      "headline": "Inspectors retire faster than they are replaced",
+      "lines": [
+        "Vision models now read site photos better than tired humans at hour 9.",
+        "What compounds for us: every accepted inspection trains the next one."
+      ]
+    },
+    {
+      "arc": "market",
+      "headline": "880K active US sites, $1,500/site per month",
+      "lines": ["Bottoms-up from our live pricing, not top-down TAM."]
+    },
+    {
+      "arc": "competition",
+      "headline": "Why not the platform? Inspectors sign, platforms cannot",
+      "lines": [
+        "Incumbents sell cameras; the default path is manual reinspection.",
+        "Our wedge survives platform gravity: the signed record is the product, not the model."
+      ]
+    },
+    {
+      "arc": "product",
+      "headline": "Shipped: capture app, review queue, audit trail",
+      "lines": ["In production since March. 92% of inspections close without a site visit."]
+    },
+    {
+      "arc": "business-model",
+      "headline": "$1,500/site per month, 78% gross margin",
+      "lines": ["Measured on current sites. Net revenue retention compounds as sites add inspectors; modeled at scale ~$140K ARR per account."]
+    },
+    {
+      "arc": "team",
+      "headline": "Failed a site-software startup; kept the scars",
+      "lines": ["Second time building for inspectors. First time the inspectors asked us to."]
+    },
+    {
+      "arc": "ask",
+      "headline": "$2.5M for 1,000 sites in 18 months",
+      "lines": ["Milestones attested in our data room: site count, margin, audit-trail certification."]
+    }
+  ]
+}

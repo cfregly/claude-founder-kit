@@ -1,0 +1,132 @@
+{
+  "cohort": "Founder day (sample, fictional)",
+  "accounts": [
+    {
+      "name": "acct_01",
+      "spend_trend": "up",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 2,
+        "first_build": 6,
+        "second_build": 10,
+        "weekly_active": 14,
+        "production": 18,
+        "handoff": 22
+      }
+    },
+    {
+      "name": "acct_02",
+      "spend_trend": "up",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 1,
+        "first_build": 5,
+        "second_build": 9,
+        "weekly_active": 12,
+        "production": 18
+      }
+    },
+    {
+      "name": "acct_03",
+      "spend_trend": "up",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 1,
+        "first_build": 5,
+        "second_build": 9,
+        "weekly_active": 13,
+        "production": 18
+      }
+    },
+    {
+      "name": "acct_04",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 3,
+        "first_build": 7,
+        "second_build": 12,
+        "weekly_active": 16
+      }
+    },
+    {
+      "name": "acct_05",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 3,
+        "first_build": 6,
+        "second_build": 11
+      }
+    },
+    {
+      "name": "acct_06",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 2,
+        "first_build": 5
+      }
+    },
+    {
+      "name": "acct_07",
+      "spend_trend": "down",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 3,
+        "first_build": 5
+      }
+    },
+    {
+      "name": "acct_08",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 1,
+        "first_build": 5
+      }
+    },
+    {
+      "name": "acct_09",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 2
+      }
+    },
+    {
+      "name": "acct_10",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0,
+        "first_call": 2
+      }
+    },
+    {
+      "name": "acct_11",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0
+      }
+    },
+    {
+      "name": "acct_12",
+      "spend_trend": "flat",
+      "reached": {
+        "touchpoint": 0,
+        "signup": 0
+      }
+    }
+  ]
+}

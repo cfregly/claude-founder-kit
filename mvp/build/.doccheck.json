@@ -1,0 +1,13 @@
+{
+  "owner": "cfregly",
+  "repo": "claude-startup-mvp",
+  "old_names": [
+    "claude-prompt-to-production"
+  ],
+  "docs": [
+    "README.md"
+  ],
+  "score_modules": [
+    "eval_lint.py"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "owner": "cfregly",
+  "repo": "claude-deslop",
+  "old_names": [],
+  "docs": ["README.md"],
+  "rule_module": "deslop/rules.py",
+  "rule_prefix": "DS",
+  "rule_check": "presence",
+  "allow": ["<your-org>", "TODO", "FIXME", "TBD", "once this repo has a remote", "coming soon"]
+}

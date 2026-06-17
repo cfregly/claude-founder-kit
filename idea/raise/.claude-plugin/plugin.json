@@ -1,0 +1,14 @@
+{
+  "name": "pitch-deck",
+  "version": "0.1.0",
+  "description": "Build and lint a Sequoia-arc pitch deck where every word fights for its place.",
+  "author": {
+    "name": "Chris Fregly"
+  },
+  "keywords": [
+    "pitch",
+    "fundraising",
+    "linter",
+    "claude-code"
+  ]
+}

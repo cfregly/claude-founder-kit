@@ -1,0 +1,25 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test suite
+        run: python tests/test_rules.py
+      - name: Sloppy deck must fail the gate
+        run: |
+          if python -m pitch_lint examples/sloppy_deck.json; then
+            echo "expected exit 1 for the sloppy deck" && exit 1
+          fi
+      - name: Sharp deck must pass the gate
+        run: python -m pitch_lint examples/sharp_deck.json
+      - name: Doc-correctness gate
+        run: python scripts/check_docs.py
+      - name: De-slop the README
+        run: |
+          pip install --quiet "git+https://github.com/cfregly/claude-deslop"
+          python -m deslop README.md

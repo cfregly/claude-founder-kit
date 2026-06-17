@@ -1,0 +1,56 @@
+{
+  "name": "Sequoia 10-slide arc",
+  "note": "One assertion per slide. The headline is the claim; the lines are the evidence. 12 slides max; everything else is appendix.",
+  "slides": [
+    {
+      "arc": "purpose",
+      "answers": "What do you do, in one sentence a stranger repeats correctly?",
+      "trap": "A mission statement instead of a description."
+    },
+    {
+      "arc": "problem",
+      "answers": "Whose day is broken, how often, and what does it cost them?",
+      "trap": "A market complaint instead of a person's pain. Name the workflow."
+    },
+    {
+      "arc": "solution",
+      "answers": "What does the customer's day look like after you? Show, with a number.",
+      "trap": "Feature list. One before/after beats ten capabilities."
+    },
+    {
+      "arc": "why-now",
+      "answers": "What changed that makes this possible or urgent today? Name the forcing function.",
+      "trap": "\"AI is big.\" Everyone has that slide. What compounds in YOUR favor: data, workflow, distribution, urgency?"
+    },
+    {
+      "arc": "market",
+      "answers": "How big, bottoms-up, with the math visible?",
+      "trap": "Top-down TAM. Investors multiply your assumptions, not your total."
+    },
+    {
+      "arc": "competition",
+      "answers": "Why not the incumbents, why not the platform, why not the model providers?",
+      "trap": "A 2x2 where you win both axes. Answer platform risk before they ask: what survives platform gravity?"
+    },
+    {
+      "arc": "product",
+      "answers": "What is built, what is shipped, who uses it today?",
+      "trap": "Roadmap dressed as product. Tense matters: shipped beats planned."
+    },
+    {
+      "arc": "business-model",
+      "answers": "Who pays, how much, and what does a unit cost you?",
+      "trap": "Pricing page screenshot. Show the unit economics, hedged honestly: measured vs modeled."
+    },
+    {
+      "arc": "team",
+      "answers": "Why are you the ones who win this? Scar tissue beats résumés.",
+      "trap": "Logo parade. One earned lesson outweighs five employers."
+    },
+    {
+      "arc": "ask",
+      "answers": "How much, for what milestones, reached by when?",
+      "trap": "A number with no milestones. The ask is a plan, not a price."
+    }
+  ]
+}
