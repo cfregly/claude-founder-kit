@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 
 ## What this repo is
 
-claude-startup-launch turns early traction into a growth engine that runs without
+The launch module of claude-founder-kit turns early traction into a growth engine that runs without
 founder bottlenecks: it captures activation events, measures the funnel, operates the
 loop on a schedule, and runs the weekly metrics brief, using the whole Claude
 Developer Platform to do it. One pipeline (capture, measure,

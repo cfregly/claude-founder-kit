@@ -101,18 +101,11 @@ This example needs the optional Agent SDK, which is intentionally not in `requir
 
 This is a small repo by design. It is meant to be cloned during an office-hours session, extended during a build-a-thon, and used as a reference for how to turn messy founder signal into a sharper product wedge, Claude model-routing decision, and eval/activation plan.
 
-Pair it with a production engineering demo such as the `build/` module of claude-startup-mvp: this module shows the founder intervention, and the build module shows the agent/evals/cost discipline underneath it.
+Pair it with a production engineering demo such as the mvp/build module: this module shows the founder intervention, and the build module shows the agent/evals/cost discipline underneath it.
 
 ## Where this fits
 
-Six public repos, one per stage of Anthropic's Founder's Playbook (Idea, MVP, Launch, Scale), plus two disciplines that run across every stage. The playbook names what a founder does at each stage. These are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships.
-
-- **Idea**, validate to problem-solution fit: **[claude-startup-idea](https://github.com/cfregly/claude-startup-idea) (this repo)**
-- **MVP**, build the product, then a security review before any user: [claude-startup-mvp](https://github.com/cfregly/claude-startup-mvp)
-- **Launch**, turn traction into a growth engine that runs without founder bottlenecks: [claude-startup-launch](https://github.com/cfregly/claude-startup-launch)
-- **Scale**, build a GTM function and compound data into a moat: [claude-startup-scale](https://github.com/cfregly/claude-startup-scale)
-- **Quality**, every stage: [claude-deslop](https://github.com/cfregly/claude-deslop)
-- **Cost**, every stage: [claude-cost-control](https://github.com/cfregly/claude-cost-control)
+This is the `validate` half of the **Idea** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
 
 ## Limitations
 

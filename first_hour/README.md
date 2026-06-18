@@ -1,4 +1,4 @@
-# claude-first-hour
+# First hour, the platform ladder
 
 A runnable tour of the Claude developer platform, from a single API call up to a
 server-managed agent. Clone it, run one command, and watch the whole stack work with
@@ -49,14 +49,13 @@ The default model is `claude-sonnet-4-6` for a fast, low-cost tour. Set
 
 ## Where to go next
 
-This is the front door. The tools that build on these primitives live at
-[github.com/cfregly](https://github.com/cfregly), in two lines:
+This is the front door. The tools that build on these primitives are the other modules of
+[claude-founder-kit](../README.md), the repo this module lives in. The full journey runs as
+modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. One `make demo` from the
+repo root runs the whole arc live. Start with the `mvp/build` module for the path from a first call
+to a deployed, cost-engineered product, then `launch` and `scale` to run on a developer cohort.
 
-- **Founder Kit**, run on your own company: diagnose, build, harden, raise. Start with [claude-prompt-to-production](https://github.com/cfregly/claude-prompt-to-production) for the path from a first call to a deployed, cost-engineered product.
-- **Activation System**, run on a developer cohort: capture, measure, operate.
-
-Every artifact passes [claude-deslop](https://github.com/cfregly/claude-deslop), the
-prose and visual slop gate.
+Every artifact passes the `quality` module, the prose and visual slop gate.
 
 ## License
 

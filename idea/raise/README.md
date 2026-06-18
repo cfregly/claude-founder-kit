@@ -20,19 +20,12 @@ gate that fails the build when the words stop fighting.
 
 ## Where this fits
 
-Six public repos, one per stage of Anthropic's Founder's Playbook (Idea, MVP, Launch, Scale), plus two disciplines that run across every stage. The playbook names what a founder does at each stage. These are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships.
-
-- **Idea**, validate to problem-solution fit: **[claude-startup-idea](https://github.com/cfregly/claude-startup-idea) (this repo)**
-- **MVP**, build the product, then a security review before any user: [claude-startup-mvp](https://github.com/cfregly/claude-startup-mvp)
-- **Launch**, turn traction into a growth engine that runs without founder bottlenecks: [claude-startup-launch](https://github.com/cfregly/claude-startup-launch)
-- **Scale**, build a GTM function and compound data into a moat: [claude-startup-scale](https://github.com/cfregly/claude-startup-scale)
-- **Quality**, every stage: [claude-deslop](https://github.com/cfregly/claude-deslop)
-- **Cost**, every stage: [claude-cost-control](https://github.com/cfregly/claude-cost-control)
+This is the `raise` half of the **Idea** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
 
 ## Quickstart
 
 ```bash
-cd raise   # from the claude-startup-idea repo root
+cd idea/raise   # from the kit root
 python -m pitch_lint examples/sloppy_deck.json   # the "before": 0/100, gate fails
 python -m pitch_lint examples/sharp_deck.json    # the "after": 100/100
 python -m pitch_lint examples/realistic_deck.json # a real founder deck: 74/100, grade C

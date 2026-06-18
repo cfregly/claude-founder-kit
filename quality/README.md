@@ -1,6 +1,5 @@
-# claude-deslop
+# Quality, the de-slop linter
 
-[![ci](https://github.com/cfregly/claude-deslop/actions/workflows/ci.yml/badge.svg)](https://github.com/cfregly/claude-deslop/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ![deslop: a sloppy doc scores F, clean prose scores A](docs/demo.svg)
@@ -12,7 +11,7 @@ and the **rendered output** (purple gradients, centered-everything,
 emoji-as-design, border-left cards). Plain Python, stdlib
 only, MIT.
 
-It is also the source of truth for de-slop across a set of sibling repos: the
+It is also the source of truth for de-slop across the kit: the
 word and phrase lists live here, in [`deslop/slop_rules.json`](deslop/slop_rules.json),
 and `scripts/sync.py` copies them out so nothing drifts by hand.
 
@@ -22,14 +21,7 @@ and `scripts/sync.py` copies them out so nothing drifts by hand.
 
 ## Where this fits
 
-Six public repos, one per stage of Anthropic's Founder's Playbook (Idea, MVP, Launch, Scale), plus two disciplines that run across every stage. The playbook names what a founder does at each stage. These are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships.
-
-- **Idea**, validate to problem-solution fit: [claude-startup-idea](https://github.com/cfregly/claude-startup-idea)
-- **MVP**, build the product, then a security review before any user: [claude-startup-mvp](https://github.com/cfregly/claude-startup-mvp)
-- **Launch**, turn traction into a growth engine that runs without founder bottlenecks: [claude-startup-launch](https://github.com/cfregly/claude-startup-launch)
-- **Scale**, build a GTM function and compound data into a moat: [claude-startup-scale](https://github.com/cfregly/claude-startup-scale)
-- **Quality**, every stage: **[claude-deslop](https://github.com/cfregly/claude-deslop) (this repo)**
-- **Cost**, every stage: [claude-cost-control](https://github.com/cfregly/claude-cost-control)
+This is the **Quality** module of [claude-founder-kit](../README.md), the de-slop discipline that runs across every stage. The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
 
 ## Why
 
@@ -62,7 +54,7 @@ report = lint(open("README.md").read())   # {prose_grade, findings, ...}
 
 `lint` returns the report dict shown above. `lint_text` and `lint_html` return just the list of findings.
 
-There is also a `deslop` Claude Code skill. Install it with `/plugin marketplace add cfregly/claude-deslop` then `/plugin install deslop@deslop-plugins`, or upload the [`skills/deslop`](skills/deslop/SKILL.md) folder in the Claude app under Settings > Skills:
+There is also a `deslop` Claude Code skill. The kit bundles it under `.claude/skills/`, so it installs with the rest of the kit. To use it on its own, upload the [`skills/deslop`](skills/deslop/SKILL.md) folder in the Claude app under Settings > Skills:
 it lints, then rewrites the flagged lines and re-lints until clean.
 
 ### Blessing intentional choices: `.desloprc`
@@ -117,18 +109,17 @@ DS012 emoji-as-design, DS013 colored left-border card. Severities deduct from
 
 ## Single source of truth
 
-[`deslop/slop_rules.json`](deslop/slop_rules.json) is canonical. The sibling
-repos vendor a synced copy and load from it:
+[`deslop/slop_rules.json`](deslop/slop_rules.json) is canonical. The other kit modules and the
+resume and deck builder vendor a synced copy and load from it:
 
 ```bash
-python scripts/sync.py            # copy canonical into every sibling repo
+python scripts/sync.py            # copy canonical into every target
 python scripts/sync.py --check    # fail if any copy drifted (pre-push / CI)
 ```
 
-Targets: the resume and deck builder (`deslop_rules.js`), the `validate/` and
-`raise/` modules of claude-startup-idea, and the `harden/` module of
-claude-startup-mvp. Repos that cite the canon in prose or prompts rather than code
-(`claude-gpu-perf-tune`, the `build/` module of claude-startup-mvp) are not synced from here.
+Targets: the resume and deck builder (`deslop_rules.js`), and the idea/validate, idea/raise,
+and mvp/harden modules. Modules that cite the canon in prose or prompts rather than code
+(claude-gpu-perf-tune, the mvp/build module) are not synced from here.
 
 ## Credits
 

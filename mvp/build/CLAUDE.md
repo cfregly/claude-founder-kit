@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 
 ## What this repo is
 
-The `build/` module of claude-startup-mvp is a founder's 15-minute path from a first Claude API call to an evaluated, cost-engineered, deployable agent. Every act runs Claude: the model ladder (`claude-haiku-4-5` to `claude-opus-4-8`), the Messages API, the eval gate, and the Agent SDK repo doctor. It runs as five acts: a first streaming call, tools as contracts, evals in CI including honesty cases, cost engineering (caching plus routing, measured at about 86 percent lower cost on the bundled workload), and an MCP encore. The `starter/` directory is a forkable FastAPI app you deploy.
+The mvp/build module of claude-founder-kit is a founder's 15-minute path from a first Claude API call to an evaluated, cost-engineered, deployable agent. Every act runs Claude: the model ladder (`claude-haiku-4-5` to `claude-opus-4-8`), the Messages API, the eval gate, and the Agent SDK repo doctor. It runs as five acts: a first streaming call, tools as contracts, evals in CI including honesty cases, cost engineering (caching plus routing, measured at about 86 percent lower cost on the bundled workload), and an MCP encore. The `starter/` directory is a forkable FastAPI app you deploy.
 
 ## Run it
 

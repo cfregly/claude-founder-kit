@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 
 ## What this repo is
 
-claude-startup-idea is the Idea stage of Anthropic's Founder's Playbook: validate the idea before you build, and pressure-test the raise. It bundles two co-located sub-tools, each keeping its own working code, tests, and gate.
+The idea module of claude-founder-kit is the Idea stage of Anthropic's Founder's Playbook: validate the idea before you build, and pressure-test the raise. It bundles two co-located sub-tools, each keeping its own working code, tests, and gate.
 
 - `validate/` scores the startup signal and argues against the idea. It is the startup validation linter.
 - `raise/` builds and lints the pitch deck on the Sequoia arc. It is the pitch and raise linter.

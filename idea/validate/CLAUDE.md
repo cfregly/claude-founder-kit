@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 
 ## What this repo is
 
-The `validate/` module (startup signal lab) of claude-startup-idea scores a startup's raw signal, a pitch, site copy, or a README, into product, GTM, and architecture decisions. It runs local deterministic scoring for value proposition, urgency, platform risk, moat, and customer pain, a Relationship-Activation-Retention growth read that names the weakest stage, and a Dot/Dash/Star use-case sort. Claude reads those scores and writes the founder intervention on every run. The deterministic scoring runs offline and is the gate CI re-runs. The intervention runs Claude (`claude-opus-4-8`) and needs `ANTHROPIC_API_KEY` set: with no key or no SDK it raises a clear error rather than degrading to a canned response.
+The idea/validate module (startup signal lab) of claude-founder-kit scores a startup's raw signal, a pitch, site copy, or a README, into product, GTM, and architecture decisions. It runs local deterministic scoring for value proposition, urgency, platform risk, moat, and customer pain, a Relationship-Activation-Retention growth read that names the weakest stage, and a Dot/Dash/Star use-case sort. Claude reads those scores and writes the founder intervention on every run. The deterministic scoring runs offline and is the gate CI re-runs. The intervention runs Claude (`claude-opus-4-8`) and needs `ANTHROPIC_API_KEY` set: with no key or no SDK it raises a clear error rather than degrading to a canned response.
 
 ## Run it
 

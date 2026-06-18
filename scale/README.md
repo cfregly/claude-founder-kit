@@ -1,6 +1,5 @@
-# claude-startup-scale
+# Scale, the data moat and the GTM motion
 
-[![ci](https://github.com/cfregly/claude-startup-scale/actions/workflows/ci.yml/badge.svg)](https://github.com/cfregly/claude-startup-scale/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 The Scale stage of Anthropic's Founder's Playbook: build a go-to-market function,
@@ -111,14 +110,7 @@ embedded, the weekly-active depth, a spend trend (up, flat, down), a data volume
 
 ## Where this fits
 
-Six public repos, one per stage of Anthropic's Founder's Playbook (Idea, MVP, Launch, Scale), plus two disciplines that run across every stage. The playbook names what a founder does at each stage. These are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships.
-
-- **Idea**, validate to problem-solution fit: [claude-startup-idea](https://github.com/cfregly/claude-startup-idea)
-- **MVP**, build the product, then a security review before any user: [claude-startup-mvp](https://github.com/cfregly/claude-startup-mvp)
-- **Launch**, turn traction into a growth engine that runs without founder bottlenecks: [claude-startup-launch](https://github.com/cfregly/claude-startup-launch)
-- **Scale**, build a GTM function and compound data into a moat: **[claude-startup-scale](https://github.com/cfregly/claude-startup-scale) (this repo)**
-- **Quality**, every stage: [claude-deslop](https://github.com/cfregly/claude-deslop)
-- **Cost**, every stage: [claude-cost-control](https://github.com/cfregly/claude-cost-control)
+This is the **Scale** module of [claude-founder-kit](../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
 
 ## License
 

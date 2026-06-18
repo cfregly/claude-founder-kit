@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Agent guide for claude-first-hour, a runnable tour of the Claude platform.
+Agent guide for the first_hour module of claude-founder-kit, a runnable tour of the Claude platform.
 
 ## What this is
 

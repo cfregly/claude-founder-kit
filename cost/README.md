@@ -1,4 +1,4 @@
-# claude-cost-control
+# Cost, the platform cost levers
 
 A runnable reference for cutting your Claude bill: **one small, correct demo of each cost lever**,
 in one repo. Every demo makes a real API call and reads the saving off the usage object.
@@ -15,12 +15,10 @@ a key it fails fast with a clear error and a non-zero exit. There is no offline 
 
 ## A note on scope
 
-This repo is about **Claude platform cost**: the token-spend knobs the API gives you. It is not
-about GPU or serving cost, which live in the separate `claude-gpu-perf-tune`. It is one of the six
-public `claude-*` repos that map to Anthropic's Founder's Playbook: the cost discipline that runs
-at every stage, alongside `claude-deslop` for prose quality. Every demo is built on shipped
-primitives and the request shapes are current. Where a lever is beta, the demo labels it and does
-not pretend otherwise.
+This stage is about **Claude platform cost**: the token-spend knobs the API gives you. It is not
+about GPU or serving cost, which live in the separate `claude-gpu-perf-tune`. Every demo is built
+on shipped primitives and the request shapes are current. Where a lever is beta, the demo labels it
+and does not pretend otherwise.
 
 ## The levers
 
@@ -37,16 +35,16 @@ rest with batch.
 | `token_counting` | exact, model-specific counts before you send, so you budget and catch blowups early |
 | `batch` | the Batches API runs anything non-interactive async at 50% of the token price |
 
-The repo also ships a `verify` skill and a Stop hook under `.claude/`, which is the skills and
+This stage also ships a `verify` skill and a Stop hook under `.claude/`, which is the skills and
 hooks feature demonstrating itself.
 
 ## Measured: carrying fewer tokens
 
 The levers split into two axes. Axis one is **do not pay for the same tokens twice**: prompt
-caching and routing. That is measured in the sibling repo `claude-prompt-to-production`, where
-caching plus routing cut a 12-question workload from $0.22 to $0.03, about 86 percent.
+caching and routing. That is measured in the kit's `mvp/` stage, where caching plus routing cut a
+12-question workload from $0.22 to $0.03, about 86 percent.
 
-This repo measures axis two: **do not carry tokens you do not need**. The same six-turn tool loop,
+This stage measures axis two: **do not carry tokens you do not need**. The same six-turn tool loop,
 run three ways on Haiku, every number read from `usage.input_tokens` on the real calls:
 
 | strategy | model | turns | total input tokens | output tokens | cost | vs naive |
@@ -92,14 +90,18 @@ scripts/       # the self-contained deslop gate for CI
 
 ## Where this fits
 
-Six public repos, one per stage of Anthropic's Founder's Playbook (Idea, MVP, Launch, Scale), plus two disciplines that run across every stage. The playbook names what a founder does at each stage. These are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships.
+This is the `cost/` stage of [claude-founder-kit](../README.md),
+Anthropic's Founder's Playbook as runnable code: the founder journey from a first Claude call to a
+scaling read, one repo, a co-located tool per stage. Claude runs the judgment on every stage, and a
+deterministic gate verifies the output before it ships.
 
-- **Idea**, validate to problem-solution fit: [claude-startup-idea](https://github.com/cfregly/claude-startup-idea)
-- **MVP**, build the product, then a security review before any user: [claude-startup-mvp](https://github.com/cfregly/claude-startup-mvp)
-- **Launch**, turn traction into a growth engine that runs without founder bottlenecks: [claude-startup-launch](https://github.com/cfregly/claude-startup-launch)
-- **Scale**, build a GTM function and compound data into a moat: [claude-startup-scale](https://github.com/cfregly/claude-startup-scale)
-- **Quality**, every stage: [claude-deslop](https://github.com/cfregly/claude-deslop)
-- **Cost**, every stage: **[claude-cost-control](https://github.com/cfregly/claude-cost-control) (this repo)**
+- `first_hour/` the platform ladder, one call up to a managed agent
+- `idea/` validate the signal, lint the raise
+- `mvp/` prompt to production, then a tool security review
+- `launch/` capture a cohort, measure activation, gate the weekly motion
+- `scale/` score the data moat and the next GTM motion
+- `quality/` the de-slop linter
+- `cost/` the platform cost levers (this stage)
 
 ## License
 

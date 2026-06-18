@@ -23,19 +23,12 @@ even for prose.
 
 ## Where this fits
 
-Six public repos, one per stage of Anthropic's Founder's Playbook (Idea, MVP, Launch, Scale), plus two disciplines that run across every stage. The playbook names what a founder does at each stage. These are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships.
-
-- **Idea**, validate to problem-solution fit: [claude-startup-idea](https://github.com/cfregly/claude-startup-idea)
-- **MVP**, build the product, then a security review before any user: **[claude-startup-mvp](https://github.com/cfregly/claude-startup-mvp) (this repo)**
-- **Launch**, turn traction into a growth engine that runs without founder bottlenecks: [claude-startup-launch](https://github.com/cfregly/claude-startup-launch)
-- **Scale**, build a GTM function and compound data into a moat: [claude-startup-scale](https://github.com/cfregly/claude-startup-scale)
-- **Quality**, every stage: [claude-deslop](https://github.com/cfregly/claude-deslop)
-- **Cost**, every stage: [claude-cost-control](https://github.com/cfregly/claude-cost-control)
+This is the `harden` half of the **MVP** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
 
 ## Quickstart
 
 ```bash
-cd harden   # from the claude-startup-mvp repo root
+cd mvp/harden   # from the kit root
 python -m contract_doctor examples/vague_tools.json          # the "before": 14/100
 python -m contract_doctor examples/contract_grade_tools.json # the "after"
 python -m contract_doctor examples/realistic_tools.json      # a real server: 58/100, grade D
@@ -95,7 +88,7 @@ are not the same artifact - and only one of them matters.
 The fix took minutes: `Annotated[str, Field(description=...)]` on each
 parameter, plus explicit failure-mode sentences in two docstrings (and a real
 divide-by-zero guard the lint pressured into existence). The server re-lints at
-**100/100, grade A** - and that commit lives in the sibling repo's history.
+**100/100, grade A** - and that commit lives in the sibling module's history.
 
 Three lessons worth keeping:
 

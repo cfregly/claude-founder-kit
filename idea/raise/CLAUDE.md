@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 
 ## What this repo is
 
-The `raise/` module (pitch-deck builder and linter) of claude-startup-idea is a Sequoia-arc pitch-deck builder and a deterministic linter where every word fights for its place. A sloppy example deck scores 0/100 and fails CI. The same company rewritten on the arc scores 100/100. It enforces a claims ledger (every number carries a source tier of measured, attested, public, or modeled), the four dimensions an investor judges, and 15 rules. A renderer turns a JSON spec into a PPTX or PDF.
+The idea/raise module (pitch-deck builder and linter) of claude-founder-kit is a Sequoia-arc pitch-deck builder and a deterministic linter where every word fights for its place. A sloppy example deck scores 0/100 and fails CI. The same company rewritten on the arc scores 100/100. It enforces a claims ledger (every number carries a source tier of measured, attested, public, or modeled), the four dimensions an investor judges, and 15 rules. A renderer turns a JSON spec into a PPTX or PDF.
 
 ## Run it
 
