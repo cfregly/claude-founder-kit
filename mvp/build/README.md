@@ -40,14 +40,14 @@ cp .env.example .env          # paste your key from console.anthropic.com
 python 01_first_call.py
 python 02_agent_with_tools.py
 python 03_evals.py            # routed and gated per tier, writes data/last_eval.md (--judge adds an LLM judge)
-python 04_cost_engineering.py --live
+python 04_cost_engineering.py   # ~36 real calls, needs the key, writes data/last_run.md
 python 05_agent_sdk_repo_doctor.py   # the Agent SDK repo doctor
 ```
 
 The five acts call Claude live, so they need `ANTHROPIC_API_KEY`. `make demo` runs
-`04_cost_engineering.py --live`, about 36 real calls, so it needs the key and fails fast without it.
-Run `python 04_cost_engineering.py` without `--live` to render the cost table from clearly-labeled
-sample data with no key, which is how CI re-runs the committed numbers and keeps them honest.
+`04_cost_engineering.py`, about 36 real calls, so it needs the key and fails fast without it. There
+is no offline mode and no sample data. CI checks that the script fails fast without a key rather
+than spending tokens on every push.
 
 ## The benchmark
 
@@ -90,7 +90,7 @@ Reproducibility note: these are the numbers committed in `data/last_run.md`. Re-
 cost by a point or two and the latency more, because latency moves with load, which is exactly why
 this repo measures instead of asserts.
 
-> Rerun it yourself: `python 04_cost_engineering.py --live` writes your numbers to
+> Rerun it yourself: `python 04_cost_engineering.py` writes your numbers to
 > `data/last_run.md` - quote your own run, never someone else's.
 
 Pricing lives in [`pricing.json`](pricing.json) with a verify-before-quoting note. Rates move,

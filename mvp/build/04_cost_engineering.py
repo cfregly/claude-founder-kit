@@ -9,14 +9,14 @@ Same workload, three ways:
 
 Cost-per-token is a DESIGN DECISION, not a bill you discover later. Caching
 and routing are each ~10 lines of code; together they routinely cut serving
-cost 50-80% on context-heavy workloads. This script measures, it doesn't
-assert — run it live and quote YOUR numbers.
+cost 50-80% on context-heavy workloads. This script measures, it does not
+assert. It makes real API calls and quotes YOUR numbers.
 
-Run:   python 04_cost_engineering.py            # dry run: renders SAMPLE data, no key needed
-       python 04_cost_engineering.py --live     # real run: makes ~36 API calls, writes data/last_run.*
+Run:   ANTHROPIC_API_KEY=... python 04_cost_engineering.py   # ~36 real API calls, writes data/last_run.*
+
+There is no offline mode and no sample fallback. Without a key it fails fast with a non-zero exit.
 """
 
-import argparse
 import json
 import os
 import statistics
@@ -25,7 +25,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from rich.console import Console
-from rich.panel import Panel
 from rich.table import Table
 
 from models import JUNIOR, SENIOR
@@ -110,15 +109,9 @@ def run_arm(client, name: str, cached: bool, routed: bool) -> dict:
         "cost_usd": round(per_model_cost, 4),
     }
 
-def render(arms: list[dict], sample: bool) -> None:
-    if sample:
-        console.print(Panel(
-            "[bold red]SAMPLE DATA[/bold red] — illustrative numbers so the table renders without an "
-            "API key. Run with [bold]--live[/bold] and quote your own measurements, never these.",
-            border_style="red",
-        ))
+def render(arms: list[dict]) -> None:
     baseline = arms[0]["cost_usd"]
-    table = Table(title="claude-startup-mvp / build · same workload, three ways")
+    table = Table(title="mvp/build · same workload, three ways")
     for col in ("strategy", "model", "calls", "fresh in", "cache write", "cache read", "out", "p50 lat", "cost", "vs naive"):
         table.add_column(col, justify="right" if col not in ("strategy", "model") else "left")
     md = ["| strategy | model | cost | p50 latency | vs naive |", "|---|---|---|---|---|"]
@@ -137,30 +130,21 @@ def render(arms: list[dict], sample: bool) -> None:
         # A "cached" arm with zero cache reads means the prefix never hit the cache
         # (e.g. shrunk below the model's minimum cacheable prefix) — the comparison
         # would silently measure nothing. Fail loudly instead.
-        if "cached" in a["name"] and a["cache_read_input_tokens"] == 0 and not sample:
+        if "cached" in a["name"] and a["cache_read_input_tokens"] == 0:
             console.print(f"[bold red]WARNING:[/bold red] arm '{a['name']}' recorded ZERO cache reads — "
                           "prompt caching never engaged. Check that the system prefix exceeds the model's "
                           "minimum cacheable length before quoting these numbers.")
-    if not sample:
-        (ROOT / "data" / "last_run.json").write_text(json.dumps({"generated": time.strftime("%Y-%m-%d %H:%M:%S"), "arms": arms}, indent=2))
-        (ROOT / "data" / "last_run.md").write_text("\n".join(md) + "\n")
-        console.print("\nWrote data/last_run.json and data/last_run.md — paste the markdown table into the README.")
+    (ROOT / "data" / "last_run.json").write_text(json.dumps({"generated": time.strftime("%Y-%m-%d %H:%M:%S"), "arms": arms}, indent=2))
+    (ROOT / "data" / "last_run.md").write_text("\n".join(md) + "\n")
+    console.print("\nWrote data/last_run.json and data/last_run.md — paste the markdown table into the README.")
     console.print(f"[dim]Pricing from pricing.json — {PRICING['_verify']}[/dim]\n")
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--live", action="store_true", help="make real API calls (~36 requests)")
-    args = parser.parse_args()
-
-    if args.live and not os.environ.get("ANTHROPIC_API_KEY"):
-        console.print("[red]--live needs ANTHROPIC_API_KEY. This makes ~36 real API calls and has no offline fallback.[/red]")
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        console.print("[red]ANTHROPIC_API_KEY is required. This makes ~36 real API calls and has no offline mode.[/red]")
         raise SystemExit(1)
-    if not args.live:
-        sample = json.loads((ROOT / "data" / "sample_run.json").read_text())
-        render(sample["arms"], sample=True)
-        return
 
-    from anthropic import Anthropic  # imported here so the dry run needs no key at all
+    from anthropic import Anthropic
     client = Anthropic()
     console.print("Running 3 arms x 12 questions (~36 calls). The cached arms reuse a ~5K-token prefix — sized above every model's minimum cacheable prefix.\n")
     arms = [
@@ -168,7 +152,7 @@ def main() -> None:
         run_arm(client, "cached (Sonnet + prompt caching)", cached=True, routed=False),
         run_arm(client, "routed + cached (Haiku easy / Sonnet hard)", cached=True, routed=True),
     ]
-    render(arms, sample=False)
+    render(arms)
 
 if __name__ == "__main__":
     main()

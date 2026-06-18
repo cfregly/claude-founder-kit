@@ -10,12 +10,12 @@ The mvp/build module of claude-founder-kit is a founder's 15-minute path from a 
 
 ```bash
 make setup    # install deps, one time
-make demo     # measure the cost table live: 04_cost_engineering.py --live, about 36 real calls, needs ANTHROPIC_API_KEY
+make demo     # measure the cost table live: 04_cost_engineering.py, about 36 real calls, needs ANTHROPIC_API_KEY
 make test     # the eval-set self-test
 make check    # the doc-correctness gate
 ```
 
-`make demo` assumes the deps are installed, so run `make setup` first. The five acts also run individually: `python 01_first_call.py` through `python 05_agent_sdk_repo_doctor.py`. Acts that call the API need `ANTHROPIC_API_KEY` (copy `.env.example` to `.env`). `python 04_cost_engineering.py --live` measures your own numbers and writes them to `data/last_run.md`.
+`make demo` assumes the deps are installed, so run `make setup` first. The five acts also run individually: `python 01_first_call.py` through `python 05_agent_sdk_repo_doctor.py`. Acts that call the API need `ANTHROPIC_API_KEY` (copy `.env.example` to `.env`). `python 04_cost_engineering.py` measures your own numbers and writes them to `data/last_run.md`.
 
 ## Where things are
 
@@ -40,7 +40,7 @@ Verify each path with `ls` before you rely on it.
 - Add a routing strategy in `04_cost_engineering.py`.
 - Change a model in one place: `models.py` holds the four-rung ladder every act imports. The forkable `starter/` keeps its own default so it stays self-contained.
 - Fork `starter/` to ship a product of your own.
-- The cost numbers come from one run on one workload. Rerun with `--live` before quoting them, and check rates against `pricing.json`, which carries a verify-before-quoting note. The README documents the 97/100 eval-lint score as a runnable command that CI re-runs, so keep the README and the code in sync.
+- The cost numbers come from one run on one workload. Rerun it before quoting them, and check rates against `pricing.json`, which carries a verify-before-quoting note. The README documents the 97/100 eval-lint score as a runnable command that CI re-runs, so keep the README and the code in sync.
 
 ## Conventions
 

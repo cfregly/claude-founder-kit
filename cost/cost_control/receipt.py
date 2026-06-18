@@ -1,20 +1,18 @@
 """Measured receipt: the same tool-using loop, three ways.
 
 This is axis 2 of the cost story, "don't carry tokens you don't need", the counterpart to the
-caching receipt in claude-prompt-to-production, which is axis 1, "don't pay for the same tokens
-twice". A short research loop calls a lookup tool that returns a large document every turn. By the
-last turn the naive run is resending every earlier document on every call, so its input grows turn
-over turn. Three arms over the identical workload:
+caching receipt in the kit's mvp module, which is axis 1, "don't pay for the same tokens twice". A
+short research loop calls a lookup tool that returns a large document every turn. By the last turn
+the naive run is resending every earlier document on every call, so its input grows turn over turn.
+Three arms over the identical workload:
 
   naive    keep every full tool result in history forever
   trimmed  client side: once a result has been used, carry only a one-line stub forward
   edited   server side: the context-management beta clears stale tool_uses past a token trigger
 
-It measures, it does not assert. Every number under --live is summed from usage.input_tokens on the
-real calls. The dry run renders a clearly labelled SAMPLE so the table shows without a key. The
-trimmed arm is pure client-side bookkeeping and always runs. The edited arm needs the
-context-management beta on your key; if the call is rejected, the arm is reported as unavailable
-rather than faked.
+It measures, it does not assert. Every number is summed from usage.input_tokens on the real calls.
+There is no offline mode and no fallback. The edited arm uses the context-management beta, so the
+run needs a key whose org has that beta enabled.
 """
 
 import json
@@ -90,11 +88,7 @@ def cost_usd(input_tokens: int, output_tokens: int) -> float:
 
 
 def _run_arm(client, mode: str) -> dict:
-    """Run the TURNS-step loop once. mode is naive, trimmed, or edited.
-
-    Returns the summed usage and cost. On the edited arm, a rejected beta call sets available=False
-    and the caller reports the arm as unavailable instead of quoting a number that never ran.
-    """
+    """Run the TURNS-step loop once. mode is naive, trimmed, or edited. Sums the real usage."""
     messages: list = []
     in_tokens = out_tokens = 0
 
@@ -109,15 +103,12 @@ def _run_arm(client, mode: str) -> dict:
         ]})
 
         kwargs = dict(model=MODEL, max_tokens=64, tools=[LOOKUP_TOOL], messages=messages)
-        try:
-            if mode == "edited":
-                resp = client.beta.messages.create(
-                    betas=["context-management-2025-06-27"],
-                    context_management=CONTEXT_MANAGEMENT, **kwargs)
-            else:
-                resp = client.messages.create(**kwargs)
-        except Exception as exc:  # beta not on this key, or a transient API error
-            return {"mode": mode, "available": False, "note": str(exc)[:120]}
+        if mode == "edited":
+            resp = client.beta.messages.create(
+                betas=["context-management-2025-06-27"],
+                context_management=CONTEXT_MANAGEMENT, **kwargs)
+        else:
+            resp = client.messages.create(**kwargs)
 
         in_tokens += resp.usage.input_tokens or 0
         out_tokens += resp.usage.output_tokens or 0
@@ -132,7 +123,6 @@ def _run_arm(client, mode: str) -> dict:
 
     return {
         "mode": mode,
-        "available": True,
         "turns": TURNS,
         "input_tokens": in_tokens,
         "output_tokens": out_tokens,
@@ -148,18 +138,11 @@ LABEL = {
 
 
 def _table(arms: list) -> str:
-    lines = []
-    base = next((a["cost_usd"] for a in arms if a.get("available") and a["mode"] == "naive"), None)
-    lines.append("| strategy | model | turns | total input tokens | output tokens | cost | vs naive |")
-    lines.append("|---|---|---|---|---|---|---|")
+    base = next(a["cost_usd"] for a in arms if a["mode"] == "naive")
+    lines = ["| strategy | model | turns | total input tokens | output tokens | cost | vs naive |",
+             "|---|---|---|---|---|---|---|"]
     for a in arms:
-        if not a.get("available", True):
-            lines.append(f"| {LABEL[a['mode']]} | {MODEL} | - | - | - | unavailable on this key | - |")
-            continue
-        if base and a["mode"] != "naive":
-            vs = f"{(a['cost_usd'] - base) / base:+.0%}"
-        else:
-            vs = "baseline"
+        vs = "baseline" if a["mode"] == "naive" else f"{(a['cost_usd'] - base) / base:+.0%}"
         lines.append(f"| {LABEL[a['mode']]} | {MODEL} | {a['turns']} | {a['input_tokens']:,} | "
                      f"{a['output_tokens']:,} | ${a['cost_usd']:.4f} | {vs} |")
     return "\n".join(lines)

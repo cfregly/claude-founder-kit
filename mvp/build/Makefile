@@ -1,9 +1,9 @@
-# claude-startup-mvp / build operator commands. POSIX-make-friendly.
+# mvp/build operator commands. POSIX-make-friendly.
 .DEFAULT_GOAL := help
 .PHONY: help setup demo test check
 
 help:
-	@printf 'claude-startup-mvp / build\n\n'
+	@printf 'mvp/build\n\n'
 	@printf '  make setup   Install the Python deps (one time)\n'
 	@printf '  make demo    Measure the cost table live, ~36 real calls (needs ANTHROPIC_API_KEY)\n'
 	@printf '  make test    Run the eval-set self-test\n'
@@ -14,7 +14,7 @@ setup:
 
 demo:
 	@printf '== same workload, three ways, measured live (~36 real calls, needs ANTHROPIC_API_KEY) ==\n'
-	python 04_cost_engineering.py --live
+	python 04_cost_engineering.py
 
 test:
 	python eval_lint.py --selftest

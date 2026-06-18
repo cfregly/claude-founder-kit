@@ -14,8 +14,12 @@ jobs:
           pip install anthropic python-dotenv rich mcp
       - name: Compile scripts
         run: python -m py_compile 01_first_call.py 02_agent_with_tools.py 03_evals.py 04_cost_engineering.py 05_agent_sdk_repo_doctor.py eval_lint.py mcp_server/startup_metrics_server.py starter/app.py
-      - name: Dry-run benchmark (offline sample data)
-        run: python 04_cost_engineering.py
+      - name: 04 fails fast without a key (non-zero exit)
+        run: |
+          if env -u ANTHROPIC_API_KEY python 04_cost_engineering.py; then
+            echo "04_cost_engineering.py exited 0 without a key, expected non-zero"
+            exit 1
+          fi
       - name: Lint the eval set (the retention moat)
         run: |
           python eval_lint.py --selftest
@@ -23,6 +27,4 @@ jobs:
       - name: Doc-correctness gate
         run: python scripts/check_docs.py
       - name: De-slop the README
-        run: |
-          pip install --quiet "git+https://github.com/cfregly/claude-deslop"
-          python -m deslop README.md
+        run: PYTHONPATH=../../quality python -m deslop README.md

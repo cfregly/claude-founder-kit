@@ -1,14 +1,14 @@
-"""Sync the canonical de-slop ruleset into the sibling repos.
+"""Sync the canonical de-slop ruleset into the other kit modules.
 
-The canonical file is deslop/slop_rules.json in THIS repo. Each sibling repo
-under the same parent directory vendors a copy and loads from it, so the word
-lists are defined once and cannot drift by hand.
+The canonical file is deslop/slop_rules.json in the quality module. Each other
+module in claude-founder-kit that runs the rules vendors a copy and loads from
+it, so the word lists are defined once and cannot drift by hand.
 
     python scripts/sync.py            copy canonical -> every target
     python scripts/sync.py --check    fail if any target drifts (pre-push / CI)
 
-Targets that have no JSON consumer (claude-gpu-perf-tune docs, claude-prompt-to-
-production prompts) cite the canon in prose and are not synced here.
+Modules that cite the canon in prose rather than vendoring the JSON are not
+synced here.
 """
 from __future__ import annotations
 
@@ -17,13 +17,12 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CANON = ROOT / "deslop" / "slop_rules.json"
-SIBS = ROOT.parent
+KIT = ROOT.parent  # the claude-founder-kit root; quality is a module under it
 
 TARGETS = [
-    SIBS / "slop_rules.json",  # resume + deck builder (deslop_rules.js reads this)
-    SIBS / "claude-startup-idea" / "validate" / "startup_signal_lab" / "slop_rules.json",
-    SIBS / "claude-startup-idea" / "raise" / "pitch_lint" / "slop_rules.json",
-    SIBS / "claude-startup-mvp" / "harden" / "contract_doctor" / "slop_rules.json",
+    KIT / "idea" / "validate" / "startup_signal_lab" / "slop_rules.json",
+    KIT / "idea" / "raise" / "pitch_lint" / "slop_rules.json",
+    KIT / "mvp" / "harden" / "contract_doctor" / "slop_rules.json",
 ]
 
 
@@ -45,14 +44,14 @@ def main(argv: list[str]) -> int:
         print(f"skip (no dir): {t.parent}")
     if check:
         for t in drift:
-            print(f"DRIFT: {t.relative_to(SIBS)}")
+            print(f"DRIFT: {t.relative_to(KIT)}")
         if drift:
             print(f"\n{len(drift)} target(s) out of sync. Run: python scripts/sync.py")
             return 1
         print(f"in sync: {len(ok)} target(s)")
         return 0
     for t in ok:
-        print(f"synced: {t.relative_to(SIBS)}")
+        print(f"synced: {t.relative_to(KIT)}")
     return 0
 
 
