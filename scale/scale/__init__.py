@@ -1,4 +1,4 @@
-"""claude-startup-scale: the Scale stage of Anthropic's Founder's Playbook.
+"""The Scale stage of Anthropic's Founder's Playbook.
 
 A deterministic moat core (stdlib only, the receipt and the CI gate) plus a
 mandatory Claude layer that reads the moat readout and writes the GTM motion and

@@ -201,7 +201,7 @@ def main() -> None:
     client = Anthropic()
     cases = [json.loads(line) for line in (ROOT / "data" / "golden_set.jsonl").read_text().splitlines() if line.strip()]
 
-    table = Table(title="claude-startup-mvp / build · eval run (routed, gated per tier)", show_lines=False)
+    table = Table(title="mvp/build · eval run (routed, gated per tier)", show_lines=False)
     for col in ("case", "tier", "code grade", "judge" if args.judge else "", "answer (truncated)"):
         if col:
             table.add_column(col)

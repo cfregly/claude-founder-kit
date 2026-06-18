@@ -24,5 +24,5 @@ jobs:
 
       - name: De-slop the README
         run: |
-          pip install --quiet "git+https://github.com/cfregly/claude-deslop"
+          export PYTHONPATH=../quality
           python -m deslop README.md

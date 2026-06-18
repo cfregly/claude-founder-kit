@@ -46,7 +46,7 @@ def _estimate_unit_economics(
 
 
 if FastMCP is not None:
-    mcp = FastMCP("claude-startup-linter")
+    mcp = FastMCP("startup-signal-lab")
 
     @mcp.tool()
     def score_startup_signal(pitch: str) -> str:

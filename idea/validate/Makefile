@@ -1,9 +1,9 @@
-# claude-startup-idea / validate operator commands. POSIX-make-friendly.
+# idea/validate operator commands. POSIX-make-friendly.
 .DEFAULT_GOAL := help
 .PHONY: help demo test check
 
 help:
-	@printf 'claude-startup-idea / validate\n\n'
+	@printf 'idea/validate\n\n'
 	@printf '  make demo    Score a strong pitch (8/10), then write the live intervention (needs ANTHROPIC_API_KEY)\n'
 	@printf '  make test    Run the test suite\n'
 	@printf '  make check   Run the doc-correctness gate\n'

@@ -32,8 +32,8 @@ DEDUCTION = {"error": 15, "warn": 8, "info": 3}
 #: a deck that is weak across the board, instead of flooring both at F.
 RULE_CAP = 30
 
-# Shared de-slop canon, synced from the claude-deslop repo (do not hand-edit
-# slop_rules.json; run claude-deslop's scripts/sync.py).
+# Shared de-slop canon, synced from the quality module (do not hand-edit
+# slop_rules.json; run quality/scripts/sync.py).
 _RULES = json.loads((pathlib.Path(__file__).parent / "slop_rules.json").read_text())
 
 ARC = [

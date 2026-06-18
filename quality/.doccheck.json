@@ -1,6 +1,6 @@
 {
   "owner": "cfregly",
-  "repo": "claude-deslop",
+  "repo": "claude-founder-kit",
   "old_names": [],
   "docs": ["README.md"],
   "rule_module": "deslop/rules.py",

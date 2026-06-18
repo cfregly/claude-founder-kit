@@ -1,6 +1,6 @@
 # Foglight Robotics - Company FAQ (FICTIONAL demo corpus)
 
-> Everything below is invented demo data for the `claude-startup-mvp` repo. It exists so the
+> Everything below is invented demo data for the mvp/build module. It exists so the
 > benchmark has a realistic ~5,000-token context block to cache - deliberately sized above the
 > minimum cacheable prefix for every current Claude model (2,048 tokens for Sonnet-class,
 > 4,096 for Haiku-class), so the cached arms actually engage the cache. Any resemblance to a

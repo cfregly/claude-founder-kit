@@ -84,8 +84,8 @@ SHAPED_PARAM_NAME = re.compile(
 
 # Marketing slop in a tool description spends tokens on vibes instead of
 # semantics. The shared buzzword canon loads from slop_rules.json (synced from
-# the claude-deslop repo; do not hand-edit). _AGENT_EXTRA adds the few words
-# specific to tool-description fluff that do not belong in the cross-repo canon.
+# the quality module; do not hand-edit). _AGENT_EXTRA adds the few words
+# specific to tool-description fluff that do not belong in the shared canon.
 _RULES = json.loads((pathlib.Path(__file__).parent / "slop_rules.json").read_text())
 _AGENT_EXTRA = ["powerful", "effortless", "easily", "intuitive", "magic"]
 

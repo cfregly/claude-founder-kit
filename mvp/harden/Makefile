@@ -1,9 +1,9 @@
-# claude-startup-mvp / harden operator commands. POSIX-make-friendly.
+# mvp/harden operator commands. POSIX-make-friendly.
 .DEFAULT_GOAL := help
 .PHONY: help demo test check
 
 help:
-	@printf 'claude-startup-mvp / harden\n\n'
+	@printf 'mvp/harden\n\n'
 	@printf '  make demo    Before and after: a vague server (14) then the contract-grade rewrite (100)\n'
 	@printf '  make test    Run the rule test suite\n'
 	@printf '  make check   Run the doc-correctness and rule-count gate\n'

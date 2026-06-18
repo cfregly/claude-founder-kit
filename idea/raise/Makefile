@@ -1,9 +1,9 @@
-# claude-startup-idea / raise operator commands. POSIX-make-friendly.
+# idea/raise operator commands. POSIX-make-friendly.
 .DEFAULT_GOAL := help
 .PHONY: help demo test check
 
 help:
-	@printf 'claude-startup-idea / raise\n\n'
+	@printf 'idea/raise\n\n'
 	@printf '  make demo    Before and after: a sloppy deck (0) then the sharp rewrite (100)\n'
 	@printf '  make test    Run the rule test suite\n'
 	@printf '  make check   Run the doc-correctness gate\n'

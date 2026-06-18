@@ -27,7 +27,7 @@ def _has_any(text: str, patterns: list[str]) -> bool:
 
 # Buzzwords that spend words without carrying signal. Slop costs a point because
 # adjectives displace numbers. The shared canon (buzzword stems plus filler
-# phrases) loads from slop_rules.json, synced from the claude-deslop repo; do
+# phrases) loads from slop_rules.json, synced from the quality module; do
 # not hand-edit it. Stems like "leverag" match as substrings.
 _RULES = json.loads((pathlib.Path(__file__).parent / "slop_rules.json").read_text())
 SLOP_TERMS = _RULES["buzzwords"] + _RULES["phrases"]

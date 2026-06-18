@@ -19,8 +19,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/cfregly/claude-deslop"
-Source = "https://github.com/cfregly/claude-deslop"
+Homepage = "https://github.com/cfregly/claude-founder-kit"
+Source = "https://github.com/cfregly/claude-founder-kit"
 
 [project.scripts]
 deslop = "deslop.__main__:cli"
