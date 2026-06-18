@@ -1,9 +1,10 @@
-.PHONY: help demo report capture measure operate gen-examples coverage deploy test check
+.PHONY: help demo report morning capture measure operate gen-examples coverage deploy test check
 
 help:
-	@printf 'claude-startup-launch\n\n'
-	@printf '  make demo          capture -> measure -> gate -> the weekly report, offline\n'
+	@printf 'claude-founder-kit (launch module)\n\n'
+	@printf '  make demo          capture -> measure -> gate -> the weekly report (live)\n'
 	@printf '  make report        alias for demo\n'
+	@printf '  make morning       the CASH morning read of the cohort (live, needs ANTHROPIC_API_KEY)\n'
 	@printf '  make measure       score the sample cohort into the readout\n'
 	@printf '  make operate       the gated weekly report from the sample readout\n'
 	@printf '  make gen-examples  regenerate the committed sample inputs\n'
@@ -16,6 +17,9 @@ demo:
 	python3 -m activation demo
 
 report: demo
+
+morning:
+	python3 morning_read.py --read
 
 capture:
 	python3 -m activation capture

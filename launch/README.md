@@ -18,11 +18,17 @@ run the weekly metrics brief, using the whole Claude Developer Platform to do it
   `ANTHROPIC_API_KEY` and raises a clear error when the key or the SDK is missing,
   so a misconfiguration is loud, not a silent downgrade.
 - It is a command-line and scheduled-agent system, not a dashboard or UI.
+- The CASH morning read (`make morning`, `morning_read.py`) is the daily complement to the
+  weekly brief: the roughly 25-chart morning review modeled on the public CASH loop, with a live
+  Claude read (`claude-opus-4-8`) that proposes the one motion against the biggest leak while a
+  human gates it. Fictional cohort, kept consistent with the weekly pipeline so the kit tells one
+  story.
 
 ## Run it
 
 ```bash
 make demo       # the whole live pipeline -> the weekly report (needs ANTHROPIC_API_KEY)
+make morning    # the CASH morning read of the cohort (live, renders morning.html)
 make test       # the test suite
 make check      # the doc-correctness gate
 make coverage   # the platform-surface coverage map
