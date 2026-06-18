@@ -38,7 +38,7 @@ on it yet) so the founder sequences for fast payback first.
 
 Founders do not want another generic chatbot. They want a platform partner who can help them make a sharper product decision today. This demo shows Claude as a product-and-architecture co-pilot that understands startup constraints: speed, unit economics, platform risk, data boundaries, and defensible moats.
 
-## Demo path: zero to wow in under 15 minutes
+## Demo path: pitch to intervention in under 15 minutes
 
 ```bash
 python -m venv .venv

@@ -254,7 +254,7 @@ This repo encodes a field lesson from AI-infrastructure work with neo-cloud
 GPU providers and the startups I advise:
 a production agent's tool-call error rate is usually an interface problem.
 Rewriting tool descriptions as contracts - exact semantics, failure shapes,
-side-effect declarations - is the cheapest reliability win in agent
+side-effect declarations - is one of the cheapest reliability wins in agent
 engineering, and it's lintable. So lint it.
 
 Pair-built with Claude. That's not a disclaimer, it's the demo.

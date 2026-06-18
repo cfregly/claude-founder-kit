@@ -57,7 +57,7 @@ Two levers, each about ten lines of code:
 
 1. **Prompt caching** - cached input reads are ~90% off. The shared prefix gets paid for once.
 2. **Model routing** - Haiku 4.5 ($1/$5 per MTok) for lookups, Sonnet 4.6 ($3/$15) for synthesis.
-   The price spread across the model family is the cheapest performance optimization you'll ever ship.
+   The price spread across the model family is one of the cheapest performance optimizations you can ship.
 
 ### Cost is architecture, not accounting
 
@@ -82,8 +82,8 @@ What each lever does:
   this by accident: the stable prefix has to be *bit-identical* across calls, which is an
   architecture decision about how you assemble prompts.
 - **Model routing** prices questions by consequence. Lookups went to Haiku ($1/$5 per MTok),
-  synthesis stayed on Sonnet ($3/$15). The model-family price spread is the cheapest performance
-  optimization you will ever ship - and in this run it also cut p50 latency 30%, because the
+  synthesis stayed on Sonnet ($3/$15). The model-family price spread is one of the cheapest performance
+  optimizations you can ship - and in this run it also cut p50 latency 30%, because the
   easy questions stopped waiting on a bigger model.
 
 Reproducibility note: these are the numbers committed in `data/last_run.md`. Re-running shifts the
