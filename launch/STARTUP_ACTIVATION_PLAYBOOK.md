@@ -64,7 +64,7 @@ reliability, and evals.
 - The change: route by consequence (Haiku for lookups, Sonnet as the workhorse, Opus and Fable for
   high-consequence agentic work), cache the stable context so it never resends at full price, and
   clear stale tool results from the window.
-- Receipt: routing and caching cut a 12-question workshop run from $0.22 to $0.03, about 86% lower
+- Receipt: routing and caching cut a 12-question workshop run from $0.22 to $0.03, about 85% lower
   (`../mvp`). Context editing cut carried tokens 68% on a multi-turn run (`../cost`). Both measured
   off the usage object, not asserted.
 
