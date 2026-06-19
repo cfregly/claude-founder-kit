@@ -1,7 +1,10 @@
 {
   "name": "deslop-plugins",
   "owner": {
-    "name": "Chris Fregly"
+    "name": "Project contributors"
+  },
+  "metadata": {
+    "description": "Deterministic prose and visual slop linting tools for public artifacts."
   },
   "plugins": [
     {

@@ -1,7 +1,10 @@
 {
   "name": "agent-linter-plugins",
   "owner": {
-    "name": "Chris Fregly"
+    "name": "Project contributors"
+  },
+  "metadata": {
+    "description": "Agent and MCP contract linting tools with security review lenses."
   },
   "plugins": [
     {

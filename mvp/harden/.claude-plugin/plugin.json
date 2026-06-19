@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Lint MCP tool contracts, the agent harness, the skill, and the protocol, with an OWASP and STRIDE security lens.",
   "author": {
-    "name": "Chris Fregly"
+    "name": "Project contributors"
   },
   "keywords": [
     "mcp",

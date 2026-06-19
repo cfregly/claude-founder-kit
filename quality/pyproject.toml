@@ -9,7 +9,7 @@ description = "Deterministic de-slop linter: AI-slop tells in prose and rendered
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Chris Fregly" }]
+authors = [{ name = "Project contributors" }]
 keywords = ["linter", "ai-slop", "writing", "claude", "claude-code"]
 dependencies = []
 classifiers = [

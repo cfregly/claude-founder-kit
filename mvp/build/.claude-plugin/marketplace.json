@@ -1,7 +1,10 @@
 {
   "name": "prompt-to-production-plugins",
   "owner": {
-    "name": "Chris Fregly"
+    "name": "Project contributors"
+  },
+  "metadata": {
+    "description": "Prompt-to-production tools for evals, cost routing, MCP, and a starter app."
   },
   "plugins": [
     {

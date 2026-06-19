@@ -1,7 +1,10 @@
 {
   "name": "startup-linter-plugins",
   "owner": {
-    "name": "Chris Fregly"
+    "name": "Project contributors"
+  },
+  "metadata": {
+    "description": "Startup signal scoring and Claude-powered founder intervention tools."
   },
   "plugins": [
     {

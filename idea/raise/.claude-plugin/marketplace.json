@@ -1,7 +1,10 @@
 {
   "name": "pitch-deck-plugins",
   "owner": {
-    "name": "Chris Fregly"
+    "name": "Project contributors"
+  },
+  "metadata": {
+    "description": "Pitch deck build and lint tools for a founder-ready fundraising narrative."
   },
   "plugins": [
     {

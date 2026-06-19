@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Take a Claude feature from first call to evaluated, cost-engineered, MCP-exposed production, with a forkable starter app.",
   "author": {
-    "name": "Chris Fregly"
+    "name": "Project contributors"
   },
   "keywords": [
     "evals",
