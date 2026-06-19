@@ -12,27 +12,29 @@ def test_classify_routes_by_signal():
 def test_route_drafts_into_the_outbox(tmp_path):
     batch = tmp_path / "batch.csv"
     batch.write_text(
+        "# fictional sample cohort, placeholder names only\n"
         "company,first_name,one_liner\n"
-        "Acme,Sam,incident response agent that triages logs and traces across services\n"
-        "Docly,Lee,answers questions over your clinical records and policy documents\n"
-        "Vellum,Alex,a collaborative editor for product teams\n"
+        "Fabrikam,Sam,incident response agent that triages logs and traces across services\n"
+        "Contoso,Lee,answers questions over your clinical records and policy documents\n"
+        "Litware,Alex,a collaborative editor for product teams\n"
     )
     outbox = tmp_path / "outbox"
     summary = router.route(batch, outbox=outbox)
 
+    # the leading comment line is skipped, not counted as a company
     assert summary["total"] == 3
     assert summary["ptc"] == 1 and summary["citations"] == 1 and summary["unrouted"] == 1
 
-    acme = (outbox / "acme.ptc.md").read_text()
-    assert "Hey Sam," in acme and "Token MINNing" in acme
-    docly = (outbox / "docly.citations.md").read_text()
-    assert "Hey Lee," in docly and "grounded answers" in docly
+    fabrikam = (outbox / "fabrikam.ptc.md").read_text()
+    assert "Hey Sam," in fabrikam and "Token MINNing" in fabrikam
+    contoso = (outbox / "contoso.citations.md").read_text()
+    assert "Hey Lee," in contoso and "grounded answers" in contoso
     # the opener is hyper-personalized to each company's use case within its segment
-    assert "Quick tip for an agent that triages logs and traces across services." in acme
-    assert "Quick tip for a product that answers over clinical notes." in docly
+    assert "Quick tip for an agent that triages logs and traces across services." in fabrikam
+    assert "Quick tip for a product that answers over clinical notes." in contoso
     # the first-name placeholder is always filled, and the unrouted company gets no draft
-    assert "{first_name}" not in acme and "{first_name}" not in docly
-    assert not (outbox / "vellum.ptc.md").exists() and not (outbox / "vellum.citations.md").exists()
+    assert "{first_name}" not in fabrikam and "{first_name}" not in contoso
+    assert not (outbox / "litware.ptc.md").exists() and not (outbox / "litware.citations.md").exists()
 
 
 def test_use_case_personalizes_within_segment():

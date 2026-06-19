@@ -111,8 +111,10 @@ def _personalize(draft: str, phrase: str) -> str:
 
 
 def _read_batch(batch_path) -> list[dict]:
+    """Read the batch CSV, skipping blank lines and `#` comments so a sample file can label itself."""
     with open(batch_path, newline="") as f:
-        return list(csv.DictReader(f))
+        rows = [ln for ln in f if ln.strip() and not ln.lstrip().startswith("#")]
+    return list(csv.DictReader(rows))
 
 
 def route(batch_path, *, outbox=None) -> dict:

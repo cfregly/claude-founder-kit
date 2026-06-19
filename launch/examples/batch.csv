@@ -1,6 +1,10 @@
+# Sample cohort: real companies from YC's recent 2026 batches, with public descriptions.
+# Descriptions are paraphrased from each company's public YC profile and press coverage.
+# first_name is blank for the operator to fill with a real contact; the router greets "there".
 company,first_name,one_liner
-Cohortly,Maya,AI agent that rolls up product usage across every account and flags churn risk
-Lexwell,Dan,contract review copilot that answers questions over your legal documents
-TracePilot,Sam,incident response agent that triages logs and traces across your services
-ClariClaim,Priya,reads insurance claims and policy documents to draft adjuster decisions
-Vellum,Alex,a collaborative editor for product teams
+Superlog,,"AI-native observability that groups errors into one incident, then investigates with the logs, traces, and recent deploys"
+Corelayer,,"AI on-call engineer that responds to production incidents by analyzing logs, metrics, and traces to find root causes"
+Userlens,,"AI agents that monitor every user at every account, tracking feature adoption, usage trends, and sentiment shifts"
+Triomics,,"Task-driven AI agents that process unstructured patient records, pathology reports, and clinical notes at scale"
+Dimely,,"AI that extracts the key terms from sales documents like Order Forms, MSAs, and POs to scale contract review"
+Uno Wallet,,"AI mobile wallet that picks the best credit card at checkout so you maximize points, miles, and cashback"
