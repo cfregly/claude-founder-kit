@@ -54,7 +54,11 @@ def draft_nudges(plan: dict, *, model: str | None = None) -> dict:
     items = "\n".join(f"- [{a['id']}] {a['motion']} (moves {a['moves']}; {a['rationale']})"
                       for a in proposed)
     system = ("You draft short, specific founder messages a growth operator could send. "
-              "Plain language, no buzzwords, no em-dashes. One message per action.")
+              "Plain language, no buzzwords, no em-dashes, no semicolons. One message per action. "
+              "Hard caps: subject under 55 characters; body under 180 words; the first sentence names "
+              "the founder's workload in their own terms; at most one metric; state any constraint "
+              "directly in one plain line, never defensive 'honesty' phrasing like 'I measured it "
+              "honestly' or 'two honest caveats'. Sign neutrally, never claiming an Anthropic role.")
     resp = c.messages.create(
         model=model,
         max_tokens=4000,
