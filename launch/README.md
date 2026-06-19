@@ -41,6 +41,16 @@ spine is seeded at 7: 165 events from 12 accounts, the funnel
 and 2 product-qualified accounts ready for handoff. These numbers are reproducible
 from the spine, so re-run before changing one.
 
+## Route a batch to the right brief
+
+`python -m activation route examples/batch.csv` reads a CSV of companies and routes each to the outreach
+brief that fits its bottleneck: programmatic tool calling for cost at scale, Citations for trust to ship.
+It scores every one-line description against the brief signal words, fills the matching template from
+`outreach-examples/`, and writes the draft into the inert outbox. Nothing is sent, the same gate boundary
+the rest of the loop carries. Add `--refine` to have Claude classify the companies the keywords could not
+call. The segmentation and the signal words live in
+[outreach-examples/README.md](outreach-examples/README.md).
+
 ## The pipeline
 
 Producing one report runs nine steps, and each step lands on the platform surface

@@ -42,6 +42,7 @@ and the local agent harness needs `claude-agent-sdk`.
 | `activation/capture/` | emit, the eleven queries, the cohort roll-up, the backends |
 | `activation/measure/metrics.py` | the funnel and the retention metrics |
 | `activation/enrich/`, `decide/`, `draft/` | the generative Claude steps, mandatory on every run |
+| `activation/route/` | route a company batch to the right outreach brief, draft each into the gated outbox |
 | `activation/operate/` | the gate ledger, the report template, the memory |
 | `activation/harness/` | agent_sdk (local), managed_agent (cloud), mcp_server |
 | `activation/platform/` | the shared client and the coverage map |

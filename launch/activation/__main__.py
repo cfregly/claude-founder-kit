@@ -100,6 +100,23 @@ def cmd_draft(args) -> int:
     return 0
 
 
+def cmd_route(args) -> int:
+    from .route import router
+    summary = router.route(args.batch, outbox=args.outbox)
+    if args.refine:
+        summary = router.refine(summary, outbox=args.outbox)
+    if args.json:
+        print(json.dumps(summary, indent=2))
+        return 0
+    print(f"routed {summary['total']} companies: {summary['ptc']} to Token MINNing (programmatic tool "
+          f"calling), {summary['citations']} to Citations, {summary['unrouted']} unrouted")
+    print(f"drafts in the inert outbox {summary['outbox']}, nothing sent, approve before sending")
+    for r in summary["routed"]:
+        where = f"  ({r['draft']})" if r.get("draft") else ""
+        print(f"  {r['company'][:24].ljust(24)} -> {r['brief']}{where}")
+    return 0
+
+
 def cmd_capture(args) -> int:
     if args.no_telemetry:
         os.environ["ACTIVATION_TELEMETRY"] = "off"
@@ -256,6 +273,14 @@ def build_parser() -> argparse.ArgumentParser:
     dr = sub.add_parser("draft", help="draft the founder message per proposed action")
     dr.add_argument("readout")
     dr.set_defaults(func=cmd_draft)
+
+    rt = sub.add_parser("route", help="route a batch of companies to the right outreach brief, drafting each into the gated outbox")
+    rt.add_argument("batch", help="a CSV with company, one_liner, and an optional first_name")
+    rt.add_argument("--outbox", default=None, help="where to write the drafts (default out/outbox)")
+    rt.add_argument("--refine", action="store_true",
+                    help="ask Claude to classify the companies the keywords could not call (needs a key)")
+    rt.add_argument("--json", action="store_true")
+    rt.set_defaults(func=cmd_route)
 
     dep = sub.add_parser("deploy", help="the Managed Agents weekly deployment (dry run by default)")
     dep.add_argument("--apply", action="store_true", help="create the agent, environment, and deployment")
