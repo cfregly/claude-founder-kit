@@ -49,6 +49,10 @@ make test    # offline tests for idea, mvp, launch, scale, and quality
 
 Each stage keeps its own README, Makefile, tests, and gate. To work on one alone, `cd` into it.
 
+The Launch stage also ships the [Startup Activation Playbook](launch/STARTUP_ACTIVATION_PLAYBOOK.md),
+the operator's field guide for turning founders into builders, wired to the launch module's measured
+loop: the workshop formats, the activation motion, the metrics, and the 90-day ramp.
+
 ## What ships with it
 
 The Claude Code skills for these stages are bundled under `.claude/skills/`, so the whole set
