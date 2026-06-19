@@ -7,6 +7,8 @@ DEFAULT_MODEL = "claude-sonnet-4-6"   # fast and low cost for a tour. Override w
 
 
 def _load_local_env():
+    if os.environ.get("PYTHON_DOTENV_DISABLED") == "1":
+        return
     env = pathlib.Path(__file__).resolve().parent.parent / ".env"
     if not env.exists():
         return
@@ -27,7 +29,7 @@ def client():
     if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
         raise SystemExit(
             "No ANTHROPIC_API_KEY found. Copy .env.example to .env and add your key, "
-            "or run `make demo` for the recorded tour that needs no key."
+            "or export it before running the live tour."
         )
     return Anthropic()
 

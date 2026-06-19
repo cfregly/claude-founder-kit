@@ -21,7 +21,8 @@ from pathlib import Path
 try:  # honor launch/.env before CLI fail-fast checks
     from dotenv import load_dotenv
 
-    load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+    if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+        load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 except Exception:  # pragma: no cover - dotenv is a setup helper
     pass
 

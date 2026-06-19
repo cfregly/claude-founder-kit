@@ -107,6 +107,8 @@ embedded, the weekly-active depth, a spend trend (up, flat, down), a data volume
   key or no SDK it raises a clear error rather than degrade. `make demo` runs that
   layer, so it needs both. The deterministic core alone (`--json`, `--min-moat`)
   needs neither.
+- `PYTHON_DOTENV_DISABLED=1` is only for fail-fast tests that need to prove a
+  missing-key path ignores the local `.env`.
 
 ## Where this fits
 

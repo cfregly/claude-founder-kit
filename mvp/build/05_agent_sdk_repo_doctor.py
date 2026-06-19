@@ -17,11 +17,13 @@ Requires:
 from __future__ import annotations
 
 import asyncio
+import os
 from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()  # the SDK's spawned CLI authenticates with ANTHROPIC_API_KEY from .env, like Acts 1-4
+if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+    load_dotenv()  # the SDK's spawned CLI authenticates with ANTHROPIC_API_KEY from .env, like Acts 1-4
 
 PROMPT = """
 You are reviewing this demo repo for a technical founder audience.

@@ -28,7 +28,8 @@ except Exception:  # pragma: no cover - the SDK is a hard runtime dependency
 try:  # honor the README's `cp .env.example .env` setup path
     from dotenv import load_dotenv
 
-    load_dotenv()
+    if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+        load_dotenv()
 except Exception:  # pragma: no cover - dotenv is optional at runtime
     pass
 

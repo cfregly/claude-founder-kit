@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 
 import streamlit as st
 from dotenv import load_dotenv
@@ -8,7 +9,8 @@ from dotenv import load_dotenv
 from startup_signal_lab.anthropic_client import analyze_pitch_with_claude
 from startup_signal_lab.growth import classify_use_cases_as_dict, score_growth_as_dict
 
-load_dotenv()
+if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+    load_dotenv()
 
 st.set_page_config(page_title="Claude Startup Linter", page_icon="🧠", layout="wide")
 

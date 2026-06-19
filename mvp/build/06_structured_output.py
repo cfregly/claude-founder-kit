@@ -10,13 +10,15 @@ Run:  python 06_structured_output.py
 """
 
 import json
+import os
 
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
 from models import JUNIOR  # extraction is a cheap, low-consequence rung
 
-load_dotenv()
+if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+    load_dotenv()
 
 # The schema is the contract. The model must return exactly these fields.
 SCHEMA = {

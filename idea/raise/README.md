@@ -128,7 +128,7 @@ Claude reviews every interactive run. The gate (check_docs, CI, `--min-score`) s
 
 ```bash
 pip install anthropic                                       # for the narrative read
-export ANTHROPIC_API_KEY=sk-ant-...                         # or put it in .env
+export ANTHROPIC_API_KEY=...                                # or put it in .env
 python -m pitch_lint examples/sharp_deck.json               # score, then the narrative read on this interactive run
 python -m pitch_lint examples/sharp_deck.json --no-judge    # score alone
 ```

@@ -20,7 +20,8 @@ except Exception:  # the SDK is a hard dependency of the generative stage
 try:  # honor a .env without making dotenv a hard dependency
     from dotenv import load_dotenv
 
-    load_dotenv()
+    if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+        load_dotenv()
 except Exception:  # pragma: no cover - dotenv is optional at runtime
     pass
 

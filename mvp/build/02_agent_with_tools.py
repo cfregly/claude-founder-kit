@@ -24,7 +24,8 @@ from rich.panel import Panel
 
 from models import SENIOR  # the workhorse rung (ladder in models.py)
 
-load_dotenv()
+if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+    load_dotenv()
 console = Console()
 DATA = json.loads((Path(__file__).parent / "data" / "metrics.json").read_text())
 

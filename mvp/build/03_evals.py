@@ -48,7 +48,8 @@ from rich.table import Table
 # The ids themselves live in models.py, the one place they change.
 from models import JUNIOR as HAIKU, SENIOR as SONNET, PRINCIPAL as OPUS, DISTINGUISHED as FABLE
 
-load_dotenv()
+if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+    load_dotenv()
 console = Console()
 
 PASS_THRESHOLD = 0.75

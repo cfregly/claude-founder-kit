@@ -76,7 +76,7 @@ The rules catch the slop you can enumerate. They cannot catch slop that needs re
 
 ```bash
 pip install anthropic                              # optional dependency
-export ANTHROPIC_API_KEY=sk-ant-...                # or put it in .env
+export ANTHROPIC_API_KEY=...                       # or put it in .env
 python -m deslop README.md                         # judge reviews this interactive run
 python -m deslop README.md --judge                 # force it on, even piped or in CI
 python -m deslop README.md --no-judge              # the rule score alone, even with a key

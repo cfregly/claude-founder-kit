@@ -20,7 +20,8 @@ from pathlib import Path
 try:  # honor launch/.env before the optional live read checks the key
     from dotenv import load_dotenv
 
-    load_dotenv(Path(__file__).resolve().parent / ".env")
+    if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+        load_dotenv(Path(__file__).resolve().parent / ".env")
 except Exception:  # pragma: no cover - dotenv is a setup helper
     pass
 
@@ -128,13 +129,17 @@ footer{{margin:30px 28px;font-size:11px;color:#9a9a9a}}
 <footer>25 charts, five groups, one durable org_id. The runnable analog of the read Anthropic's growth team described on the record.</footer>
 </body></html>"""
 
-def claude_read(charts):
+def read_client():
     try:
         from anthropic import Anthropic
     except Exception:
-        return None, "anthropic SDK not installed (pip install anthropic) — skipping the read"
+        raise RuntimeError("anthropic SDK is required for --read: pip install anthropic")
     if not os.environ.get("ANTHROPIC_API_KEY"):
-        return None, "ANTHROPIC_API_KEY not set — skipping the read"
+        raise RuntimeError("ANTHROPIC_API_KEY is required for --read. Put it in .env or export it.")
+    return Anthropic()
+
+
+def claude_read(charts, client):
     prompt = (
       "You are the morning growth read for a Claude-for-startups activation operator, the human-gated "
       "analog of the CASH loop Anthropic's growth team described publicly. Below are this morning's 25 "
@@ -143,15 +148,21 @@ def claude_read(charts):
       "(a single experiment against the biggest leak, with the metric it should move). You PROPOSE; a human "
       "approves before anything goes out. No preamble.\n\nCHARTS:\n" + json.dumps(charts, indent=0)
     )
-    client = Anthropic()
     msg = client.messages.create(model="claude-opus-4-8", max_tokens=900,
                                  messages=[{"role": "user", "content": prompt}])
-    return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text"), None
+    return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
 
 def main(argv):
     charts = charts_as_dicts()
     if "--json" in argv:
         print(json.dumps(charts, indent=2)); return 0
+    client = None
+    if "--read" in argv:
+        try:
+            client = read_client()
+        except RuntimeError as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 1
     html_out = render_html(charts)
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "morning.html"), "w") as f:
         f.write(html_out)
@@ -167,8 +178,7 @@ def main(argv):
             print(f"    - {c['title']}: {v}  ({dtxt}){flag}")
     if "--read" in argv:
         print("\n" + "=" * 70 + "\nTHE CLAUDE MORNING READ (claude-opus-4-8, proposes, you gate)\n" + "=" * 70)
-        text, err = claude_read(charts)
-        print(text if text else f"[{err}]")
+        print(claude_read(charts, client))
     else:
         print("\n(run with --read to add the Claude morning read; needs ANTHROPIC_API_KEY)")
     return 0

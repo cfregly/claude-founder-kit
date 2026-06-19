@@ -54,7 +54,7 @@ The app runs Claude (`claude-opus-4-8`) on every analysis, so set `ANTHROPIC_API
 ## Environment variables
 
 ```bash
-ANTHROPIC_API_KEY=sk-ant-...
+ANTHROPIC_API_KEY=
 CLAUDE_FAST_MODEL=claude-haiku-4-5
 CLAUDE_DEFAULT_MODEL=claude-sonnet-4-6
 CLAUDE_DEEP_MODEL=claude-opus-4-8

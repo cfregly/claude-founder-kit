@@ -7,6 +7,7 @@ and sees exactly what a request costs before minute three.
 Run:  python 01_first_call.py "your question here"
 """
 
+import os
 import sys
 
 from anthropic import Anthropic
@@ -14,7 +15,8 @@ from dotenv import load_dotenv
 
 from models import SENIOR  # the workhorse rung (ladder in models.py)
 
-load_dotenv()
+if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+    load_dotenv()
 
 SYSTEM = (
     "You are a pragmatic co-pilot for startup founders. Be concrete, be brief, "

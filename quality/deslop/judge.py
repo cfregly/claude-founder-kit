@@ -26,7 +26,8 @@ except Exception:  # optional dependency: the linter is stdlib-only without it
 try:  # honor the .env setup path without making dotenv a hard dependency
     from dotenv import load_dotenv
 
-    load_dotenv()
+    if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+        load_dotenv()
 except Exception:  # pragma: no cover - dotenv is optional at runtime
     pass
 

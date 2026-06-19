@@ -29,7 +29,8 @@ from rich.table import Table
 
 from models import JUNIOR, SENIOR
 
-load_dotenv()
+if os.environ.get("PYTHON_DOTENV_DISABLED") != "1":
+    load_dotenv()
 console = Console()
 
 ROOT = Path(__file__).parent
