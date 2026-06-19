@@ -109,7 +109,8 @@ def cmd_route(args) -> int:
         print(json.dumps(summary, indent=2))
         return 0
     print(f"routed {summary['total']} companies: {summary['ptc']} to Token MINNing (programmatic tool "
-          f"calling), {summary['citations']} to Citations, {summary['unrouted']} unrouted")
+          f"calling), {summary['citations']} to Citations, {summary.get('agent', 0)} to code-execution "
+          f"state, {summary['unrouted']} unrouted")
     print(f"drafts in the inert outbox {summary['outbox']}, nothing sent, approve before sending")
     for r in summary["routed"]:
         tail = f"  ({r['use_case']})" if r.get("use_case") else ""

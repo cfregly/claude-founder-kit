@@ -1,0 +1,7 @@
+# A generic example batch for the router. Names are placeholders, one per segment plus one that does
+# not route. Run: python -m activation route activation/route/examples/batch.csv [--refine]
+company,first_name,one_liner
+Fabrikam,Sam,"an incident response agent that triages logs and traces across services"
+Contoso,Lee,"a copilot that answers questions over your contracts and compliance policies"
+Northwind,Ada,"a coding agent that runs and tests code in isolated sandboxes before production"
+Litware,,"a collaborative whiteboard for design teams"

@@ -8,9 +8,12 @@ filled in.
 
 - [ptc-email.md](ptc-email.md): programmatic tool calling, for an agent that calls a tool a lot.
 - [citations-email.md](citations-email.md): Citations, for a product that answers over user docs.
+- [agent-email.md](agent-email.md): code execution state, for a multi-step agent that keeps its sandbox state across turns.
 
-Each email links to a runnable brief in `cfregly/claude-feature-briefs`, and every number matches that
-brief, so the reader sees the same figure when they run it.
+The programmatic tool calling and Citations emails link to a runnable brief in
+`cfregly/claude-feature-briefs`, and the code execution email links to the `cfregly/claude-feature-radar`
+engine where that demo lives. Every number matches its source, so the reader sees the same figure when
+they run it.
 
 ## Who each one is for
 
@@ -19,10 +22,9 @@ a company to the right one from a signal in its one-line description.
 
 **Token MINNing (programmatic tool calling)** goes to builders whose bottleneck is cost at scale: an
 agent that calls a tool many times over data it then crunches, so the tool outputs fill the context and
-the bill grows with the data the agent touches. Route here when the description says agent, automate,
-ops, observability, logs, traces, usage, billing, accounts, cohorts, or analytics. It fits AI ops and
-incident response, FinOps and usage metering, log and trace triage, analytics and BI agents, and
-customer-health or churn.
+the bill grows with the data the agent touches. Route here when the description says ops, observability,
+logs, traces, usage, billing, accounts, cohorts, or analytics. It fits AI ops and incident response,
+FinOps and usage metering, log and trace triage, analytics and BI agents, and customer-health or churn.
 
 **Citations** goes to builders whose bottleneck is trust to ship: a product that answers over the user's
 own documents where a wrong source is a non-starter, so they cannot ship without a verifiable pointer to
@@ -31,8 +33,17 @@ policies, compliance, or names a regulated vertical like legal, health, fintech,
 contract review, clinical-note answers, financial filings and KYC, policy and claims analysis, and
 support or knowledge copilots over docs.
 
-The dividing line is one question: is the bottleneck the bill or the trust? Send Token MINNing to the
-bill and Citations to the trust.
+**Code execution state** goes to builders whose bottleneck is a long-running or stateful code agent: a
+multi-step agent that runs code in a sandbox and needs its files and state to persist across turns, so
+without it they re-upload and re-run setup every call and write their own checkpointing glue. Route here
+when the description says sandbox, isolated workspace, container, test code before production, coding
+agents, digital twin, or a data agent that builds up intermediate artifacts. It fits sandboxed code
+testing, isolated agent workspaces, and data or analytics agents that carry state.
+
+The dividing line is one question: is the bottleneck the bill, the trust, or keeping the agent's state?
+Send Token MINNing to the bill, Citations to the trust, and code execution state to the long-running
+agent. The keyword router is the first cut, and `--refine` asks Claude to settle the ones the keywords
+leave unrouted.
 
 ## Route and personalize it in one step
 
@@ -64,5 +75,14 @@ Citations, by use case:
 | Contract review (legal) | contract, clause, legal | a product that answers over contracts |
 | Clinical-note answers (health) | clinical, medical, patient | a product that answers over clinical notes |
 | Filings and KYC (fintech) | filing, KYC, finance | a product that answers over financial filings |
+| Compliance and regulatory | compliance, regulatory, risk | a product that answers over compliance and regulatory docs |
 | Policy and claims (insurance) | policy, claim, insurance | a product that answers over policies and claims |
 | Support and knowledge copilots | support, ticket, knowledge | a product that answers over your support and knowledge docs |
+
+Code execution state, by use case:
+
+| Use case | Signal in the description | The opener it writes |
+| --- | --- | --- |
+| Sandboxed code testing | coding agent, test code, before production | an agent that runs and tests code across turns |
+| Digital twin or environment | digital twin, simulation, environment | an agent that builds up an environment across turns |
+| Data or analytics agent | data, CSV, notebook, model | a data agent that builds up state across turns |

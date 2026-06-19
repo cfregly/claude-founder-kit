@@ -26,22 +26,35 @@ EXAMPLES = ROOT / "outreach-examples"
 # citations = trust to ship (answers over the user's own documents that must be verifiable). These
 # mirror the segmentation note in outreach-examples/README.md.
 SIGNALS = {
-    "ptc": ["agent", "automat", "ops", "observability", "monitor", "log", "trace", "usage",
+    "ptc": ["ops", "observability", "monitor", "log", "trace", "usage",
             "meter", "billing", "account", "cohort", "analytic", "incident", "pipeline", "ingest",
             "scrape", "crawl", "rollup", "roll-up", "telemetry", "dashboard"],
     "citations": ["document", "contract", "record", "filing", "claim", "policy", "policies",
                   "complian", "regulat", "legal", "law", "health", "clinical", "medical", "patient",
                   "fintech", "finance", "insurance", "kyc", "diligence", "knowledge base", "citation",
                   "source", "ground"],
+    # agent = a long-running or stateful code agent: the sandbox keeps files and state across turns.
+    # The words are specific (sandbox, isolated workspace, test code) so the generic word agent, which
+    # nearly every AI startup uses, does not over-fire here or on ptc (it was dropped from ptc above).
+    "agent": ["sandbox", "isolated", "workspace", "container", "test code", "before production",
+              "before deployment", "coding agent", "digital twin", "stateful", "long-running",
+              "long running", "multi-step", "notebook", "data agent", "code interpreter"],
 }
-BRIEF_EMAIL = {"ptc": "ptc-email.md", "citations": "citations-email.md"}
+BRIEF_EMAIL = {"ptc": "ptc-email.md", "citations": "citations-email.md", "agent": "agent-email.md"}
+
+
+def _hits(text: str, words: list) -> int:
+    """Count signal words present in the text, matched at a word start so a stem still fires (complian
+    matches compliance) but a buried substring does not (ops must not match develops, automat must not
+    sneak in via automatically). The dividing line is the word boundary, not the bare substring."""
+    return sum(1 for w in words if re.search(r"\b" + re.escape(w), text))
 
 
 def classify(one_liner: str) -> tuple[str, dict]:
     """Score a one-line description against each brief's signal words. Returns (brief, scores), where
-    brief is 'ptc', 'citations', or 'unrouted' when there is no signal or the two tie."""
+    brief is 'ptc', 'citations', 'agent', or 'unrouted' when there is no signal or the top two tie."""
     text = (one_liner or "").lower()
-    scores = {brief: sum(1 for w in words if w in text) for brief, words in SIGNALS.items()}
+    scores = {brief: _hits(text, words) for brief, words in SIGNALS.items()}
     top = max(scores, key=scores.get)
     tied = [b for b in scores if scores[b] == scores[top]]
     if scores[top] == 0 or len(tied) > 1:
@@ -85,12 +98,20 @@ USE_CASES = {
         (("contract", "clause", "legal", "law"), "a product that answers over contracts"),
         (("clinical", "medical", "patient", "health", "ehr"), "a product that answers over clinical notes"),
         (("filing", "kyc", "fintech", "finance", "bank"), "a product that answers over financial filings"),
+        (("complian", "regulat", "risk"), "a product that answers over compliance and regulatory docs"),
         (("policy", "claim", "insurance"), "a product that answers over policies and claims"),
         (("support", "ticket", "knowledge", "help center"), "a product that answers over your support and knowledge docs"),
     ],
+    "agent": [
+        (("coding agent", "code", "test code", "before production", "before deployment"),
+         "an agent that runs and tests code across turns"),
+        (("digital twin", "simulation", "environment"), "an agent that builds up an environment across turns"),
+        (("data", "csv", "analytic", "notebook", "model"), "a data agent that builds up state across turns"),
+    ],
 }
 _USE_CASE_DEFAULT = {"ptc": "an agent that calls a tool many times",
-                     "citations": "a product that answers over your users' own documents"}
+                     "citations": "a product that answers over your users' own documents",
+                     "agent": "a multi-step agent that keeps its sandbox state across turns"}
 
 
 def use_case(one_liner: str, brief: str) -> str:
@@ -175,6 +196,7 @@ def _summary(routed: list, outbox: pathlib.Path) -> dict:
         "total": len(routed),
         "ptc": sum(1 for r in routed if r["brief"] == "ptc"),
         "citations": sum(1 for r in routed if r["brief"] == "citations"),
+        "agent": sum(1 for r in routed if r["brief"] == "agent"),
         "unrouted": sum(1 for r in routed if r["brief"] == "unrouted"),
         "outbox": _rel(outbox),
         "routed": routed,
@@ -195,7 +217,7 @@ ROUTE_TOOL = {
                     "type": "object",
                     "properties": {
                         "company": {"type": "string"},
-                        "brief": {"type": "string", "enum": ["ptc", "citations", "neither"]},
+                        "brief": {"type": "string", "enum": ["ptc", "citations", "agent", "neither"]},
                         "why": {"type": "string"},
                     },
                     "required": ["company", "brief", "why"],
@@ -207,11 +229,15 @@ ROUTE_TOOL = {
 }
 
 _SYSTEM = (
-    "You route a startup to one of two Claude feature briefs by its bottleneck, or to neither. "
+    "You route a startup to one of three Claude feature briefs by its bottleneck, or to neither. "
     "ptc (programmatic tool calling) is for builders whose bottleneck is cost at scale: an agent that "
     "calls a tool many times over data it then crunches, so the bill grows with the data. citations is "
     "for builders whose bottleneck is trust to ship: a product that answers over the user's own "
-    "documents where a wrong source is a non-starter. If neither fits, say neither. One short reason each."
+    "documents where a wrong source is a non-starter. agent (code execution state) is for builders whose "
+    "bottleneck is a long-running or stateful code agent: a multi-step agent that runs code in a sandbox "
+    "and needs its files and state to persist across turns, for example sandboxed code testing, isolated "
+    "agent workspaces, or a data agent that builds up intermediate artifacts. If none fits, say neither. "
+    "One short reason each."
 )
 
 
