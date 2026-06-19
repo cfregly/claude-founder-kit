@@ -111,8 +111,8 @@ The same pipeline runs two ways.
 
 - Local: `python -m activation agent` runs the Claude Agent SDK orchestrator, with
   the eleven queries as in-process MCP tools, a hook that enforces the gate, and a
-  subagent that briefs each account. Without the SDK or a key it runs the
-  deterministic pipeline and prints the same report.
+  subagent that briefs each account. Without the SDK or a key it fails loud; use
+  `python -m activation agent --dry-run` for the deterministic pipeline.
 - Cloud: `python -m activation deploy` shows the Managed Agents deployment that
   fires the weekly run on a Monday cron, with the gate as a permission policy, a
   rubric that grades the report, and a vault for the data credentials.

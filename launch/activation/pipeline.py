@@ -1,10 +1,10 @@
 """The pipeline that produces the weekly report: capture -> measure -> operate.
 
 This is the deterministic spine: capture, measure, the gate, and the report
-template run with no key, so `make demo` reproduces the report with nothing
-installed. The generative steps (enrich, decide, draft) and render hang off the
-same artifacts on the live path and run Claude every run; they raise when the key
-is missing, so the live path needs a key.
+template run with no key. `make demo` uses the live path, where the generative
+steps (enrich, decide, draft) and render hang off the same artifacts and run
+Claude every run; they raise when the key is missing, so the live path needs a
+key.
 """
 
 from __future__ import annotations

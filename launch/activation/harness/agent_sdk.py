@@ -3,9 +3,8 @@
 The same pipeline, run as an agent. The eleven queries plus measure and operate
 become in-process MCP tools, a PreToolUse hook enforces the gate (the outward
 tools ask for approval, the never-set is denied), and an account-researcher
-subagent briefs each PQA. Guarded: with no `claude-agent-sdk` or no key it falls
-back to the deterministic pipeline and prints the same report, so `make demo`
-never depends on it.
+subagent briefs each PQA. The live agent requires `claude-agent-sdk` and
+`ANTHROPIC_API_KEY`; the deterministic dry run is explicit.
 """
 
 from __future__ import annotations
@@ -42,6 +41,15 @@ SYSTEM = (
 
 def available() -> bool:
     return _SDK and _client.available()
+
+
+def _missing_live_reason() -> str:
+    reasons = []
+    if not _SDK:
+        reasons.append("claude-agent-sdk is not installed")
+    if not _client.available():
+        reasons.append("ANTHROPIC_API_KEY is not set or the anthropic SDK is unavailable")
+    return "; ".join(reasons) or "live Agent SDK prerequisites are missing"
 
 
 def _build_server():
@@ -139,9 +147,16 @@ async def _run_async(cohort: str, week_of: str) -> dict:
     return {"live": True, "report": text}
 
 
-def run_local(*, cohort: str = "examples/cohort.json", week_of: str = pipeline.DEFAULT_WEEK_OF) -> dict:
-    """Run the orchestration through the Agent SDK, or fall back to the pipeline."""
+def run_local(*, cohort: str = "examples/cohort.json",
+              week_of: str = pipeline.DEFAULT_WEEK_OF,
+              dry_run: bool = False) -> dict:
+    """Run the live Agent SDK orchestration, or an explicit deterministic dry run."""
     if not available():
+        if not dry_run:
+            raise RuntimeError(
+                "the local Agent SDK orchestrator is not live: "
+                f"{_missing_live_reason()}. Use --dry-run for the deterministic pipeline."
+            )
         result = pipeline.run(week_of=week_of)
         return {"live": False, "report": result["report"]}
     import asyncio

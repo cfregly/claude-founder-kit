@@ -171,19 +171,22 @@ def cmd_gen_examples(args) -> int:
 def cmd_deploy(args) -> int:
     from .harness import managed_agent
     if args.apply:
-        print(json.dumps(managed_agent.apply(), indent=2))
-    else:
-        sys.stdout.write(managed_agent.render_plan())
+        result = managed_agent.apply()
+        print(json.dumps(result, indent=2))
+        return 0 if result.get("live") else 1
+    sys.stdout.write(managed_agent.render_plan())
     return 0
 
 
 def cmd_agent(args) -> int:
     from .harness import agent_sdk
-    result = agent_sdk.run_local(cohort=args.cohort, week_of=args.week_of)
+    result = agent_sdk.run_local(cohort=args.cohort, week_of=args.week_of,
+                                 dry_run=args.dry_run)
     sys.stdout.write(result["report"])
     if not result["live"]:
-        print("\n[agent sdk not active: ran the deterministic pipeline. Install "
-              "claude-agent-sdk and set ANTHROPIC_API_KEY for the live agent.]", file=sys.stderr)
+        print("\n[agent sdk dry-run: ran the deterministic pipeline. Install "
+              "claude-agent-sdk and set ANTHROPIC_API_KEY for the live agent.]",
+              file=sys.stderr)
     return 0
 
 
@@ -201,17 +204,14 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="activation", description="Produce the founder-to-builder weekly report.")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    d = sub.add_parser("demo", help="the whole pipeline, offline, then the weekly report")
+    d = sub.add_parser("demo", help="the whole live pipeline, then the weekly report")
     d.add_argument("--seed", type=int, default=7)
     d.add_argument("--week-of", default=pipeline.DEFAULT_WEEK_OF)
-    d.add_argument("--live", action="store_true",
-                   help="layer enrich/decide/draft/render when a key is present")
     d.set_defaults(func=cmd_demo)
 
     r = sub.add_parser("report", help="alias for demo")
     r.add_argument("--seed", type=int, default=7)
     r.add_argument("--week-of", default=pipeline.DEFAULT_WEEK_OF)
-    r.add_argument("--live", action="store_true")
     r.set_defaults(func=cmd_demo)
 
     c = sub.add_parser("capture", help="emit the sample cohort to a backend")
@@ -262,9 +262,11 @@ def build_parser() -> argparse.ArgumentParser:
     dep.add_argument("--dry-run", action="store_true", help="print the plan without creating (default)")
     dep.set_defaults(func=cmd_deploy)
 
-    ag = sub.add_parser("agent", help="run the local Agent SDK orchestrator (falls back to the pipeline)")
+    ag = sub.add_parser("agent", help="run the local Agent SDK orchestrator")
     ag.add_argument("--cohort", default="examples/cohort.json")
     ag.add_argument("--week-of", default=pipeline.DEFAULT_WEEK_OF)
+    ag.add_argument("--dry-run", action="store_true",
+                    help="use the deterministic pipeline if live Agent SDK prerequisites are missing")
     ag.set_defaults(func=cmd_agent)
 
     mc = sub.add_parser("mcp", help="serve the eleven queries + measure + operate as an MCP server")

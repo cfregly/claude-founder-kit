@@ -126,8 +126,9 @@ def plan(mcp_url: str = "https://activation.example.com/mcp") -> dict:
 
 def apply(*, mcp_url: str = "https://activation.example.com/mcp", vault_ids=None) -> dict:
     """Create the environment, agent, and scheduled deployment for real. Needs a key
-    and a current SDK with the managed-agents beta. Returns the created ids, or the
-    plan when offline or unsupported."""
+    and a current SDK with the managed-agents beta. Returns created ids with
+    live=True, or a live=False plan/error payload that the CLI treats as a failed
+    apply."""
     c = _client.client()
     beta = getattr(c, "beta", None)
     if c is None or beta is None or not hasattr(beta, "deployments"):

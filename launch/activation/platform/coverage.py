@@ -93,6 +93,6 @@ def render() -> str:
     L.append(f"{load} load-bearing (*), {cover} coverage, {load + cover} surfaces total.")
     L.append("Load-bearing means the report genuinely needs it. Coverage means it is")
     L.append("there to complete the set, the honest minority. The deterministic stages")
-    L.append("run with no key, so make demo runs offline. The generative stages run")
-    L.append("Claude every run and raise with no key, so a misconfiguration is loud.")
+    L.append("run with no key when invoked directly. make demo runs the live path,")
+    L.append("and the generative stages run Claude every run and raise with no key.")
     return "\n".join(L) + "\n"
