@@ -34,7 +34,7 @@ SCHEMA = {
 
 def main() -> None:
     client = Anthropic()  # reads ANTHROPIC_API_KEY from the environment
-    note = "Jane signed up for the Pro plan with 12 seats."
+    note = "Account Alpha signed up for the Pro plan with 12 seats."
     print(f"\n>>> extract structured fields from: {note}\n")
     r = client.messages.create(
         model=JUNIOR,

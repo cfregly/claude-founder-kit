@@ -52,6 +52,6 @@ Each subdir carries its own README, CLAUDE.md, Makefile, and `.doccheck.json`. R
 
 ## About
 
-Built by [Chris Fregly](https://github.com/cfregly). All bundled company data is fictional.
+All bundled company data is fictional.
 
 MIT licensed.

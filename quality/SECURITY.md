@@ -5,8 +5,8 @@
 Please do not open a public issue for a security problem.
 
 Use GitHub's private reporting: on the repository's **Security** tab, choose
-**Report a vulnerability**. If that is unavailable, contact the maintainer
-through [github.com/cfregly](https://github.com/cfregly).
+**Report a vulnerability**. If that is unavailable, open a minimal public issue
+asking for a private reporting channel without disclosing details.
 
 Include the version or commit, what you found, and a minimal way to reproduce
 it. Expect an acknowledgement within a few days.

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Reverse-engineered "morning review": the ~25 charts a Claude-startups growth
 operator would read every morning, modeled on the public description of Anthropic's
-CASH loop (Amol Avasare, Lenny's Podcast, "the $1B to $19B growth run", 2026-04-05:
-Claude reads 20 to 25 charts every morning and surfaces what moved).
+CASH loop in a 2026 public growth-team interview: Claude reads 20 to 25 charts
+every morning and surfaces what moved.
 
 HONESTY: this is INFERENCE from a public podcast, on a FICTIONAL cohort. It is not
 Anthropic's actual dashboards, metrics, or internal tooling. The chart SET is the
@@ -38,11 +38,11 @@ CHARTS = [
   ("Relationship", "partner_arch_review", "Partner portfolio to arch review", 60, 55, "%", True, "good", "VC/accelerator partner activation"),
 
   ("Activation", "signups", "Signups (wk)", 12, 9, "", True, "good", "the funnel mouth"),
-  ("Activation", "first_call_rate", "Signup to first API call", 83, 78, "%", True, "good", "day-zero experience, Amol's #1 lever"),
+  ("Activation", "first_call_rate", "Signup to first API call", 83, 78, "%", True, "good", "day-zero experience, the first lever"),
   ("Activation", "first_build_rate", "First call to first build", 80, 72, "%", True, "good", "the build that proves intent"),
   ("Activation", "activation_rate", "Activation rate", 67, 61, "%", True, "good", "reached the activation bar"),
   ("Activation", "ttfv_days", "Time-to-first-value (median)", 2.0, 2.6, "d", False, "good", "the aha clock, shorter is better"),
-  ("Activation", "day01_dropoff", "Day-0/Day-1 drop-off", 17, 22, "%", False, "good", "the friction Amol watches first"),
+  ("Activation", "day01_dropoff", "Day-0/Day-1 drop-off", 17, 22, "%", False, "good", "the first friction point to watch"),
   ("Activation", "activation_by_pod", "Activation, best vs worst pod", "Code 78% / API 50%", "Code 74% / API 47%", "", True, "watch", "which audience pod is leaking"),
 
   ("Retention", "ttsb_days", "Time-to-second-build (median)", 8, 9, "d", False, "good", "the leading indicator of retention"),
@@ -64,7 +64,7 @@ CHARTS = [
 ]
 
 GROUPS = ["Relationship", "Activation", "Retention", "Monetization", "Operating"]
-CAVEAT = ("Inference from the public CASH description (Amol Avasare, Lenny's Podcast, 2026-04-05), "
+CAVEAT = ("Inference from the public CASH description in a 2026 growth-team interview, "
           "on a fictional cohort consistent with the launch module (seed 7). "
           "Not Anthropic's actual dashboards or internal tools.")
 

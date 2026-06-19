@@ -186,12 +186,6 @@ the gate, not to certify a model.
 
 ## About
 
-Built by [Chris Fregly](https://github.com/cfregly) - AI startup founder (PipelineAI), 3× O'Reilly
-author, co-creator of DeepLearning.AI's *Generative AI with LLMs*, and organizer of meetup communities totaling 100K+ members worldwide (same-named chapters across cities) - current flagship:
-[AI Performance Engineering](https://meetup.com/ai-performance-engineering), 370+ events. All company
-data in `data/` is fictional. Find me at the meetup, on
-[YouTube](https://youtube.com/@AIPerformanceEngineering), or most mornings at the 24/7 Corgi Cafe
-in SF - founder office hours welcome.
+All company data in `data/` is fictional.
 
 MIT licensed. PRs welcome, especially new eval cases and routing strategies.
-
