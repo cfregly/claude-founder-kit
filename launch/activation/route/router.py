@@ -217,7 +217,7 @@ _SYSTEM = (
 
 DEEPEN_TOOL = {
     "name": "personalize_bodies",
-    "description": "Per company, the short phrases that tailor the email body to its workload.",
+    "description": "Per company, the short phrases that tailor the email opener and body to its workload.",
     "input_schema": {
         "type": "object",
         "properties": {
@@ -227,10 +227,11 @@ DEEPEN_TOOL = {
                     "type": "object",
                     "properties": {
                         "company": {"type": "string"},
+                        "opener": {"type": "string"},
                         "body": {"type": "string"},
                         "tool_name": {"type": "string"},
                     },
-                    "required": ["company", "body", "tool_name"],
+                    "required": ["company", "opener", "body", "tool_name"],
                 },
             }
         },
@@ -239,14 +240,19 @@ DEEPEN_TOOL = {
 }
 
 _DEEPEN_SYSTEM = (
-    "You tailor email bodies to each company's workload. Plain language, no em-dashes, no semicolons, "
-    "no buzzwords. For a ptc (cost at scale) company, `body` completes the sentence 'If <body>, every "
-    "result it pulls back lands in the model context', so name what their agent does that returns many "
-    "tool results without using the words 'pulls back' (for example 'your on-call agent queries logs and "
-    "traces to find a root cause'), and `tool_name` is a snake_case tool name for that workload (for "
-    "example query_logs). For a citations (trust to ship) company, `body` is a short noun phrase for the "
-    "documents they answer over (for example 'a clinical note' or 'a loan file'), and `tool_name` is an "
-    "empty string. Keep each `body` under 16 words."
+    "You tailor a cold outreach email to each company's workload, written in the second person to the "
+    "founder. Always say 'your', never 'its' or 'their'. Plain language, no em-dashes, no semicolons, no "
+    "buzzwords. Per company return an opener and a body that name the same workload, plus a tool name.\n"
+    "ptc (cost at scale): `opener` is a noun phrase that follows 'Quick tip for ', naming what their "
+    "agent does, for example 'an on-call agent that finds root causes across your logs and traces'. "
+    "`body` completes 'If <body>, every result it pulls back lands in the model context' with a singular "
+    "subject that starts with 'your' so it agrees with 'it pulls back', for example 'your on-call agent "
+    "reads the logs, metrics, and traces to find a root cause'. `tool_name` is a snake_case tool for that "
+    "workload, for example query_logs.\n"
+    "citations (trust to ship): `opener` is 'a product that answers over <documents>', for example 'a "
+    "product that answers over clinical notes'. `body` is a singular noun phrase for one such document "
+    "that follows 'When you answer over ', for example 'a clinical note'. `tool_name` is an empty string.\n"
+    "Keep the opener and the body under 18 words each, and make them name the same documents or workload."
 )
 
 
@@ -315,6 +321,10 @@ def _deepen_bodies(summary: dict, *, c, model: str, outbox: pathlib.Path) -> dic
         draft_path = outbox / f"{_slug(r['company'])}.{r['brief']}.md"
         if not d or not draft_path.exists():
             continue
-        draft_path.write_text(_apply_body(draft_path.read_text(), r["brief"], d.get("body", ""), d.get("tool_name", "")))
-        r["body"], r["deepened"] = _sanitize(d.get("body", "")), True
+        # rewrite the opener to match the deepened body, so the two lines name one workload, not two
+        opener = _sanitize(d.get("opener", "")) or r.get("use_case") or use_case(r["one_liner"], r["brief"])
+        text = _personalize(draft_path.read_text(), opener)
+        text = _apply_body(text, r["brief"], d.get("body", ""), d.get("tool_name", ""))
+        draft_path.write_text(text)
+        r["opener"], r["body"], r["deepened"] = opener, _sanitize(d.get("body", "")), True
     return summary

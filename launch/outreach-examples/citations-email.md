@@ -7,7 +7,8 @@ Congrats on getting into YC! Quick tip if your app answers questions over your u
 When you answer over a contract, a policy, or a support doc, the answer is only as trustworthy as the
 source behind it. [Citations](https://platform.claude.com/docs/en/build-with-claude/citations) gives you a source pointer for every answer that you can
 check in your own code: the document, a character range, and the verbatim quote at that range. The
-pointer is guaranteed to resolve, and the quote is free of output tokens.
+pointer is guaranteed to resolve, and the quote is free of output tokens. On the brief's demo, 8 of 8
+answers resolved to the exact source span, checked in your own code.
 
 Turn it on per document, then verify in your own code:
 
