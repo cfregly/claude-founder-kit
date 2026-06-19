@@ -86,13 +86,43 @@ def token_counting(client):
 
 def batch(client):
     """The Batches API runs anything non-interactive async at 50% of the token price."""
+    import time
+
     from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
     from anthropic.types.messages.batch_create_params import Request
     batch_obj = client.messages.batches.create(requests=[
         Request(custom_id="demo-1", params=MessageCreateParamsNonStreaming(
             model=FAST_MODEL, max_tokens=16, messages=[{"role": "user", "content": "Say OK."}]))
     ])
-    return f"created batch {batch_obj.id}, status {batch_obj.processing_status} (poll, then read results)"
+    for _ in range(36):
+        batch_obj = client.messages.batches.retrieve(batch_obj.id)
+        if batch_obj.processing_status == "ended":
+            results = list(client.messages.batches.results(batch_obj.id))
+            counts = batch_obj.request_counts
+            return (
+                f"created batch {batch_obj.id}, status ended, results={len(results)}, "
+                f"succeeded={counts.succeeded}, errored={counts.errored}, canceled={counts.canceled}"
+            )
+        time.sleep(5)
+
+    try:
+        batch_obj = client.messages.batches.cancel(batch_obj.id)
+    except Exception:
+        batch_obj = client.messages.batches.retrieve(batch_obj.id)
+        if batch_obj.processing_status == "ended":
+            results = list(client.messages.batches.results(batch_obj.id))
+            counts = batch_obj.request_counts
+            return (
+                f"created batch {batch_obj.id}, status ended after timeout, results={len(results)}, "
+                f"succeeded={counts.succeeded}, errored={counts.errored}, canceled={counts.canceled}"
+            )
+        raise
+
+    counts = batch_obj.request_counts
+    return (
+        f"created batch {batch_obj.id}, timed out waiting for results, cancel requested, "
+        f"status={batch_obj.processing_status}, processing={counts.processing}, canceled={counts.canceled}"
+    )
 
 
 REGISTRY = {

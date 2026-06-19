@@ -1,4 +1,6 @@
 # idea/raise operator commands. POSIX-make-friendly.
+PY ?= python
+
 .DEFAULT_GOAL := help
 .PHONY: help demo test check
 
@@ -10,12 +12,12 @@ help:
 
 demo:
 	@printf '== before: a sloppy draft, with the live Claude narrative read ==\n'
-	-python -m pitch_lint examples/sloppy_deck.json --judge
+	-$(PY) -m pitch_lint examples/sloppy_deck.json --judge
 	@printf '\n== after: the same company, rewritten on the arc ==\n'
-	python -m pitch_lint examples/sharp_deck.json --judge
+	$(PY) -m pitch_lint examples/sharp_deck.json --judge
 
 test:
-	python tests/test_rules.py
+	$(PY) tests/test_rules.py
 
 check:
-	python scripts/check_docs.py
+	$(PY) scripts/check_docs.py

@@ -1,4 +1,6 @@
 # quality operator commands. POSIX-make-friendly.
+PY ?= python
+
 .DEFAULT_GOAL := help
 .PHONY: help demo test check
 
@@ -10,13 +12,13 @@ help:
 
 demo:
 	@printf '== before: a sloppy doc, with the live Claude judge ==\n'
-	-python -m deslop examples/sloppy.md --judge
+	-$(PY) -m deslop examples/sloppy.md --judge
 	@printf '\n== after: clean prose ==\n'
-	python -m deslop examples/clean.md --judge
+	$(PY) -m deslop examples/clean.md --judge
 
 test:
-	python tests/test_rules.py
+	$(PY) tests/test_rules.py
 
 check:
-	python scripts/check_docs.py
-	python -m deslop README.md
+	$(PY) scripts/check_docs.py
+	$(PY) -m deslop README.md

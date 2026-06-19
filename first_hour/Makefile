@@ -1,4 +1,4 @@
-PY ?= python3
+PY ?= python
 
 .PHONY: help demo tour agent check
 

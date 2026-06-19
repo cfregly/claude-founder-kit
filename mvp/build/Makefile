@@ -1,4 +1,6 @@
 # mvp/build operator commands. POSIX-make-friendly.
+PY ?= python
+
 .DEFAULT_GOAL := help
 .PHONY: help setup demo test check
 
@@ -10,14 +12,14 @@ help:
 	@printf '  make check   Run the doc-correctness gate\n'
 
 setup:
-	pip install -q -r requirements.txt
+	$(PY) -m pip install -q -r requirements.txt
 
 demo:
 	@printf '== same workload, three ways, measured live (~36 real calls, needs ANTHROPIC_API_KEY) ==\n'
-	python 04_cost_engineering.py
+	$(PY) 04_cost_engineering.py
 
 test:
-	python eval_lint.py --selftest
+	$(PY) eval_lint.py --selftest
 
 check:
-	python scripts/check_docs.py
+	$(PY) scripts/check_docs.py

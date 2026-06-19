@@ -15,6 +15,14 @@ Run:
   python3 morning_read.py --json      # dump the 25 charts as JSON
 """
 import json, os, sys, html
+from pathlib import Path
+
+try:  # honor launch/.env before the optional live read checks the key
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).resolve().parent / ".env")
+except Exception:  # pragma: no cover - dotenv is a setup helper
+    pass
 
 # The morning-review set: 25 charts in five groups (Relationship, Activation,
 # Retention, Monetization, Operating). Each carries this-week and last-week values

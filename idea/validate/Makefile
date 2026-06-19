@@ -1,4 +1,6 @@
 # idea/validate operator commands. POSIX-make-friendly.
+PY ?= python
+
 .DEFAULT_GOAL := help
 .PHONY: help demo test check
 
@@ -10,12 +12,12 @@ help:
 
 demo:
 	@printf '== signal score: a strong pitch (deterministic) ==\n'
-	python -m startup_signal_lab.score examples/strong_pitch.md
+	$(PY) -m startup_signal_lab.score examples/strong_pitch.md
 	@printf '\n== the live founder intervention (needs ANTHROPIC_API_KEY) ==\n'
-	python -m startup_signal_lab.intervene examples/strong_pitch.md
+	$(PY) -m startup_signal_lab.intervene examples/strong_pitch.md
 
 test:
-	python -m pytest tests/ -q
+	$(PY) -m pytest tests/ -q
 
 check:
-	python scripts/check_docs.py
+	$(PY) scripts/check_docs.py

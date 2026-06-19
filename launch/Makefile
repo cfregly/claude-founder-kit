@@ -1,3 +1,5 @@
+PY ?= python
+
 .PHONY: help demo report morning capture measure operate gen-examples coverage deploy test check
 
 help:
@@ -14,33 +16,33 @@ help:
 	@printf '  make check         run the doc-correctness gate\n'
 
 demo:
-	python3 -m activation demo
+	$(PY) -m activation demo
 
 report: demo
 
 morning:
-	python3 morning_read.py --read
+	$(PY) morning_read.py --read
 
 capture:
-	python3 -m activation capture
+	$(PY) -m activation capture
 
 measure:
-	python3 -m activation measure examples/cohort.json
+	$(PY) -m activation measure examples/cohort.json
 
 operate:
-	python3 -m activation operate examples/readout.json --weekly --prev examples/prev_week_state.json
+	$(PY) -m activation operate examples/readout.json --weekly --prev examples/prev_week_state.json
 
 gen-examples:
-	python3 -m activation gen-examples
+	$(PY) -m activation gen-examples
 
 coverage:
-	python3 -m activation coverage
+	$(PY) -m activation coverage
 
 deploy:
-	python3 -m activation deploy --dry-run
+	$(PY) -m activation deploy --dry-run
 
 test:
-	python3 -m pytest tests/ -q
+	$(PY) -m pytest tests/ -q
 
 check:
-	python3 scripts/check_docs.py
+	$(PY) scripts/check_docs.py

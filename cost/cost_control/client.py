@@ -7,6 +7,14 @@ the lever wants a frontier model.
 """
 
 import os
+from pathlib import Path
+
+try:  # honor this stage's ignored .env without weakening the fail-fast path
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+except Exception:  # pragma: no cover - dotenv is a setup helper, not the runtime contract
+    pass
 
 FAST_MODEL = "claude-haiku-4-5"
 MAIN_MODEL = "claude-opus-4-8"
@@ -16,8 +24,8 @@ def require_key() -> None:
     """Raise immediately if ANTHROPIC_API_KEY is missing, so the run fails fast."""
     if not os.environ.get("ANTHROPIC_API_KEY"):
         raise RuntimeError(
-            "ANTHROPIC_API_KEY is required. Set it in the environment, then run "
-            "`ANTHROPIC_API_KEY=... python run.py`."
+            "ANTHROPIC_API_KEY is required. Put it in .env or set it in the environment, "
+            "then run `python run.py`."
         )
 
 

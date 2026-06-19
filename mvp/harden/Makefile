@@ -1,4 +1,6 @@
 # mvp/harden operator commands. POSIX-make-friendly.
+PY ?= python
+
 .DEFAULT_GOAL := help
 .PHONY: help demo test check
 
@@ -10,12 +12,12 @@ help:
 
 demo:
 	@printf '== before: five tools the model has to guess at, with the live Claude rewrite ==\n'
-	-python -m contract_doctor examples/vague_tools.json --judge
+	-$(PY) -m contract_doctor examples/vague_tools.json --judge
 	@printf '\n== after: the same five tools rewritten as contracts ==\n'
-	python -m contract_doctor examples/contract_grade_tools.json --judge
+	$(PY) -m contract_doctor examples/contract_grade_tools.json --judge
 
 test:
-	python tests/test_rules.py
+	$(PY) tests/test_rules.py
 
 check:
-	python scripts/check_docs.py
+	$(PY) scripts/check_docs.py

@@ -1,3 +1,5 @@
+PY ?= python
+
 .PHONY: help demo test check
 
 help:
@@ -7,10 +9,10 @@ help:
 	@printf '  make check  run the doc-correctness gate\n'
 
 demo:
-	python3 -m scale examples/cohort.json
+	$(PY) -m scale examples/cohort.json
 
 test:
-	python3 -m pytest tests/ -q
+	$(PY) -m pytest tests/ -q
 
 check:
-	python3 scripts/check_docs.py
+	$(PY) scripts/check_docs.py
