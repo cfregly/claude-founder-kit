@@ -110,6 +110,34 @@ def _personalize(draft: str, phrase: str) -> str:
     return re.sub(r"Quick tip[^.\n]*\.", f"Quick tip for {phrase}.", draft, count=1)
 
 
+# The body anchors in the two templates. The --refine pass replaces these with company-specific phrases
+# so the whole email matches the workload, not just the opener. They are exact substrings of the
+# committed templates; a test asserts they still exist so the substitution never silently no-ops.
+PTC_WORKLOAD_ANCHOR = "your app calls your own tool to answer a question and that tool returns a lot of results"
+PTC_TOOL_ANCHOR = "query_region_sales"
+CITATIONS_DOC_ANCHOR = "a contract, a policy, or a support doc"
+
+
+def _sanitize(phrase: str) -> str:
+    """Keep a model-written phrase in house style: no dashes, no semicolons, trimmed."""
+    return phrase.replace("—", " ").replace("–", " ").replace(";", ",").strip()
+
+
+def _apply_body(text: str, brief: str, body: str, tool_name: str = "") -> str:
+    """Substitute the company-specific body phrases into a draft at the known anchors. Pure: the model
+    supplies only the short phrases, so the numbers, the code structure, and the links cannot drift."""
+    body = _sanitize(body)
+    if brief == "ptc":
+        if body:
+            text = text.replace(PTC_WORKLOAD_ANCHOR, body)
+        tool = _sanitize(tool_name).replace(" ", "_")
+        if tool:
+            text = text.replace(PTC_TOOL_ANCHOR, tool)
+    elif brief == "citations" and body:
+        text = text.replace(CITATIONS_DOC_ANCHOR, body)
+    return text
+
+
 def _read_batch(batch_path) -> list[dict]:
     """Read the batch CSV, skipping blank lines and `#` comments so a sample file can label itself."""
     with open(batch_path, newline="") as f:
@@ -187,26 +215,65 @@ _SYSTEM = (
 )
 
 
+DEEPEN_TOOL = {
+    "name": "personalize_bodies",
+    "description": "Per company, the short phrases that tailor the email body to its workload.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "company": {"type": "string"},
+                        "body": {"type": "string"},
+                        "tool_name": {"type": "string"},
+                    },
+                    "required": ["company", "body", "tool_name"],
+                },
+            }
+        },
+        "required": ["items"],
+    },
+}
+
+_DEEPEN_SYSTEM = (
+    "You tailor email bodies to each company's workload. Plain language, no em-dashes, no semicolons, "
+    "no buzzwords. For a ptc (cost at scale) company, `body` completes the sentence 'If <body>, every "
+    "result it pulls back lands in the model context', so name what their agent does that returns many "
+    "tool results without using the words 'pulls back' (for example 'your on-call agent queries logs and "
+    "traces to find a root cause'), and `tool_name` is a snake_case tool name for that workload (for "
+    "example query_logs). For a citations (trust to ship) company, `body` is a short noun phrase for the "
+    "documents they answer over (for example 'a clinical note' or 'a loan file'), and `tool_name` is an "
+    "empty string. Keep each `body` under 16 words."
+)
+
+
 def refine(summary: dict, *, outbox=None, model: str | None = None) -> dict:
-    """Ask Claude to classify the companies the keyword router left unrouted, and draft the newly routed
-    into the same outbox. Needs a key and the SDK, raises without them, and never sends. Updates and
-    returns the receipt. This is the judgment layer over the deterministic spine."""
+    """The Claude layer over the deterministic route. First classify the companies the keywords left
+    unrouted, then deepen every routed draft so the whole body matches the company, not just the opener.
+    Needs a key and the SDK, raises without them, and never sends. Updates and returns the receipt."""
     from ..platform import client as _client
 
-    unrouted = [r for r in summary["routed"] if r["brief"] == "unrouted"]
-    if not unrouted:
-        return summary
     outbox = pathlib.Path(outbox) if outbox else (ROOT / "out" / "outbox")
     c = _client.require_client()
     model = model or _client.MODEL
-    templates = {brief: (EXAMPLES / fname).read_text() for brief, fname in BRIEF_EMAIL.items()}
+    summary = _classify_unrouted(summary, c=c, model=model, outbox=outbox)
+    summary = _deepen_bodies(summary, c=c, model=model, outbox=outbox)
+    return summary
 
+
+def _classify_unrouted(summary: dict, *, c, model: str, outbox: pathlib.Path) -> dict:
+    """Ask Claude to classify the companies the keyword router left unrouted, and draft the newly routed
+    into the same outbox with the opener personalized."""
+    unrouted = [r for r in summary["routed"] if r["brief"] == "unrouted"]
+    if not unrouted:
+        return summary
+    templates = {brief: (EXAMPLES / fname).read_text() for brief, fname in BRIEF_EMAIL.items()}
     listing = "\n".join(f"- {r['company']}: {r['one_liner']}" for r in unrouted)
     resp = c.messages.create(
-        model=model,
-        max_tokens=1024,
-        system=_SYSTEM,
-        tools=[ROUTE_TOOL],
+        model=model, max_tokens=1024, system=_SYSTEM, tools=[ROUTE_TOOL],
         tool_choice={"type": "tool", "name": "route_companies"},
         messages=[{"role": "user", "content": f"Route these companies:\n{listing}"}],
     )
@@ -222,9 +289,32 @@ def refine(summary: dict, *, outbox=None, model: str | None = None) -> dict:
         brief = d["brief"]
         uc = use_case(r["one_liner"], brief)
         path = outbox / f"{_slug(r['company'])}.{brief}.md"
-        # the refine path greets plainly (the batch row is not threaded here) but still personalizes
         path.write_text(_personalize(templates[brief].replace("{first_name}", "there"), uc))
         r.update(brief=brief, draft=_rel(path), use_case=uc, by="claude", why=d.get("why", ""))
         by_company[r["company"]] = r
-
     return _summary(list(by_company.values()), outbox)
+
+
+def _deepen_bodies(summary: dict, *, c, model: str, outbox: pathlib.Path) -> dict:
+    """Rewrite every routed draft's body to the company's workload: the example sentence and, for ptc,
+    the code tool name. Claude returns only the short phrases; the substitution is deterministic, so the
+    numbers and links never move. This closes the gap between a personalized opener and a generic body."""
+    routed = [r for r in summary["routed"] if r["brief"] in ("ptc", "citations")]
+    if not routed:
+        return summary
+    listing = "\n".join(f"- {r['company']} [{r['brief']}]: {r['one_liner']}" for r in routed)
+    resp = c.messages.create(
+        model=model, max_tokens=1024, system=_DEEPEN_SYSTEM, tools=[DEEPEN_TOOL],
+        tool_choice={"type": "tool", "name": "personalize_bodies"},
+        messages=[{"role": "user", "content": f"Tailor the body for each company:\n{listing}"}],
+    )
+    calls = [b for b in resp.content if getattr(b, "type", None) == "tool_use"]
+    pieces = {d["company"]: d for call in calls for d in call.input.get("items", [])}
+    for r in routed:
+        d = pieces.get(r["company"])
+        draft_path = outbox / f"{_slug(r['company'])}.{r['brief']}.md"
+        if not d or not draft_path.exists():
+            continue
+        draft_path.write_text(_apply_body(draft_path.read_text(), r["brief"], d.get("body", ""), d.get("tool_name", "")))
+        r["body"], r["deepened"] = _sanitize(d.get("body", "")), True
+    return summary

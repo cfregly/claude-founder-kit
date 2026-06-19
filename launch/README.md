@@ -47,8 +47,10 @@ from the spine, so re-run before changing one.
 brief that fits its bottleneck: programmatic tool calling for cost at scale, Citations for trust to ship.
 It scores every one-line description against the brief signal words, fills the matching template from
 `outreach-examples/`, and writes the draft into the inert outbox. Nothing is sent, the same gate boundary
-the rest of the loop carries. Add `--refine` to have Claude classify the companies the keywords could not
-call. The segmentation and the signal words live in
+the rest of the loop carries. Add `--refine` and Claude deepens every draft so the whole body matches the
+company (the example sentence and the code's tool name) and classifies the ones the keywords could not
+call, substituting only short phrases so the verified numbers never move. The segmentation and the signal
+words live in
 [outreach-examples/README.md](outreach-examples/README.md).
 
 ## The pipeline

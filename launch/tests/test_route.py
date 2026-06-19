@@ -44,6 +44,39 @@ def test_use_case_personalizes_within_segment():
     assert router.use_case("a generic helper bot", "ptc") == "an agent that calls a tool many times"
 
 
+def test_body_anchors_are_present_in_the_templates():
+    # the --refine deepening replaces these exact substrings; if a template drifts, this fails loud
+    ptc = (router.EXAMPLES / "ptc-email.md").read_text()
+    citations = (router.EXAMPLES / "citations-email.md").read_text()
+    assert router.PTC_WORKLOAD_ANCHOR in ptc
+    assert router.PTC_TOOL_ANCHOR in ptc
+    assert router.CITATIONS_DOC_ANCHOR in citations
+
+
+def test_apply_body_rewrites_only_the_anchors():
+    draft = (
+        "If your app calls your own tool to answer a question and that tool returns a lot of results, "
+        "every result lands in context.\n"
+        '{ "name": "query_region_sales", "input_schema": {} }\n'
+        "| without PTC | 9,451 |\n"
+    )
+    out = router._apply_body(draft, "ptc", "your on-call agent queries logs and traces", "query logs")
+    assert "your on-call agent queries logs and traces" in out
+    assert "query_logs" in out and "query_region_sales" not in out  # spaces become underscores
+    assert "9,451" in out  # the verified number is never touched
+
+    cit = "When you answer over a contract, a policy, or a support doc, the source matters."
+    out2 = router._apply_body(cit, "citations", "a clinical note or a patient record")
+    assert "a clinical note or a patient record" in out2
+    assert "a contract, a policy, or a support doc" not in out2
+
+
+def test_apply_body_strips_dashes_and_semicolons():
+    out = router._apply_body("over a contract, a policy, or a support doc.", "citations",
+                             "a clinical note; a lab report — scanned")
+    assert "—" not in out and ";" not in out
+
+
 def test_route_is_deterministic_and_offline(tmp_path):
     """The router is the deterministic spine: same batch, same routing, no key needed."""
     batch = tmp_path / "b.csv"

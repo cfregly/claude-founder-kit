@@ -39,9 +39,13 @@ bill and Citations to the trust.
 `python -m activation route batch.csv` from the launch module does this on a whole batch: it scores each
 company's one-line description, drafts the matching email into the gated outbox, and tailors the opener
 to the company's specific use case within the segment. Same brief, a different first line per company.
-Add `--refine` to have Claude classify the ones the keywords could not call. Nothing is sent.
+Add `--refine` and Claude deepens every draft so the whole body matches the company, the example
+sentence and the code's tool name, not just the opener, and classifies the ones the keywords could not
+call. Claude returns only the short phrases and the router substitutes them, so the verified numbers and
+the links never move. Nothing is sent.
 
-So the segmentation goes two levels deep: the segment picks the brief, the use case writes the opener.
+So the segmentation goes three levels deep: the segment picks the brief, the use case writes the opener,
+and `--refine` writes the body to the company.
 
 Token MINNing, by use case:
 
