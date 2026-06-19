@@ -112,8 +112,8 @@ def cmd_route(args) -> int:
           f"calling), {summary['citations']} to Citations, {summary['unrouted']} unrouted")
     print(f"drafts in the inert outbox {summary['outbox']}, nothing sent, approve before sending")
     for r in summary["routed"]:
-        where = f"  ({r['draft']})" if r.get("draft") else ""
-        print(f"  {r['company'][:24].ljust(24)} -> {r['brief']}{where}")
+        tail = f"  ({r['use_case']})" if r.get("use_case") else ""
+        print(f"  {r['company'][:22].ljust(22)} -> {r['brief']}{tail}")
     return 0
 
 

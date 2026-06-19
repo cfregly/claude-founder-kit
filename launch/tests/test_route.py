@@ -27,9 +27,19 @@ def test_route_drafts_into_the_outbox(tmp_path):
     assert "Hey Sam," in acme and "Token MINNing" in acme
     docly = (outbox / "docly.citations.md").read_text()
     assert "Hey Lee," in docly and "grounded answers" in docly
+    # the opener is hyper-personalized to each company's use case within its segment
+    assert "Quick tip for an agent that triages logs and traces across services." in acme
+    assert "Quick tip for a product that answers over clinical notes." in docly
     # the first-name placeholder is always filled, and the unrouted company gets no draft
     assert "{first_name}" not in acme and "{first_name}" not in docly
     assert not (outbox / "vellum.ptc.md").exists() and not (outbox / "vellum.citations.md").exists()
+
+
+def test_use_case_personalizes_within_segment():
+    assert router.use_case("usage metering across accounts", "ptc") == "an agent that rolls up usage across accounts"
+    assert router.use_case("contract review copilot", "citations") == "a product that answers over contracts"
+    # an unmatched use case falls back to the segment default, never empty
+    assert router.use_case("a generic helper bot", "ptc") == "an agent that calls a tool many times"
 
 
 def test_route_is_deterministic_and_offline(tmp_path):

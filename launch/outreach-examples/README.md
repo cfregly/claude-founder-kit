@@ -33,3 +33,32 @@ support or knowledge copilots over docs.
 
 The dividing line is one question: is the bottleneck the bill or the trust? Send Token MINNing to the
 bill and Citations to the trust.
+
+## Route and personalize it in one step
+
+`python -m activation route batch.csv` from the launch module does this on a whole batch: it scores each
+company's one-line description, drafts the matching email into the gated outbox, and tailors the opener
+to the company's specific use case within the segment. Same brief, a different first line per company.
+Add `--refine` to have Claude classify the ones the keywords could not call. Nothing is sent.
+
+So the segmentation goes two levels deep: the segment picks the brief, the use case writes the opener.
+
+Token MINNing, by use case:
+
+| Use case | Signal in the description | The opener it writes |
+| --- | --- | --- |
+| FinOps and usage metering | usage, billing, meter | an agent that rolls up usage across accounts |
+| AI ops and incident response | logs, traces, incident | an agent that triages logs and traces across services |
+| Analytics and BI agents | analytics, dashboard, report | an agent that aggregates rows to answer a question |
+| Customer health and churn | churn, retention, CRM | an agent that scores health across your customer base |
+| Security and SOC triage | security, alert, vuln | an agent that triages findings across your fleet |
+
+Citations, by use case:
+
+| Use case | Signal in the description | The opener it writes |
+| --- | --- | --- |
+| Contract review (legal) | contract, clause, legal | a product that answers over contracts |
+| Clinical-note answers (health) | clinical, medical, patient | a product that answers over clinical notes |
+| Filings and KYC (fintech) | filing, KYC, finance | a product that answers over financial filings |
+| Policy and claims (insurance) | policy, claim, insurance | a product that answers over policies and claims |
+| Support and knowledge copilots | support, ticket, knowledge | a product that answers over your support and knowledge docs |

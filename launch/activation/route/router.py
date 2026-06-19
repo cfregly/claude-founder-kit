@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import csv
 import pathlib
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]  # the launch/ module root
 EXAMPLES = ROOT / "outreach-examples"
@@ -69,6 +70,46 @@ def _fill(template: str, row: dict) -> str:
     return template.replace("{first_name}", first)
 
 
+# The use case within a segment. This is the hyper-personalization layer on top of the segment routing:
+# same brief, but the opener names what the company actually builds. The phrases are noun phrases so they
+# drop into "Quick tip for ...". The first matching use case wins, else the segment default.
+USE_CASES = {
+    "ptc": [
+        (("usage", "billing", "meter", "plan-limit", "plan limit"), "an agent that rolls up usage across accounts"),
+        (("log", "trace", "incident", "observability", "monitor"), "an agent that triages logs and traces across services"),
+        (("analytic", "dashboard", "report", "bi "), "an agent that aggregates rows to answer a question"),
+        (("churn", "health score", "retention", "crm"), "an agent that scores health across your customer base"),
+        (("security", "vuln", "alert", "soc", "threat"), "an agent that triages findings across your fleet"),
+    ],
+    "citations": [
+        (("contract", "clause", "legal", "law"), "a product that answers over contracts"),
+        (("clinical", "medical", "patient", "health", "ehr"), "a product that answers over clinical notes"),
+        (("filing", "kyc", "fintech", "finance", "bank"), "a product that answers over financial filings"),
+        (("policy", "claim", "insurance"), "a product that answers over policies and claims"),
+        (("support", "ticket", "knowledge", "help center"), "a product that answers over your support and knowledge docs"),
+    ],
+}
+_USE_CASE_DEFAULT = {"ptc": "an agent that calls a tool many times",
+                     "citations": "a product that answers over your users' own documents"}
+
+
+def use_case(one_liner: str, brief: str) -> str:
+    """The specific use case within a segment, for the opener. Falls back to the segment default."""
+    text = (one_liner or "").lower()
+    for keys, phrase in USE_CASES.get(brief, []):
+        if any(k in text for k in keys):
+            return phrase
+    return _USE_CASE_DEFAULT.get(brief, "")
+
+
+def _personalize(draft: str, phrase: str) -> str:
+    """Tailor the opener to the use case: replace the generic 'Quick tip ...' line with one that names
+    what this company builds. The rest of the email and every number stays exactly as written."""
+    if not phrase:
+        return draft
+    return re.sub(r"Quick tip[^.\n]*\.", f"Quick tip for {phrase}.", draft, count=1)
+
+
 def _read_batch(batch_path) -> list[dict]:
     with open(batch_path, newline="") as f:
         return list(csv.DictReader(f))
@@ -88,11 +129,12 @@ def route(batch_path, *, outbox=None) -> dict:
         one_liner = row.get("one_liner") or row.get("description") or ""
         brief, scores = classify(one_liner)
         rec = {"company": company, "one_liner": one_liner, "brief": brief,
-               "scores": scores, "draft": None, "by": "keywords"}
+               "scores": scores, "draft": None, "use_case": None, "by": "keywords"}
         if brief != "unrouted":
+            uc = use_case(one_liner, brief)
             path = outbox / f"{_slug(company)}.{brief}.md"
-            path.write_text(_fill(templates[brief], row))
-            rec["draft"] = _rel(path)
+            path.write_text(_personalize(_fill(templates[brief], row), uc))
+            rec["draft"], rec["use_case"] = _rel(path), uc
         routed.append(rec)
 
     return _summary(routed, outbox)
@@ -176,10 +218,11 @@ def refine(summary: dict, *, outbox=None, model: str | None = None) -> dict:
             r["by"] = "claude:neither"
             continue
         brief = d["brief"]
+        uc = use_case(r["one_liner"], brief)
         path = outbox / f"{_slug(r['company'])}.{brief}.md"
-        # find the original row's first name from the receipt if present, else greet plainly
-        path.write_text(templates[brief].replace("{first_name}", "there"))
-        r.update(brief=brief, draft=_rel(path), by="claude", why=d.get("why", ""))
+        # the refine path greets plainly (the batch row is not threaded here) but still personalizes
+        path.write_text(_personalize(templates[brief].replace("{first_name}", "there"), uc))
+        r.update(brief=brief, draft=_rel(path), use_case=uc, by="claude", why=d.get("why", ""))
         by_company[r["company"]] = r
 
     return _summary(list(by_company.values()), outbox)
