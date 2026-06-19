@@ -2,7 +2,7 @@
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Build the product.** A founder's 15-minute path from first Claude API call to an evaluated, cost-engineered agent. Measured live: $0.22 to $0.03 per task (−86%), and every available eval tier passing.
+**Build the product.** A founder's 15-minute path from first Claude API call to an evaluated, cost-engineered agent. Measured live: $0.22 to $0.03 per task (−85%), and every available eval tier passing.
 
 Most AI startups don't stall because the model is weak. They stall in one of four places:
 the demo that works once, the agent that breaks at the seams, the eval loop that doesn't exist,
@@ -66,24 +66,24 @@ architecture. The fix is not "negotiate pricing" - it's two architecture decisio
 of code, and you can measure them instead of arguing about them.
 
 The experiment: the same 12 founder-FAQ questions over a shared ~5K-token context block, run
-three ways. Latest live run (2026-06-13, models and pricing in `pricing.json`. Cache reads
+three ways. Latest live run (2026-06-18, models and pricing in `pricing.json`. Cache reads
 engaged on all 24 cached calls):
 
 | strategy | model | cost | p50 latency | vs naive |
 |---|---|---|---|---|
-| naive (Sonnet, no cache) | claude-sonnet-4-6 | $0.2181 | 2.45s | baseline |
-| cached (Sonnet + prompt caching) | claude-sonnet-4-6 | $0.0565 | 2.25s | **-74%** |
-| routed + cached (Haiku easy / Sonnet hard) | mixed | $0.0313 | 1.85s | **-86%** |
+| naive (Sonnet, no cache) | claude-sonnet-4-6 | $0.2191 | 2.75s | baseline |
+| cached (Sonnet + prompt caching) | claude-sonnet-4-6 | $0.0547 | 1.85s | **-75%** |
+| routed + cached (Haiku easy / Sonnet hard) | mixed | $0.0325 | 1.48s | **-85%** |
 
 What each lever does:
 
-- **Prompt caching** pays for the shared context once. The naive arm bought 67.5K fresh input
-  tokens. The cached arm bought 36 - everything else was a ~90%-off cache read. You don't earn
+- **Prompt caching** pays for the shared context once. The naive arm bought 67.8K fresh input
+  tokens. The cached arm bought 232 - everything else was a ~90%-off cache read. You don't earn
   this by accident: the stable prefix has to be *bit-identical* across calls, which is an
   architecture decision about how you assemble prompts.
 - **Model routing** prices questions by consequence. Lookups went to Haiku ($1/$5 per MTok),
   synthesis stayed on Sonnet ($3/$15). The model-family price spread is one of the cheapest performance
-  optimizations you can ship - and in this run it also cut p50 latency 30%, because the
+  optimizations you can ship - and in this run it also cut p50 latency 46%, because the
   easy questions stopped waiting on a bigger model.
 
 Reproducibility note: these are the numbers committed in `data/last_run.md`. Re-running shifts the
