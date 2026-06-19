@@ -88,7 +88,7 @@ skill's job, not a regex's. Numbers are one diligence signal, not the verdict.
 |---|---|
 | PD001 | headlines over 8 words (the headline is the claim) |
 | PD002 | lines over 20 words (slides are not paragraphs) |
-| PD008 | missing Sequoia-arc slides. Decks over 12 slides |
+| PD008 | missing Sequoia-arc slides. Over 12 main slides, with clearly marked appendix slides exempt |
 | PD009 | first measured evidence later than slide 3 |
 
 **Does it answer what investors will ask?**

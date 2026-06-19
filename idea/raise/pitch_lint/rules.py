@@ -145,6 +145,17 @@ def _face_text(slide: dict) -> str:
     return " ".join([slide.get("headline", "")] + list(slide.get("lines", [])))
 
 
+def _is_appendix(slide: dict) -> bool:
+    """A clearly denoted appendix slide. Either an explicit ``"appendix": true``
+    flag, or a headline (or title) that starts with "appendix". Appendix slides
+    are the backup an investor pages through after the pitch, so they do not
+    count toward the 12-slide main-arc limit in PD008."""
+    if slide.get("appendix") is True:
+        return True
+    label = slide.get("headline") or slide.get("title") or ""
+    return label.strip().lower().startswith("appendix")
+
+
 def _claim_numbers(text: str) -> list[str]:
     """Numbers in this text that require a claim tier (years exempt)."""
     out = []
@@ -322,10 +333,12 @@ def lint_deck(deck: dict) -> dict:
             sev = "warn" if arc in {"purpose", "problem", "why-now", "competition", "ask"} else "info"
             f(_finding("PD008", sev, "deck", f"missing {arc} slide",
                        "The Sequoia arc earns its reputation. Cover it or cut it knowingly."))
-    if len(slides) > 12:
+    main_slides = [s for s in slides if not _is_appendix(s)]
+    if len(main_slides) > 12:
         f(_finding("PD008", "warn", "deck",
-                   f"{len(slides)} slides; partners decide early",
-                   "12 max. Everything else is appendix."))
+                   f"{len(main_slides)} main slides; partners decide early",
+                   "12 max in the main arc. Mark backup slides as Appendix to "
+                   "exclude them."))
 
     # PD009 early exit: strongest evidence up front
     if first_measured_at is not None and first_measured_at > 3:

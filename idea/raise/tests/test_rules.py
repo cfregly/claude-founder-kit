@@ -7,7 +7,7 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
-from pitch_lint.rules import grade, lint_deck
+from pitch_lint.rules import ARC, grade, lint_deck
 
 EXAMPLES = pathlib.Path(__file__).resolve().parent.parent / "examples"
 
@@ -106,6 +106,30 @@ def test_retention_rule_satisfied_when_retention_present():
 
 def test_grade_boundaries():
     assert grade(90) == "A" and grade(80) == "B" and grade(49) == "F"
+
+
+def test_appendix_slides_excluded_from_the_slide_count():
+    # A tight main arc plus many clearly denoted appendix slides: the deck is
+    # long but the pitch is short, so PD008 must not fire on length. An appendix
+    # is denoted by a headline starting with "Appendix" or an "appendix": true flag.
+    main = [{"arc": a, "headline": f"Main {a}", "lines": ["a point"]} for a in ARC]
+    by_headline = [{"arc": "traction", "headline": f"Appendix {chr(65 + i)}",
+                    "lines": ["backup detail"]} for i in range(10)]
+    by_flag = [{"arc": "market", "headline": "Deep dive", "appendix": True,
+                "lines": ["more backup"]} for _ in range(6)]
+    deck = {"slides": main + by_headline + by_flag}  # 26 slides, only 10 main
+    length = [f for f in lint_deck(deck)["findings"]
+              if f["rule"] == "PD008" and "main slides" in f["message"]]
+    assert not length, length
+
+
+def test_too_many_main_slides_still_warns_on_length():
+    # Excluding appendices must not disable the rule: 13 main slides still warn.
+    deck = {"slides": [{"arc": "market", "headline": f"Main {i}", "lines": ["x"]}
+                       for i in range(13)]}
+    length = [f for f in lint_deck(deck)["findings"]
+              if f["rule"] == "PD008" and "main slides" in f["message"]]
+    assert len(length) == 1 and length[0]["severity"] == "warn", length
 
 
 # --- calibration regression tests: real decks broke the linter until these held.

@@ -3,6 +3,14 @@
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.7] - 2026-06-18
+
+### Changed
+- PD008 now counts only the main-arc slides toward the 12-slide limit. Clearly
+  denoted appendix slides, a headline starting with "Appendix" or an explicit
+  `"appendix": true`, are the backup an investor pages through after the pitch,
+  so they no longer push a deck over the limit. A bloated main arc still warns.
+
 ## [0.1.6] - 2026-06-16
 
 ### Changed
