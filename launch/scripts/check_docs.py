@@ -83,6 +83,8 @@ for md_name in ("README.md", "CLAUDE.md", "PLATFORM_COVERAGE.md"):
 for md in ROOT.rglob("*.md"):
     if ".git" in md.parts:
         continue
+    if any(part in {"out", ".pytest_cache"} for part in md.relative_to(ROOT).parts):
+        continue
     in_fence = False
     for line in md.read_text().splitlines():
         if line.lstrip().startswith("```"):

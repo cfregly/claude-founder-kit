@@ -28,7 +28,7 @@ rest with batch.
 | Lever | What it saves |
 |---|---|
 | `prompt_caching` | a cache read is about a tenth of input price, and the demo proves the hit from `usage` |
-| `context_editing` | prunes stale tool results and old thinking, so every later turn carries fewer tokens |
+| `context_editing` | prunes stale tool results, so every later turn carries fewer tokens |
 | `tool_search` | loads tool schemas on demand instead of paying for 50k+ tokens of schema every call |
 | `programmatic_tool_calling` | keeps large intermediate tool output in the script, out of the context you pay for |
 | `thinking_effort` | adaptive thinking plus effort (low through max) tunes the thinking tokens you buy |

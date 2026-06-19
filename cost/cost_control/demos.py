@@ -24,9 +24,8 @@ def prompt_caching(client):
 
 
 def context_editing(client):
-    """Prune stale tool results and old thinking server-side, so every later turn carries fewer tokens."""
+    """Prune stale tool results server-side, so every later turn carries fewer tokens."""
     cfg = {"edits": [
-        {"type": "clear_thinking_20251015", "keep": {"type": "thinking_turns", "value": 1}},
         {"type": "clear_tool_uses_20250919", "trigger": {"type": "input_tokens", "value": 35000},
          "keep": {"type": "tool_uses", "value": 5}},
     ]}
@@ -98,7 +97,7 @@ def batch(client):
 
 REGISTRY = {
     "prompt_caching": ("cache the stable prefix, prove the hit", prompt_caching),
-    "context_editing": ("prune stale tool results and thinking", context_editing),
+    "context_editing": ("prune stale tool results", context_editing),
     "context_receipt": ("measured: same tool loop, three ways", context_management_receipt),
     "tool_search": ("load tool schemas on demand, not all upfront", tool_search),
     "programmatic_tool_calling": ("keep big intermediate data out of context", programmatic_tool_calling),
