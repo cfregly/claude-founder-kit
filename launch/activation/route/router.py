@@ -268,17 +268,19 @@ DEEPEN_TOOL = {
 _DEEPEN_SYSTEM = (
     "You tailor a cold outreach email to each company's workload, written in the second person to the "
     "founder. Always say 'your', never 'its' or 'their'. Plain language, no em-dashes, no semicolons, no "
-    "buzzwords. Per company return an opener and a body that name the same workload, plus a tool name.\n"
-    "ptc (cost at scale): `opener` is a noun phrase that follows 'Quick tip for ', naming what their "
-    "agent does, for example 'an on-call agent that finds root causes across your logs and traces'. "
-    "`body` completes 'If <body>, every result it pulls back lands in the model context' with a singular "
-    "subject that starts with 'your' so it agrees with 'it pulls back', for example 'your on-call agent "
-    "reads the logs, metrics, and traces to find a root cause'. `tool_name` is a snake_case tool for that "
-    "workload, for example query_logs.\n"
+    "buzzwords. The opener and the body must NOT restate the same phrase: the opener names the job, the "
+    "body names the data, so the reader never hears the same words twice in two lines.\n"
+    "ptc (cost at scale): `opener` is a noun phrase after 'Quick tip for ' naming the agent's job in one "
+    "action, for example 'an on-call agent that finds the root cause of an incident'. `body` names the "
+    "data its tool returns and completes 'If <body>, every result it pulls back lands in the model "
+    "context', singular and starting with 'your', and it must not repeat the opener's verb, for example "
+    "'your agent reads the logs, metrics, and traces behind each alert'. `tool_name` is a snake_case tool "
+    "for that data, for example query_traces.\n"
     "citations (trust to ship): `opener` is 'a product that answers over <documents>', for example 'a "
     "product that answers over clinical notes'. `body` is a singular noun phrase for one such document "
     "that follows 'When you answer over ', for example 'a clinical note'. `tool_name` is an empty string.\n"
-    "Keep the opener and the body under 18 words each, and make them name the same documents or workload."
+    "Keep the opener and the body under 18 words each. If two companies do similar work, foreground what "
+    "is distinct about each so no two emails share the same phrasing."
 )
 
 
