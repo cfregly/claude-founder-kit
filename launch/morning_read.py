@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Reverse-engineered "morning review": the ~25 charts a Claude-startups growth
 operator would read every morning, modeled on the public description of Anthropic's
-CASH loop in a 2026 public growth-team interview: Claude reads 20 to 25 charts
+CASH loop in a 2026 public growth-team podcast: Claude reads 20 to 25 charts
 every morning and surfaces what moved.
 
 HONESTY: this is INFERENCE from a public podcast, on a FICTIONAL cohort. It is not
@@ -64,7 +64,7 @@ CHARTS = [
 ]
 
 GROUPS = ["Relationship", "Activation", "Retention", "Monetization", "Operating"]
-CAVEAT = ("Inference from the public CASH description in a 2026 growth-team interview, "
+CAVEAT = ("Inference from the public CASH description in a 2026 growth-team podcast, "
           "on a fictional cohort consistent with the launch module (seed 7). "
           "Not Anthropic's actual dashboards or internal tools.")
 
