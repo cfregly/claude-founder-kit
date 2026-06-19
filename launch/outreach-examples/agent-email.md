@@ -22,12 +22,15 @@ r2 = client.beta.messages.create(model="claude-sonnet-4-6", betas=["code-executi
 
 I measured the durability directly: I wrote a file in one request, then read it back from the same container after a 31-minute idle, and it was still there.
 
-See it run:
+Want to watch it first, no clone needed? The brief opens with a gif of the run:
+https://github.com/cfregly/claude-feature-briefs/blob/main/code_exec_state/README.md
+
+See it run (about a minute):
 
 ```
-git clone https://github.com/cfregly/claude-feature-radar && cd claude-feature-radar
+git clone https://github.com/cfregly/claude-feature-briefs && cd claude-feature-briefs
 export ANTHROPIC_API_KEY=your-key
-make code-exec-state          # write a file, then make code-exec-state-verify after the idle
+make code_exec_state          # write a file and read it back from the reused container
 ```
 
 Happy building! 🚀
