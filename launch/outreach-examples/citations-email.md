@@ -1,4 +1,4 @@
-Subject: A Claude primitive for grounded answers you verify in code
+Subject: Grounded answers over your users' docs, every source checkable in your code
 
 Hey {first_name},
 

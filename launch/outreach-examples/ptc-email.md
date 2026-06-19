@@ -1,4 +1,4 @@
-Subject: Token MINNing: removing unused tool results from your context window
+Subject: Stop paying for tool results the model never uses (Token MINNing)
 
 Hey {first_name},
 

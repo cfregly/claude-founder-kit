@@ -28,7 +28,7 @@ def test_route_drafts_into_the_outbox(tmp_path):
     fabrikam = (outbox / "fabrikam.ptc.md").read_text()
     assert "Hey Sam," in fabrikam and "Token MINNing" in fabrikam
     contoso = (outbox / "contoso.citations.md").read_text()
-    assert "Hey Lee," in contoso and "grounded answers" in contoso
+    assert "Hey Lee," in contoso and "source pointer" in contoso
     # the opener is hyper-personalized to each company's use case within its segment
     assert "Quick tip for an agent that triages logs and traces across services." in fabrikam
     assert "Quick tip for a product that answers over clinical notes." in contoso
