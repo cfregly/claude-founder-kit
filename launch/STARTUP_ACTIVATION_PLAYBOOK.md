@@ -5,8 +5,7 @@ process that runs alongside the launch module's code: the loop the code measures
 person runs, and the line where a person stops and the gate takes over. Every number here
 reproduces from the launch module's deterministic spine (seeded at 7) or traces to a named receipt.
 
-Read it with `CLAUDE.md` and `../../CHRIS_FREGLY_VOICE.md`. State facts, trace numbers to receipts,
-deslop before shipping.
+Read it with `CLAUDE.md`. State facts, trace numbers to receipts, deslop before shipping.
 
 ## 1. Thesis
 
@@ -74,10 +73,12 @@ reliability, and evals.
 - The change: treat tool descriptions as API contracts, keep durable state outside the model, and
   put a governor on the loop (gates and stop conditions). For long-running work, use managed
   sessions and the memory tool so an agent survives a restart and carries what it learned.
-- Receipt: `claude-managed-agents` runs one real end-to-end agent under the
-  `managed-agents-2026-04-01` beta, provision to teardown. `claude-memory` runs the memory tool
-  plus a two-day consolidation loop and measures the delta. `claude-parallel` runs a bounded,
-  measured fan-out of concurrent calls.
+- Receipt: [`claude-managed-agents`](https://github.com/cfregly/claude-managed-agents) runs one real
+  end-to-end agent under the `managed-agents-2026-04-01` beta, provision to teardown.
+  [`claude-memory`](https://github.com/cfregly/claude-memory) runs the memory tool plus a two-day
+  consolidation loop and measures the delta.
+  [`claude-parallel`](https://github.com/cfregly/claude-parallel) runs a bounded, measured fan-out of
+  concurrent calls.
 
 **c. Evals are the moat, and the renewal.**
 - Founder pain: the demo impresses, then quality drifts and the customer leaves.
@@ -86,8 +87,9 @@ reliability, and evals.
 - Receipt: the `../mvp` module frames the eval set as the retention instrument and gates the build
   on it. Retention is an eval problem.
 
-Source-grounded answers with citations stay a deep-dive (`claude-grounding`), pulled when a
-founder's workload is answering over their own documents, not one of the three headline formats.
+Source-grounded answers with citations stay a deep-dive
+([`claude-grounding`](https://github.com/cfregly/claude-grounding)), pulled when a founder's workload
+is answering over their own documents, not one of the three headline formats.
 
 ## 6. The feedback loop
 

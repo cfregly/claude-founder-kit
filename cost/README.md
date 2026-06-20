@@ -16,7 +16,7 @@ a key it fails fast with a clear error and a non-zero exit. There is no offline 
 ## A note on scope
 
 This stage is about **Claude platform cost**: the token-spend knobs the API gives you. It is not
-about GPU or serving cost, which live in the separate `claude-gpu-perf-tune`. Every demo is built
+about GPU or serving cost, which live in the separate [`claude-gpu-perf-tune`](https://github.com/cfregly/claude-gpu-perf-tune). Every demo is built
 on shipped primitives and the request shapes are current. Where a lever is beta, the demo labels it
 and does not pretend otherwise.
 
