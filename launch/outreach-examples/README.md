@@ -10,7 +10,7 @@ filled in.
 - [citations-email.md](citations-email.md): Citations, for a product that answers over user docs.
 - [agent-email.md](agent-email.md): code execution state, for a multi-step agent that keeps its sandbox state across turns.
 
-Each email links to a runnable brief in `cfregly/claude-feature-briefs`, and every number matches that
+Each email links to a runnable brief in `cfregly/claude-feature-hits`, and every number matches that
 brief, so the reader sees the same figure when they run it.
 
 ## Who each one is for
