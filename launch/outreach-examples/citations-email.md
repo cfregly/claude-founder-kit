@@ -1,10 +1,10 @@
-Subject: Grounded answers over your users' docs, every source checkable in your code
+Subject: Source-linked answers over your users' docs, every source checkable in your code
 
 Hey {first_name},
 
 Congrats on getting into YC! Quick tip if your app answers questions over your users' own documents.
 
-When you answer over a contract, a policy, or a support doc, the answer is only as trustworthy as the
+When you answer over a contract, a policy, or a support doc, the answer is only as useful as the
 source behind it. [Citations](https://platform.claude.com/docs/en/build-with-claude/citations) gives you a source pointer for every answer that you can
 check in your own code: the document, a character range, and the verbatim quote at that range. The
 pointer is guaranteed to resolve, and the quote is free of output tokens. On the brief's demo, 8 of 8
@@ -38,6 +38,7 @@ make citations     # answer the questions and resolve every pointer, $0.01
 To run it on your own documents, drop your `.txt` files into `citations/docs/`, edit the questions at
 the top of `citations/cite.py`, and run `make citations` again.
 
-Happy building! 🚀
+Happy building,
+
 {your_name}
 Building with Claude

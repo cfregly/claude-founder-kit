@@ -10,6 +10,13 @@ This is Anthropic's Founder's Playbook as runnable code. Each stage is a tool a 
 uses, and the stages run in order: get to first value, build the product, review the tools, launch
 and measure activation, then read the data moat and the next move.
 
+It is shaped by repeated founder pitch and activation sessions: pressure-test the wedge, build the
+first workflow, measure the second build, and route the next GTM motion.
+
+For the smaller wins-only Claude feature brief library, see
+[`claude-feature-hits`](https://github.com/cfregly/claude-feature-hits). This repo is the broader
+founder-journey kit; the feature brief repo is the narrower public artifact.
+
 ## Run it
 
 ```bash

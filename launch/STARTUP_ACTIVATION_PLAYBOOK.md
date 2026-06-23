@@ -3,15 +3,15 @@
 The operator's field playbook for turning founders into builders on Claude. It is the human
 process that runs alongside the launch module's code: the loop the code measures, the motions a
 person runs, and the line where a person stops and the gate takes over. Every number here
-reproduces from the launch module's deterministic spine (seeded at 7) or traces to a named receipt.
+reproduces from the launch module's deterministic spine (seeded at 7) or traces to saved evidence.
 
-Read it with `CLAUDE.md`. State facts, trace numbers to receipts, deslop before shipping.
+Read it with `CLAUDE.md`. State facts, trace numbers to evidence, deslop before shipping.
 
 ## 1. Thesis
 
 Activation is the work: get a founder from a first Claude call to a working build to a second build
 they start on their own, then keep them. The demo wins the trial. The eval set wins the renewal.
-This playbook turns that loop into a repeatable motion with receipts, so a win for one founder
+This playbook turns that loop into a repeatable motion with saved output, so a win for one founder
 becomes a recipe the next founder runs from.
 
 ## 2. Who it is for
@@ -48,44 +48,63 @@ One founder session, four moves, every one ending in working code.
 - **The workshop (60 to 90 minutes).** Build one working integration live against the founder's
   real workload. Pick the format that maps to their pain (section 5). Every session ends in code
   that runs, not a slide.
-- **The follow-up (inside 72 hours).** Office hours on the build, plus the receipt: what the change
-  did to cost, latency, reliability, or correctness on their workload, measured.
+- **The follow-up (inside 72 hours).** Office hours on the build, plus the measured run: what the
+  change did to cost, speed, reliability, accuracy, or security on their workload.
 - **The next step.** One repo, one file to edit, one command to run, one cost and time estimate.
   Then the second build is theirs to start.
 
 ## 5. Workshop formats
 
-Three formats, each tied to a founder pain, a Claude surface, and a receipt. Lead with cost,
-reliability, and evals.
+Five formats, each tied to a founder pain, a Claude surface, and saved output. Lead with the pillar
+blocking the next production step: cost, speed, reliability, accuracy, or security.
 
 **a. Cost is architecture, not accounting.**
 - Founder pain: the token bill climbs with usage and nobody knows which call is expensive.
 - The change: route by consequence (Haiku for lookups, Sonnet as the workhorse, Opus and Fable for
   high-consequence agentic work), cache the stable context so it never resends at full price, and
   clear stale tool results from the window.
-- Receipt: routing and caching cut a 12-question workshop run from $0.22 to $0.03, about 85% lower
+- Measured run: routing and caching cut a 12-question workshop run from $0.22 to $0.03, about 85% lower
   (`../mvp`). Context editing cut carried tokens 68% on a multi-turn run (`../cost`). Both measured
   off the usage object, not asserted.
 
-**b. Governed agent reliability.**
+**b. Speed is a workflow choice.**
+- Founder pain: the agent does the right thing, but the user waits too long or the large deliverable
+  needs multiple fragile turns.
+- The change: move bulky work into code execution, use programmatic tool calling for fan-out, choose
+  fast paths only when the quality bar holds, and use extended output when one un-truncated turn is
+  the product.
+- Measured run: the feature-hit briefs cover bulk output for one large deliverable and exact-ledger
+  work where the same exact answer completes faster than the exact competitor arms.
+
+**c. Governed agent reliability.**
 - Founder pain: the agent works in the demo and falls over in production when a tool fails or the
   context fills.
 - The change: treat tool descriptions as API contracts, keep durable state outside the model, and
   put a governor on the loop (gates and stop conditions). For long-running work, use managed
   sessions and the memory tool so an agent survives a restart and carries what it learned.
-- Receipt: [`claude-managed-agents`](https://github.com/cfregly/claude-managed-agents) runs one real
+- Saved output: [`claude-managed-agents`](https://github.com/cfregly/claude-managed-agents) runs one real
   end-to-end agent under the `managed-agents-2026-04-01` beta, provision to teardown.
   [`claude-memory`](https://github.com/cfregly/claude-memory) runs the memory tool plus a two-day
   consolidation loop and measures the delta.
   [`claude-parallel`](https://github.com/cfregly/claude-parallel) runs a bounded, measured fan-out of
   concurrent calls.
 
-**c. Evals are the moat, and the renewal.**
+**d. Accuracy is the answer plus the source.**
 - Founder pain: the demo impresses, then quality drifts and the customer leaves.
-- The change: write the eval set that encodes the customer's definition of good, and run it in CI
-  on every change. Prompts copy. The eval set does not.
-- Receipt: the `../mvp` module frames the eval set as the retention instrument and gates the build
-  on it. Retention is an eval problem.
+- The change: write the eval set that encodes the customer's definition of good, run it in CI, and
+  use Citations when the user needs to verify the source behind an answer.
+- Saved output: the `../mvp` module frames the eval set as the retention instrument and gates the
+  build on it. `claude-feature-hits` adds PDF, text, search-result, and web citation briefs when a
+  founder's workload is answering over their own documents.
+
+**e. Security is the production gate.**
+- Founder pain: an agent can read private data, call tools, or act through MCP before the team has
+  named the boundary.
+- The change: run a tool-boundary review before the first user, add prompt-injection evals and
+  destructive-action rules, then map enterprise needs to CMEK, the Compliance API, Claude Security,
+  enterprise-managed MCP auth, connector action restrictions, or self-hosted sandboxes.
+- Saved output: the `../mvp/harden` module scores the MCP and agent surface with an OWASP and STRIDE
+  lens before any user touches it.
 
 Source-grounded answers with citations stay a deep-dive
 ([`claude-grounding`](https://github.com/cfregly/claude-grounding)), pulled when a founder's workload
@@ -99,7 +118,7 @@ Every session produces more than a build.
   number, and the blocker that stopped them. Emitted as events on one durable id, opt-out, so the
   cohort scores itself.
 - **Objections become docs and demos.** A recurring objection the platform answers today becomes a
-  public recipe, a runnable demo with a receipt. One that needs a feature becomes a product note
+  public recipe, a runnable demo with saved output. One that needs a feature becomes a product note
   routed to the platform team. Track which, and how many.
 - **Wins become recipes.** Every repeatable win ships as a runnable demo, so the next founder
   starts from working code, not a blank page. The recipes pull inbound, which refills the top of
@@ -154,7 +173,7 @@ reference cohort above is the bar each target is measured against.
 - Write the operator playbook v1: ecosystem to activation, the motion any operator can run.
 - Publish the 90-day readout: activated developers, the second-build rate, pilots, and partner
   return. Route the top 5 frictions to product issues with repro code.
-- Hand the product-qualified accounts to a named GTM owner, each with the receipt: what they built,
+- Hand the product-qualified accounts to a named GTM owner, each with the measured handoff packet: what they built,
   their usage, their spend trend. In the reference cohort that is 2 accounts ready.
 - Exit: net-new production logos from the cohort, a measured demo-to-adoption rate, and a public
   recipe library founders find on their own.

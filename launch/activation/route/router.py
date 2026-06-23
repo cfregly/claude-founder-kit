@@ -3,7 +3,7 @@ into the gated outbox.
 
 Deterministic by construction. A keyword router scores each company's one-line description against the
 two briefs' signal words and routes it: programmatic tool calling (Token MINNing) for builders whose
-bottleneck is cost at scale, Citations for builders whose bottleneck is trust to ship. The matching
+bottleneck is cost at scale, Citations for builders whose bottleneck is accuracy to ship. The matching
 outreach-example template is filled per company. The signal words and the dividing line are the ones
 written in outreach-examples/README.md, kept in sync here.
 
@@ -23,7 +23,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]  # the launch/ module root
 EXAMPLES = ROOT / "outreach-examples"
 
 # The signal words per brief. ptc = cost at scale (an agent that fans out over data it then crunches).
-# citations = trust to ship (answers over the user's own documents that must be verifiable). These
+# citations = accuracy to ship (answers over the user's own documents that must be verifiable). These
 # mirror the segmentation note in outreach-examples/README.md.
 SIGNALS = {
     "ptc": ["ops", "observability", "monitor", "log", "trace", "usage",
@@ -69,7 +69,7 @@ def _slug(company: str) -> str:
 
 def _rel(path: pathlib.Path) -> str:
     """A path relative to the launch root when it sits under it, else the path as given. Keeps the
-    receipt readable for the default outbox without breaking when a caller points it elsewhere."""
+    summary readable for the default outbox without breaking when a caller points it elsewhere."""
     try:
         return str(path.relative_to(ROOT))
     except ValueError:
@@ -169,7 +169,7 @@ def _read_batch(batch_path) -> list[dict]:
 def route(batch_path, *, outbox=None) -> dict:
     """Classify every company in the batch CSV and draft the matching email into the outbox. Pure
     deterministic: no key, no network. The CSV needs a `company` column and a one-line description in
-    `one_liner` or `description`, and an optional `first_name`. Returns a routing receipt."""
+    `one_liner` or `description`, and an optional `first_name`. Returns a routing summary."""
     outbox = pathlib.Path(outbox) if outbox else (ROOT / "out" / "outbox")
     outbox.mkdir(parents=True, exist_ok=True)
     templates = {brief: (EXAMPLES / fname).read_text() for brief, fname in BRIEF_EMAIL.items()}
@@ -232,7 +232,7 @@ _SYSTEM = (
     "You route a startup to one of three Claude feature briefs by its bottleneck, or to neither. "
     "ptc (programmatic tool calling) is for builders whose bottleneck is cost at scale: an agent that "
     "calls a tool many times over data it then crunches, so the bill grows with the data. citations is "
-    "for builders whose bottleneck is trust to ship: a product that answers over the user's own "
+    "for builders whose bottleneck is accuracy to ship: a product that answers over the user's own "
     "documents where a wrong source is a non-starter. agent (code execution state) is for builders whose "
     "bottleneck is a long-running or stateful code agent: a multi-step agent that runs code in a sandbox "
     "and needs its files and state to persist across turns, for example sandboxed code testing, isolated "
@@ -276,7 +276,7 @@ _DEEPEN_SYSTEM = (
     "context', singular and starting with 'your', and it must not repeat the opener's verb, for example "
     "'your agent reads the logs, metrics, and traces behind each alert'. `tool_name` is a snake_case tool "
     "for that data, for example query_traces.\n"
-    "citations (trust to ship): `opener` is 'a product that answers over <documents>', for example 'a "
+    "citations (accuracy to ship): `opener` is 'a product that answers over <documents>', for example 'a "
     "product that answers over clinical notes'. `body` is a singular noun phrase for one such document "
     "that follows 'When you answer over ', for example 'a clinical note'. `tool_name` is an empty string.\n"
     "Keep the opener and the body under 18 words each. If two companies do similar work, foreground what "
@@ -287,7 +287,7 @@ _DEEPEN_SYSTEM = (
 def refine(summary: dict, *, outbox=None, model: str | None = None) -> dict:
     """The Claude layer over the deterministic route. First classify the companies the keywords left
     unrouted, then deepen every routed draft so the whole body matches the company, not just the opener.
-    Needs a key and the SDK, raises without them, and never sends. Updates and returns the receipt."""
+    Needs a key and the SDK, raises without them, and never sends. Updates and returns the summary."""
     from ..platform import client as _client
 
     outbox = pathlib.Path(outbox) if outbox else (ROOT / "out" / "outbox")

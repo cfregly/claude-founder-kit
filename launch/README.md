@@ -10,7 +10,7 @@ run the weekly metrics brief, using the whole Claude Developer Platform to do it
   accounts ready for sales, decide the one motion, draft it, gate every outward
   step, remember last week, and produce the report.
 - The deterministic stages are stdlib only: capture, measure, the gate, the audit,
-  and the report template. They carry the receipt and the CI gate, so the gate runs
+  and the report template. They carry the saved output and the CI gate, so the gate runs
   offline with no key and no install.
 - The generative stages run Claude (`claude-opus-4-8`) on every run: enrich, decide,
   and draft. `make demo` runs the whole live pipeline through them, so it needs
@@ -29,7 +29,7 @@ run the weekly metrics brief, using the whole Claude Developer Platform to do it
 make demo       # the whole live pipeline -> the weekly report (needs ANTHROPIC_API_KEY)
 make morning    # the CASH morning read of the cohort (live, renders morning.html)
 make test       # the test suite
-make check      # the doc-correctness gate
+make check      # the doc-accuracy gate
 make coverage   # the platform-surface coverage map
 make deploy     # dry-run the Managed Agents weekly deployment plan
 ```
@@ -44,7 +44,7 @@ from the spine, so re-run before changing one.
 ## Route a batch to the right brief
 
 `python -m activation route examples/batch.csv` reads a CSV of companies and routes each to the outreach
-brief that fits its bottleneck: programmatic tool calling for cost at scale, Citations for trust to ship.
+brief that fits its bottleneck across five pillars: cost, speed, reliability, accuracy, and security.
 It scores every one-line description against the brief signal words, fills the matching template from
 `outreach-examples/`, and writes the draft into the inert outbox. Nothing is sent, the same gate boundary
 the rest of the loop carries. Add `--refine` and Claude deepens every draft so the whole body matches the

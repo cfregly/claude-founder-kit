@@ -49,6 +49,7 @@ make programmatic_tool_calling        # the example, $0.08
 To run it on your own tool, open [programmatic_tool_calling/my_tool.py](https://github.com/cfregly/claude-feature-hits/blob/main/programmatic_tool_calling/my_tool.py),
 drop in your tool, and run `make programmatic_tool_calling` again.
 
-Happy building! 🚀
+Happy building,
+
 {your_name}
 Building with Claude

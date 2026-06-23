@@ -33,6 +33,7 @@ export ANTHROPIC_API_KEY=your-key
 make code_execution_state          # write a file and read it back from the reused container
 ```
 
-Happy building! 🚀
+Happy building,
+
 {your_name}
 Building with Claude
