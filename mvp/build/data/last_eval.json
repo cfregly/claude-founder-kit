@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-14 19:44:15",
+  "generated": "2026-06-24 13:26:50",
   "threshold": 0.75,
-  "graded_by": "code + Haiku judge",
+  "graded_by": "code (substring)",
   "tiers": {
     "Haiku (junior)": {
       "model": "claude-haiku-4-5",

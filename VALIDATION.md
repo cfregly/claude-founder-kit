@@ -13,7 +13,7 @@ The code, docs, and gates are internally tested. That is not the same as being a
 - Live paths are documented as live and key-required.
 - Live entrypoints fail cleanly without a key.
 - Receipts exist for measured cost outputs.
-- One internal founder simulation receipt exists in [receipts/internal-founder-simulation-2026-06-24/receipt.md](receipts/internal-founder-simulation-2026-06-24/receipt.md).
+- One internal founder simulation receipt with live Claude calls exists in [receipts/internal-founder-simulation-2026-06-24/receipt.md](receipts/internal-founder-simulation-2026-06-24/receipt.md).
 
 ## Missing Evidence
 
@@ -21,7 +21,7 @@ The code, docs, and gates are internally tested. That is not the same as being a
 - Baseline comparisons against the current manual workflow.
 - Recorded objections from skeptical reviewers.
 - Outcome measures by stage, such as time saved, risk caught, cost reduced, activation clarity, pitch clarity, or decision speed.
-- Live-path receipts for the internal founder simulation.
+- External live-path receipts from skeptical users.
 
 ## Required Before Strong Claims
 

@@ -18,7 +18,7 @@ working code, tests, and gate.
 
 ## Live runs and gates
 
-`make demo` is the live walkthrough and needs `ANTHROPIC_API_KEY`. `make check` and `make test`
+`make demo` is the live walkthrough and needs `ANTHROPIC_API_KEY` from `.env` or the shell. `make check` and `make test`
 are the reproducible gates and run without a key. Some modules also expose explicit offline
 subcommands, such as JSON readouts or deterministic reports. Keep the boundary clear: live calls
 measure or generate, deterministic gates verify structure and drift.

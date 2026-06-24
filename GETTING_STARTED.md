@@ -33,7 +33,8 @@ Live commands need `ANTHROPIC_API_KEY`. Offline gates do not.
 ## 3. Run One Live Path
 
 ```bash
-export ANTHROPIC_API_KEY=...
+cp .env.example .env
+# fill ANTHROPIC_API_KEY in .env, or export it in your shell
 make demo-mvp
 ```
 

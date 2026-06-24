@@ -1,0 +1,73 @@
+
+[live: claude-opus-4-8, 1063 in / 1786 out]
+# LedgerOps AI: Founder Intervention
+
+## 1. Value proposition rewrite
+
+LedgerOps AI cuts the time finance support teams spend on billing and refund tickets by answering them with cited evidence from the customer's own ERP, billing, and policy records, with a human approving every action.
+
+Note: I inserted "cuts the time" as a placeholder. You need a real number here. See section 5.
+
+## 2. Product wedge for the next 30 days
+
+Pick one buyer and one workflow. Not three.
+
+**Buyer:** Usage-based SaaS companies, Series A to B, 5 to 20 finance support agents, more than 500 billing tickets per month. Small enough to sign fast, big enough to feel the pain.
+
+**Workflow:** Refund triage only. It is the highest-risk, highest-frequency category and the one where agents currently wait on senior review. Skip billing correction and contract-policy answers until refund triage is sticky.
+
+**The 30-day target:** Get 3 design partners to the activation event you already defined. Connect one queue, run the eval set on 10 historical tickets, approve the first reply inside one day. Then measure whether they come back for a second approved workflow within two weeks.
+
+Decision: kill the "first wedge is usage-based SaaS" framing as a category. Make it "refund triage for usage-based SaaS finance teams." Narrower converts.
+
+## 3. Architecture decision
+
+**Data boundaries (your real moat, get this right):**
+- Evidence stays in the customer tenant. Pass record IDs and scoped snippets into context, not bulk data exports.
+- Every answer carries a source record citation. Make citation a hard requirement in the output schema, not a nice-to-have. No citation, no proposed reply.
+- Maintain an append-only approved-action ledger per tenant. This is the asset that compounds.
+
+**Model routing:**
+- Do not default everything to Opus. Route refund-policy edge cases and any answer touching money to the strongest model. Route simple lookups and classification to a cheaper, faster model.
+- Assumption: today you are sending everything to one model. If so, you are overpaying and slowing the common path.
+
+**Tools / MCP:**
+- Build read connectors to Zendesk, NetSuite, Stripe as tools the model calls, not as pre-stuffed context. Let the model fetch the specific record it needs.
+- Make every tool call logged and attributable. The audit trail is part of the product.
+
+**Prompt caching:**
+- The deterministic signal says caching is off. Turn it on for the stable parts: policy docs and system instructions per tenant. Refund policy text rarely changes and gets read on every ticket. Caching it cuts cost and latency on the hot path.
+
+**Evals:**
+- The private eval set is the moat. Treat it as a first-class product object.
+- Score every proposed reply against: correct citation, no invented billing detail, correct refund decision versus the senior-operator answer.
+- Track hallucination rate explicitly. A finance tool that invents a billing number once destroys trust.
+
+## 4. Platform-risk answer
+
+The model provider can generate an answer. It cannot:
+- Hold the customer's refund policy, approval rules, and billing history inside the customer's tenant.
+- Enforce a human-approval gate before any action touches money.
+- Produce an audit trail that survives a finance or compliance review.
+- Accumulate a per-customer eval set that encodes what "correct" means for that specific business.
+
+Your defensibility is not the model. It is the approved-action ledger plus the private eval set that get better with every resolved ticket. A new entrant, or the model provider, starts from zero on both for each customer. Make sure your contracts and architecture keep that data inside the tenant and inside your product, so a customer cannot trivially extract it and leave.
+
+Platform risk score of 3 is right. The risk is low because you own the policy, workflow, and audit layer. Defend that, not the inference.
+
+## 5. Metrics to track this week
+
+You are missing a before/after claim. Get these from your first design partners:
+
+1. **Baseline handle time per refund ticket** (minutes, today, human only).
+2. **Senior-review rate today**: what percent of refund replies need a senior operator. This is the cost you remove.
+3. **Activation rate**: of partners who connect a queue, how many approve a reply within one day.
+4. **Hallucination rate on eval set**: invented billing details per 100 proposed replies. Target near zero.
+5. **Citation coverage**: percent of replies with a valid source record. Target 100.
+6. **Second-workflow rate**: percent of activated accounts that approve a second workflow within two weeks.
+
+The before/after claim you want by end of month: "Refund replies that needed senior review dropped from X percent to Y percent, with zero invented billing details across N tickets."
+
+## 6. What I would tell the founder in 30 seconds
+
+Your architecture story is strong and your platform-risk answer is real. The weak point is the pitch has no number. Right now you are selling a category. Sell a measured pain instead. Narrow to refund triage for usage-based SaaS, get three design partners through your one-day activation, and walk out with one hard claim: how much senior-review time you removed and that you invented zero billing details. Stop sending every ticket to Opus, cache the policy docs, and protect the eval set and the approved-action ledger like the assets they are. Those two things are your moat. Everything else is replaceable.

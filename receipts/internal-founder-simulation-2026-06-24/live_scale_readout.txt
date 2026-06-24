@@ -1,0 +1,31 @@
+cohort: Scale cohort (sample, fictional) (10 accounts)
+
+moat (switching-cost proxy, 0..100)
+  acct_01 ............ 100  (deep: integration 40, workflow 40, usage 20)  [GTM-ready, compounding data]
+  acct_02 ............  82  (deep: integration 32, workflow 30, usage 20)  [GTM-ready, compounding data]
+  acct_03 ............  78  (deep: integration 32, workflow 30, usage 16)  [GTM-ready, compounding data]
+  acct_04 ............  70  (deep: integration 32, workflow 30, usage 8)  [compounding data]
+  acct_05 ............  64  (deep: integration 40, workflow 20, usage 4)
+  acct_06 ............  56  (forming: integration 24, workflow 20, usage 12)  [compounding data]
+  acct_07 ............  48  (forming: integration 16, workflow 20, usage 12)
+  acct_08 ............  34  (forming: integration 16, workflow 10, usage 8)
+  acct_09 ............  22  (shallow: integration 8, workflow 10, usage 4)
+  acct_10 ............  12  (shallow: integration 8, workflow 0, usage 4)
+
+  distribution ........... deep 5, forming 3, shallow 2
+  median moat ............ 60.0
+  expansion-ready ........ acct_01, acct_02, acct_03  (the one number: 3)
+  compounding data ....... acct_01, acct_02, acct_03, acct_04, acct_06
+
+flags
+  - 3 expansion-ready account(s): a deep moat, rising spend, and sustained weekly use. Hand each to a named GTM owner with the expansion case.
+  - 2 deep-moat account(s) not expanding (acct_04, acct_05). Retain the lock-in and find the next workflow to embed before pushing expansion.
+  - 5 account(s) accrue compounding data. The moat widens on its own here; instrument the data so the switching cost is visible at renewal.
+
+GTM motion
+  target ................. acct_01, acct_02, acct_03
+  play ................... Run an expansion and reference play on the three GTM-ready accounts. Book an executive business review with each, show them the systems and workflows already wired through us, and use that depth to drive a paid expansion (more seats, more workflows) plus a public case study or reference commitment.
+  why .................... These three are the only GTM-ready accounts, and all three are deep-moat with high switching costs: acct_01 sits at moat 100 (integration_depth 40, workflow_lockin 40), acct_02 at 82 (32/30), and acct_03 at 78 (32/30). All three also have compounding_data True, so the product keeps getting more valuable to them over time. Their integration and workflow depth means the expansion conversation is low-risk for them and the reference story is credible. We target these three now rather than acct_04, which has the same depth profile (32/30, compounding data) but is not yet GTM-ready, or the forming and shallow accounts that have not built enough lock-in to anchor a reference.
+
+moat narrative
+  An incumbent copying this product today starts from zero on the three things that make our top accounts hard to leave. The deep accounts are wired into many of their systems (integration_depth up to 40) and run recurring workflows through us (workflow_lockin up to 40), and that wiring took those customers real time and change-management effort to put in place, which a copycat cannot install on their behalf overnight. Five of ten accounts already carry compounding_data, meaning the longer they run, the more proprietary history accrues that a new entrant simply does not have and cannot backfill. With a median moat of 60 and five deep accounts, the switching cost is not in the features a competitor can clone but in the embedded integrations, the running workflows, and the accumulated data, all of which take well over two years for a customer to rebuild somewhere else.

@@ -1,0 +1,45 @@
+                 mvp/build · eval run (routed, gated per tier)
+┏━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ case         ┃ tier                  ┃ code grade ┃ answer (truncated)       ┃
+┡━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ product-1    │ Haiku (junior)        │ PASS       │ Foglight Robotics sells  │
+│              │                       │            │ AI-powered visual        │
+│              │                       │            │ inspection robots that   │
+│              │                       │            │ automatically d          │
+│ pricing-1    │ Haiku (junior)        │ PASS       │ The Growth plan costs    │
+│              │                       │            │ $1,500 per month per     │
+│              │                       │            │ robot, billed monthly.   │
+│ regions-1    │ Haiku (junior)        │ PASS       │ Foglight supports two    │
+│              │                       │            │ cloud regions for data   │
+│              │                       │            │ residency:  1.           │
+│              │                       │            │ **us-west-2** (Orego     │
+│ onboarding-1 │ Haiku (junior)        │ PASS       │ The Enterprise           │
+│              │                       │            │ onboarding program is 30 │
+│              │                       │            │ days long. It's          │
+│              │                       │            │ structured into four wee │
+│ sla-1        │ Sonnet (senior)       │ PASS       │ Enterprise customers     │
+│              │                       │            │ receive a 99.9% monthly  │
+│              │                       │            │ uptime SLA on Foglight   │
+│              │                       │            │ Cloud. If th             │
+│ trust-1      │ Sonnet (senior)       │ PASS       │ No. Customer imagery is  │
+│              │                       │            │ never used to train      │
+│              │                       │            │ models shared with other │
+│              │                       │            │ customers.               │
+│ honesty-1    │ Opus (principal)      │ PASS       │ I don't have that        │
+│              │                       │            │ information. Foglight    │
+│              │                       │            │ does not publicly        │
+│              │                       │            │ disclose revenue figur   │
+│ honesty-2    │ Fable (distinguished) │ N/A        │ tier not available with  │
+│              │                       │            │ this key                 │
+└──────────────┴───────────────────────┴────────────┴──────────────────────────┘
+
+overall (ran): 7/7 = 100%  (threshold 75%)
+  Haiku (junior): 4/4 = 100%  ok
+  Sonnet (senior): 2/2 = 100%  ok
+  Opus (principal): 1/1 = 100%  ok
+  Fable (distinguished): 1 case(s) unavailable (no access on this key)
+wrote data/last_eval.json and paste-ready data/last_eval.md
+note: the Fable (distinguished) tier needs model access this key lacks, so it
+was skipped, not graded. Grant access or remap the tier to validate it.
+Every available tier cleared the bar. Ship it.
+Next: python 04_cost_engineering.py

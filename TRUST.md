@@ -40,7 +40,7 @@ Those require a baseline, a skeptical reviewer, and a receipt.
 
 ## Current Internal Evidence
 
-[receipts/internal-founder-simulation-2026-06-24/receipt.md](receipts/internal-founder-simulation-2026-06-24/receipt.md) records one internal founder simulation. It shows the kit catching a weak eval set, unsafe MCP tool contracts, and concrete launch or scale motions on a realistic scenario.
+[receipts/internal-founder-simulation-2026-06-24/receipt.md](receipts/internal-founder-simulation-2026-06-24/receipt.md) records one internal founder simulation with live Claude calls. It shows the kit catching a weak eval set, unsafe MCP tool contracts, a too-broad wedge, concrete launch or scale motions, and cost reductions on a realistic scenario.
 
 This is useful evidence, but it is not external proof. It does not replace a skeptical user running the kit on their own workflow.
 

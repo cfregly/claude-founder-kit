@@ -1,0 +1,64 @@
+python -m activation demo
+
+[live: ran Claude for enrich, decide, draft; render pdf: out/weekly_report.pdf]
+Weekly startup-signal report -- cohort Founder day (sample, fictional)
+Week of 2026-06-15
+
+ACTIVATION
+  signups .......................... 3 new, 12 total
+  activation rate (build/signup) ... 67%   (+5 pts vs last week)
+  time-to-first-value .............. 2.0 days (signup -> first call)
+  biggest leak ..................... first_build -> second_build (38% lost)   <- the onboarding fix
+
+RETENTION
+  time-to-second-build ............. 8 days   (-1 day vs last week)   <- the leading indicator
+  retention rate (2nd/1st build) ... 62%   (+5 pts vs last week)
+  engagement retention ............. 50% weekly-active of first-build
+  logo retention (paid) ............ needs billing data; AI-native band 65-75% good, under 50% leaky
+  NRR / expansion .................. needs billing data; AI-native 90-110% strong vs the 48% AI-native norm
+
+PIPELINE
+  PQAs ready for handoff ........... 2 account(s): acct_02, acct_03 (rising spend)   (+1 vs last week)
+  net-new logos attributable ....... 1 this week
+
+PQA BRIEFS (enrich step)
+  - acct_02: I don't have any information about "acct_02" or the founder cohort you're referencing. Let me check if there are any files available.There are no files provided that map "acct_02" to any company in the founder cohort, and without that mapping I have no public entity to research.
+
+no public signal found.
+  - acct_03: I don't have any information about an account labeled "acct_03" — no founder cohort data, account details, or identifying information has been provided to me, and there are no files I can access.
+
+no public signal found.
+
+THE ONE MOTION
+  - second_build_nudge Moves: Send the 72-hour second-build nudge to the 3 accounts stalled between first and second build. This acts directly on the first_build→second_build transition and compresses the 8-day time_to_second_build..
+    why: The readout hands us the leak explicitly: biggest_dropoff is first_build→second_build at 38% lost, by far the largest funnel leak. time_to_second_build of 8 days confirms there's slack a 72-hour nudge can compress. leaky_bucket is False, so retention (0.62) and engagement_retention (0.5) are not the binding constraint this week — chasing them would be off-target. The second_build_nudge is the only proposed motion that acts on the exact stage flagged as the biggest leak, satisfying both selection criteria (highest-leverage AND tied to the biggest leak).
+
+Ran on its own (measurement and drafting only, no approval needed)
+  - Re-score the cohort and recompute the funnel.
+  - Flag the biggest leak: first_build -> second_build (38% lost).
+  - Draft this report.
+
+Waiting on you (approve to run)
+  - [second_build_nudge] Send the 72-hour second-build nudge to 3 account(s). Moves: time-to-second-build.
+      draft subject: Your second build is the real signal
+      You shipped a first build but the second one stalls inside 72 hours. That second build is the activation moment, and right now three of your accounts have not reached it.
+      Here is what I would send those three: a short note offering a 20-minute working session to get build two out the door. Pick a real use case they already mentioned, not a generic demo.
+      The one constraint: this only works inside the 72-hour window, so these go out today.
+      Reply if you want me to line up the three notes for your review.
+      - Operator note
+  - [pqa_handoff] Hand 2 product-qualified account(s) to a named GTM owner: acct_02, acct_03. Moves: qualified PQA handoffs.
+      draft subject: Two accounts ready for a GTM owner
+      You have accounts in production with spend climbing, and they are sitting without a named owner. Two are ready now: acct_02 and acct_03.
+      I want to hand each to a specific GTM owner today so nothing drifts. Both are past the product-qualified bar with rising usage, so the next move is a human relationship, not another product nudge.
+      The one constraint: I need you to name the owner for each, since I should not assign accounts on your behalf.
+      Tell me who takes acct_02 and who takes acct_03, and I will make the handoff with full context.
+      - Operator note
+
+Will not do on its own (by design)
+  - Send founder emails without your review.
+  - Spend on ads or any paid channel.
+  - Post to public or social channels.
+  - Promise or grant credits.
+  - Hand off an account that has not met the production-and-rising-spend trigger.
+
+Reply approve <id> or skip <id> for each item above.

@@ -29,7 +29,7 @@ founder-journey kit. The feature brief repo is the narrower public artifact.
 python3.12 -m venv .venv
 source .venv/bin/activate
 make setup                     # install every stage's deps
-export ANTHROPIC_API_KEY=...   # required for live demos
+cp .env.example .env           # fill ANTHROPIC_API_KEY for live demos
 make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
 make test                      # every stage's tests
@@ -37,8 +37,8 @@ make check                     # every stage's gates
 make adversarial               # full local trust gate
 ```
 
-`make demo` is the live walkthrough and needs a key. `make check` and `make test` are deterministic
-and do not need a key. CI runs those gates on every push and pull request, then runs a push-only
+`make demo` is the live walkthrough and needs `ANTHROPIC_API_KEY` from `.env` or the shell. `make check` and `make test` are deterministic
+and do not need a key. `.env` is ignored and must stay local. CI runs those gates on every push and pull request, then runs a push-only
 live smoke on a repository secret for a small core path. Measured run outputs live in each stage's
 `data/` directory when you regenerate them.
 

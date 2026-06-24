@@ -1,0 +1,32 @@
+Running 3 arms x 12 questions (~36 calls). The cached arms reuse a ~5K-token
+prefix — sized above every model's minimum cacheable prefix.
+
+                     mvp/build · same workload, three ways
+┏━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃       ┃       ┃       ┃ fresh ┃ cache ┃ cache ┃       ┃   p50 ┃       ┃   vs ┃
+┃ stra… ┃ model ┃ calls ┃    in ┃ write ┃  read ┃   out ┃   lat ┃  cost ┃ nai… ┃
+┡━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│ naive │ clau… │    12 │ 67,7… │     0 │     0 │ 1,047 │ 2.11s │ $0.2… │ bas… │
+│ (Son… │       │       │       │       │       │       │       │       │      │
+│ no    │       │       │       │       │       │       │       │       │      │
+│ cach… │       │       │       │       │       │       │       │       │      │
+│ cach… │ clau… │    12 │   232 │ 5,630 │ 61,9… │ 1,035 │ 2.18s │ $0.0… │ -74% │
+│ (Son… │       │       │       │       │       │       │       │       │      │
+│ +     │       │       │       │       │       │       │       │       │      │
+│ prom… │       │       │       │       │       │       │       │       │      │
+│ cach… │       │       │       │       │       │       │       │       │      │
+│ rout… │ mixed │    12 │   232 │ 5,629 │ 61,9… │ 1,151 │ 1.71s │ $0.0… │ -86% │
+│ +     │       │       │       │       │       │       │       │       │      │
+│ cach… │       │       │       │       │       │       │       │       │      │
+│ (Hai… │       │       │       │       │       │       │       │       │      │
+│ easy  │       │       │       │       │       │       │       │       │      │
+│ /     │       │       │       │       │       │       │       │       │      │
+│ Sonn… │       │       │       │       │       │       │       │       │      │
+│ hard) │       │       │       │       │       │       │       │       │      │
+└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+Wrote data/last_run.json and data/last_run.md — paste the markdown table into
+the README.
+Pricing from pricing.json — USD per million tokens (MTok). Prices move - confirm
+at https://docs.claude.com/en/docs/about-claude/pricing before quoting on stage.
+Last checked: 2026-06-09.
