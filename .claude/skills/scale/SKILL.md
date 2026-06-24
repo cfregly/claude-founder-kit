@@ -2,7 +2,7 @@
 name: scale
 description: >-
   Score a software cohort into a data-moat readout and the one go-to-market motion
-  to run next, at the Scale stage of Anthropic's Founder's Playbook. Given a cohort
+  to run next, at the Scale stage of a founder playbook for Claude builders. Given a cohort
   of accounts carrying the Scale-stage signals (integrations built, workflows
   embedded, weekly-active depth, spend trend, data volume, contract tier), it
   computes a moat score (a switching-cost proxy from integration depth, workflow
@@ -19,7 +19,7 @@ description: >-
 # Scale stage
 
 Score a cohort into a moat readout and build the GTM motion. A growth lead runs this
-at the Scale stage of Anthropic's Founder's Playbook, once the product has users and
+at the Scale stage of a founder playbook for Claude builders, once the product has users and
 the question turns to widening the gap: compound usage into a moat, lock in the
 workflows, and grow the accounts that have earned it.
 
@@ -28,7 +28,6 @@ workflows, and grow the accounts that have earned it.
 The deterministic readout, offline, with no key:
 
 ```bash
-make demo                                          # the raw moat readout
 python3 -m scale examples/cohort.json --json       # the same, explicitly
 python3 -m scale examples/cohort.json --min-moat 40  # a CI gate on the median moat
 ```
@@ -36,6 +35,7 @@ python3 -m scale examples/cohort.json --min-moat 40  # a CI gate on the median m
 The human readout, which adds the Claude GTM motion and moat narrative:
 
 ```bash
+make demo
 python3 -m scale examples/cohort.json              # needs ANTHROPIC_API_KEY
 ```
 

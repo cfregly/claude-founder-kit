@@ -20,7 +20,7 @@ gate that fails the build when the words stop fighting.
 
 ## Where this fits
 
-This is the `raise` half of the **Idea** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
+This is the `raise` half of the **Idea** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
 
 ## Quickstart
 
@@ -41,7 +41,7 @@ The sloppy draft - every classic failure in six slides:
 ```
 pitch_lint - Brickline (sloppy draft): 0/100 (grade F)
 
-[PD001 ✗ error] 1:purpose: headline is 16 words; the headline is the claim
+[PD001 ✗ error] 1:purpose: headline is 16 words, and the headline is the claim
 [PD003 ✗ error] 1:purpose: banned phrase: "passionate"
 [PD006 ✗ error] 2:problem: unsourced number: "$47B"
 [PD007 ✗ error] 3:solution: "MegaBuild" is marked anonymize

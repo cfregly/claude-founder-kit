@@ -1,6 +1,7 @@
 """The canonical contracts: stage order, event mapping, phases, gates."""
 
 from activation import contracts as c
+from activation.capture.backends import get_backend
 
 
 def test_stage_order():
@@ -25,3 +26,10 @@ def test_phase_for():
 
 def test_gates():
     assert (c.ALWAYS, c.ASK, c.NEVER) == ("always", "ask", "never")
+
+
+def test_unknown_backend_fails_loud():
+    import pytest
+
+    with pytest.raises(ValueError, match="unknown ACTIVATION_BACKEND"):
+        get_backend("posthoggg")

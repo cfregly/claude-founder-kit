@@ -4,4 +4,7 @@ __pycache__/
 *.egg-info/
 .venv/
 .memory/
-data/
+data/*
+!data/
+!data/last_run.md
+!data/last_run_receipt.md

@@ -35,8 +35,8 @@ rest with batch.
 | `token_counting` | exact, model-specific counts before you send, so you budget and catch blowups early |
 | `batch` | the Batches API runs anything non-interactive async at 50% of the token price |
 
-This stage also ships a `verify` skill and a Stop hook under `.claude/`, which is the skills and
-hooks feature demonstrating itself.
+This stage also ships a `verify` skill and an opt-in Stop hook under `.claude/`, which is the skills
+and hooks feature demonstrating itself without forcing a paid run by default.
 
 ## Measured: carrying fewer tokens
 
@@ -85,15 +85,15 @@ cost_control/
   demos.py     # one function per lever, plus the registry
 run.py         # one-command entry: all levers, or one, all live
 scripts/       # the self-contained deslop gate for CI
-.claude/       # the verify skill and the Stop hook (skills + hooks, demonstrated)
+.claude/       # the verify skill and the opt-in Stop hook (skills + hooks, demonstrated)
 ```
 
 ## Where this fits
 
 This is the `cost/` stage of [claude-founder-kit](../README.md),
-Anthropic's Founder's Playbook as runnable code: the founder journey from a first Claude call to a
-scaling read, one repo, a co-located tool per stage. Claude runs the judgment on every stage, and a
-deterministic gate verifies the output before it ships.
+a founder playbook for Claude builders as runnable code: the founder journey from a first Claude call to a
+scaling read, one repo, a co-located tool per stage. Each stage keeps a deterministic gate, and live
+Claude calls run only where the command says a key is required.
 
 - `first_hour/` the platform ladder, one call up to a managed agent
 - `idea/` validate the signal, lint the raise

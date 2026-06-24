@@ -7,8 +7,8 @@ jobs:
     # Runs on every push and pull request, including from forks.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.12"
       - name: Install
@@ -22,13 +22,13 @@ jobs:
         run: make test
 
   live:
-    # The online path: real Claude calls on the repository secret. GitHub does not
-    # expose secrets to pull requests from forks, so this runs on push only.
+    # A small online smoke: real Claude calls on the repository secret. GitHub does
+    # not expose secrets to pull requests from forks, so this runs on push only.
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.12"
       - name: Install
@@ -43,4 +43,11 @@ jobs:
           test -n "$ANTHROPIC_API_KEY" || { echo "ANTHROPIC_API_KEY secret is not set"; exit 1; }
           python mvp/build/06_structured_output.py
           (cd first_hour && python tour/step1_message.py)
-          (cd quality && python -m deslop examples/clean.md --judge)
+          python - <<'PY'
+          from pathlib import Path
+          from deslop.judge import judge_text
+
+          result = judge_text(Path("quality/examples/clean.md").read_text())
+          if not result.get("live"):
+              raise SystemExit(f"quality judge did not run live: {result.get('error', 'no live result')}")
+          PY

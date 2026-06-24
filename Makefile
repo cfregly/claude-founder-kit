@@ -1,5 +1,5 @@
 # claude-founder-kit: build a startup on Claude, idea to scale.
-# Every demo makes a real Claude call. There is no offline mode.
+# The top-level demo is live. Checks and tests stay deterministic and keyless.
 
 MODULES := first_hour idea mvp launch scale quality cost
 PY ?= python
@@ -15,7 +15,7 @@ endif
 help:
 	@echo "claude-founder-kit"
 	@echo "  make setup           install every stage's deps"
-	@echo "  make demo            run the whole arc live (needs ANTHROPIC_API_KEY)"
+	@echo "  make demo            run the live walkthrough (needs ANTHROPIC_API_KEY)"
 	@echo "  make demo-<stage>    one stage: first_hour idea mvp launch scale quality cost"
 	@echo "  make test            run every stage's tests"
 	@echo "  make check           run every stage's gates"
@@ -26,7 +26,7 @@ setup:
 
 demo: demo-first_hour demo-idea demo-mvp demo-launch demo-scale demo-quality demo-cost
 	@echo ""
-	@echo "founder-kit: the whole arc ran live."
+	@echo "founder-kit: live walkthrough completed."
 
 demo-first_hour:
 	@echo "== first hour: one call up to a managed agent =="

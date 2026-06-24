@@ -1,5 +1,5 @@
-# idea operator commands. The Idea stage of Anthropic's Founder's
-# Playbook: validate the idea before you build, and pressure-test the raise.
+# idea operator commands. The Idea stage: validate the idea before you build,
+# and pressure-test the raise.
 # Each target runs both sub-tools from inside their own subdir, so each keeps
 # its own gate, tests, and demo unchanged.
 PY ?= python

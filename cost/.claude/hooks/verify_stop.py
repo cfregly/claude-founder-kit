@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Stop hook: ask Claude to run verification before it stops, if it hasn't already.
+"""Stop hook: optionally require live verification before Claude stops.
 
-"Already" means the receipt at data/last_run.md was refreshed recently, which the dry run does on
-every run. If it is stale or missing, block the stop once with a reason pointing at the verify
-skill. Once `python run.py` has run, the receipt is fresh and the hook lets the agent stop, so it
-nudges without looping forever.
+Default behavior is quiet: do not block, because `python run.py` makes paid API calls.
+Set CLAUDE_FOUNDER_KIT_REQUIRE_LIVE_VERIFY=1 when you explicitly want the hook to
+enforce a fresh live receipt.
 """
 
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -22,6 +22,9 @@ def main():
     except Exception:
         pass
 
+    if os.environ.get("CLAUDE_FOUNDER_KIT_REQUIRE_LIVE_VERIFY") != "1":
+        sys.exit(0)
+
     fresh = RECEIPT.exists() and (time.time() - RECEIPT.stat().st_mtime) < FRESH_SECONDS
     if fresh:
         sys.exit(0)  # verification ran recently, let the agent stop
@@ -31,8 +34,9 @@ def main():
             {
                 "decision": "block",
                 "reason": (
-                    "Run the verify skill before stopping: `python run.py`, then "
-                    "`python scripts/deslop_check.py`. The receipt at data/last_run.md is stale or missing."
+                    "Live verification is required for this session. Run the verify skill before stopping: "
+                    "`python run.py`, then `python scripts/deslop_check.py`. The receipt at "
+                    "data/last_run.md is stale or missing."
                 ),
             }
         )

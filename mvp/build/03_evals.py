@@ -14,8 +14,8 @@ Aggregate quality can stay green while the cheap junior tier quietly tanks,
 hidden behind the stronger tiers in the average. So every tier is proven here, in
 Act 3, before Act 4 claims the 86 percent its two-tier cost routing saves. A tier
 the key cannot reach (for example access-gated Fable) is reported as unavailable,
-never faked. Every run writes a receipt to data/last_eval.md, the same way Act 4
-writes data/last_run.md.
+never faked. Every run writes a receipt to data/last_eval.json, the same way Act 4
+writes data/last_run.json.
 
 The code grader is a cheap substring check, and it has false negatives: a valid
 "I don't have that" phrased a new way ("the FAQ does not include...") fails the
@@ -162,8 +162,8 @@ def grade_judge(client: Anthropic, case: dict, answer: str, gen_model: str) -> b
 
 
 def write_receipt(buckets: dict, unavailable: dict, passed: int, ran: int, graded_by: str) -> None:
-    # Write the per-tier result the way 04 writes data/last_run.md: a committed
-    # receipt, so each pass rate is a real number you can quote, not an assertion.
+    # Write the per-tier result the way 04 writes data/last_run.json: a receipt, so
+    # each pass rate is a real number you can quote, not an assertion.
     # An access-gated tier is recorded as unavailable, not as a pass.
     stamp = time.strftime("%Y-%m-%d %H:%M:%S")
     md = ["| tier | model | passed | total | pass rate | gate |",
@@ -278,7 +278,7 @@ def main() -> None:
 
     graded_by = "code + LLM judge" if args.judge else "code (substring)"
     write_receipt(buckets, unavailable, passed, ran, graded_by)
-    console.print("[dim]wrote data/last_eval.md and data/last_eval.json[/dim]")
+    console.print("[dim]wrote data/last_eval.json and paste-ready data/last_eval.md[/dim]")
 
     if args.judge and (recovered or overruled):
         console.print(

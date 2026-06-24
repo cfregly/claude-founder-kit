@@ -14,7 +14,7 @@ description: >-
 
 # deslop
 
-The quality discipline that runs across all four stages of the Founder's Playbook (Idea, MVP, Launch, Scale). It is the gate that proves the output: the credibility gate every repo, the deck, the resume, and the profile pass through, one canonical ruleset against prose and rendered-HTML slop. The rule score is deterministic by design, that is what a gate is, and it runs offline in CI with no key. Claude rides on top: a claude-opus-4-8 semantic pass (`--judge`, default-on and TTY-gated for interactive runs) reads for the slop the rules cannot enumerate, and it never changes the score.
+The quality discipline runs across the kit's stage docs and artifacts. It is the gate that proves the output: the credibility check every repo, deck, resume, and profile can pass through, one canonical ruleset against prose and rendered-HTML slop. The rule score is deterministic by design, that is what a gate is, and it runs offline in CI with no key. The optional semantic pass (`--judge`, default-on and TTY-gated for interactive runs) reads for the slop the rules cannot enumerate, and it never changes the score.
 
 One canonical ruleset (`deslop/slop_rules.json`), two surfaces: prose tells and
 visual AI-slop. The rules are deterministic so the result is the same every run,

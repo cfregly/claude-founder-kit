@@ -15,7 +15,7 @@ make test     # the eval-set self-test
 make check    # the doc-correctness gate
 ```
 
-`make demo` assumes the deps are installed, so run `make setup` first. The five acts also run individually: `python 01_first_call.py` through `python 05_agent_sdk_repo_doctor.py`. Acts that call the API need `ANTHROPIC_API_KEY` (copy `.env.example` to `.env`). `python 04_cost_engineering.py` measures your own numbers and writes them to `data/last_run.md`.
+`make demo` assumes the deps are installed, so run `make setup` first. The five acts also run individually: `python 01_first_call.py` through `python 05_agent_sdk_repo_doctor.py`. Acts that call the API need `ANTHROPIC_API_KEY` (copy `.env.example` to `.env`). `python 04_cost_engineering.py` measures your own numbers and writes them to `data/last_run.json` plus a paste-ready `data/last_run.md`.
 
 ## Where things are
 
@@ -29,7 +29,7 @@ Verify each path with `ls` before you rely on it.
 | `eval_lint.py` | Gate the quality of your eval set. The bundled golden set scores 97/100. |
 | `mcp_server/` | The same tools exposed over MCP. |
 | `starter/` | The forkable FastAPI app, with its own Dockerfile. |
-| `data/` | Fictional sample data plus `last_run.md`. |
+| `data/` | Fictional sample data plus measured run receipts. |
 | `pricing.json` | Per-token rates, with a verify-before-quoting note. |
 | `scripts/check_docs.py` | The doc-correctness gate that `make check` runs. |
 | `skills/prompt-to-production/SKILL.md` | The packaged Claude Skill. |

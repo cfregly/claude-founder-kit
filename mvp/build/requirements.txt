@@ -1,6 +1,6 @@
-anthropic>=0.42
-python-dotenv>=1.0
-rich>=13.7
-mcp>=1.2
+anthropic==0.109.0
+python-dotenv==1.0.1
+rich==13.7.0
+mcp==1.28.0
 # Optional for Act 5 / Claude Code Agent SDK demo
-claude-agent-sdk>=0.1
+claude-agent-sdk==0.2.108

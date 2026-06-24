@@ -26,9 +26,14 @@ operating document, not a dashboard: every line triggers a decision.
 Offline, with no key:
 
 ```bash
-make demo                                       # the whole pipeline -> the report
 python -m activation measure cohort.json        # the activation readout
 python -m activation operate readout.json --weekly  # the gated weekly report
+```
+
+Live, with `ANTHROPIC_API_KEY`:
+
+```bash
+make demo                                       # enrich -> decide -> draft -> render
 ```
 
 ## The cohort shape

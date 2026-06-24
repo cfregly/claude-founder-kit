@@ -21,7 +21,7 @@ and `scripts/sync.py` copies them out so nothing drifts by hand.
 
 ## Where this fits
 
-This is the **Quality** module of [claude-founder-kit](../README.md), the de-slop discipline that runs across every stage. The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
+This is the **Quality** module of [claude-founder-kit](../README.md), the de-slop discipline that runs across every stage. The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
 
 ## Why
 

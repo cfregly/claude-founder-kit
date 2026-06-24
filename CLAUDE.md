@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in claude-founder-kit. Read it, 
 
 ## What this repo is
 
-claude-founder-kit is Anthropic's Founder's Playbook as runnable code: the journey from a founder's
+claude-founder-kit is a founder playbook for Claude builders as runnable code: the journey from a founder's
 first Claude call to a scaling read, in one repo. Each stage is a co-located tool that keeps its own
 working code, tests, and gate.
 
@@ -16,19 +16,18 @@ working code, tests, and gate.
 - `quality/` the de-slop linter
 - `cost/` the platform cost levers
 
-## Everything runs online
+## Live runs and gates
 
-Every demo makes a real Claude call and fails fast without a key. There is no offline mode and no
-sample-data fallback. CI runs the same live path on a repository secret, so a green build means the
-demos really ran. Deterministic linters (de-slop, the tool-contract grader, pitch_lint) stay
-deterministic because they are linters, and their Claude judge runs as well rather than being gated
-off.
+`make demo` is the live walkthrough and needs `ANTHROPIC_API_KEY`. `make check` and `make test`
+are the reproducible gates and run without a key. Some modules also expose explicit offline
+subcommands, such as JSON readouts or deterministic reports. Keep the boundary clear: live calls
+measure or generate, deterministic gates verify structure and drift.
 
 ## Run it
 
 ```bash
 make setup
-make demo     # the whole arc live, needs ANTHROPIC_API_KEY
+make demo     # live walkthrough, needs ANTHROPIC_API_KEY
 make test
 make check
 ```

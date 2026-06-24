@@ -89,20 +89,17 @@ decision.
 - The gate ledger: what ran on its own, what waits on you, and what the operator
   will not do unattended.
 
-## The loop Anthropic's own growth team runs (CASH)
+## A public growth-loop analog (CASH)
 
-On a public podcast, Anthropic's growth org described an internal system they call
-CASH: Claude runs the growth-experiment loop end to end, identify the opportunity,
-build it, test it against the quality and brand bar, analyze the result, with
-cross-functional alignment kept human. The head
-of growth also has Claude read 20 to 25 charts every morning and surface what moved,
-what is concerning, and what is interesting.
+In a public growth-team discussion, CASH was described as a Claude-assisted growth-experiment loop:
+identify the opportunity, build it, test it against the quality and brand bar, analyze the result,
+and keep cross-functional alignment human. The same discussion described a morning read where Claude
+looks across 20 to 25 charts and surfaces what moved, what is concerning, and what is interesting.
 
-This repo is a runnable, human-gated analog of that pattern, not a copy of their
-system. Claude proposes the next experiment against the biggest leak (`propose`) and
-drafts the founder message (`--draft`), and a deterministic gate decides what ships.
-The vendor stack and the metrics are inference from the public description, built on
-a fictional cohort. Nothing here is a claim about Anthropic's internal tools.
+This module turns that public pattern into a small, human-gated activation loop. Claude proposes the
+next experiment against the biggest leak (`propose`) and drafts the founder message (`--draft`), and
+a deterministic gate decides what ships. The vendor stack and the metrics are inferred from public
+descriptions and run on a fictional cohort.
 
 ## The gate
 
@@ -123,7 +120,7 @@ The same pipeline runs two ways.
 
 - Local: `python -m activation agent` runs the Claude Agent SDK orchestrator, with
   the eleven queries as in-process MCP tools, a hook that enforces the gate, and a
-  subagent that briefs each account. Without the SDK or a key it fails loud; use
+  subagent that briefs each account. Without the SDK or a key it fails loud. Use
   `python -m activation agent --dry-run` for the deterministic pipeline.
 - Cloud: `python -m activation deploy` shows the Managed Agents deployment that
   fires the weekly run on a Monday cron, with the gate as a permission policy, a
@@ -159,7 +156,7 @@ The same pipeline runs two ways.
 
 ## Where this fits
 
-This is the **Launch** module of [claude-founder-kit](../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
+This is the **Launch** module of [claude-founder-kit](../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
 
 ## License
 

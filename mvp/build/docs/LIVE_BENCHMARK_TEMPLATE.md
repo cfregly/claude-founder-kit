@@ -6,7 +6,7 @@ After running:
 python 04_cost_engineering.py --live
 ```
 
-paste `data/last_run.md` below and commit it.
+paste the table from `data/last_run.md` below and commit the matching `data/last_run.json`.
 
 ## Latest live benchmark
 

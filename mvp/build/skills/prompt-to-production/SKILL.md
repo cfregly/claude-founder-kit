@@ -14,7 +14,7 @@ description: >-
 
 # prompt-to-production
 
-A founder runs this at the MVP stage of Anthropic's Founder's Playbook, to build
+A founder runs this at the MVP stage of a founder playbook for Claude builders, to build
 the product, then pairs it with the agent-linter for a security review before any
 user. It takes a first Claude call to a deployable product: tools, evals, cost
 engineering, an MCP server. It is the fullest use of the Claude Developer Platform in the set: every
@@ -43,7 +43,7 @@ Run the golden cases, including two honesty cases where the pass condition is
 saying "I don't have that" instead of inventing an answer. The act routes each
 case across the model ladder by consequence and gates every tier on its own, so
 every tier is proven before the cost table claims its savings, and it writes the
-per-tier receipt to data/last_eval.md. Wire the gate into CI. The eval set is
+per-tier receipt to data/last_eval.json. Wire the gate into CI. The eval set is
 also the retention instrument: the demo wins the trial, the eval set wins the
 renewal.
 

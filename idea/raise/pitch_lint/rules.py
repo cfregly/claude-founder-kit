@@ -185,13 +185,13 @@ def lint_deck(deck: dict) -> dict:
         notes = s.get("notes", "")
 
         # PD001 headline length: the headline is the claim. A crisp 9-10 word
-        # headline is a nudge (info), not a real defect; the run-on (>14) is the
+        # headline is a nudge (info), not a real defect. The run-on (>14) is the
         # error. This keeps the "aim for 8" discipline without scoring a sharp
         # 9-word assertion as harshly as a 20-word sentence on a slide.
         hw = len(headline.split())
         if hw > 14:
             f(_finding("PD001", "error", label,
-                       f"headline is {hw} words; the headline is the claim",
+                       f"headline is {hw} words, and the headline is the claim",
                        "Cut to one assertion, 8 words or fewer."))
         elif hw > 10:
             f(_finding("PD001", "warn", label,

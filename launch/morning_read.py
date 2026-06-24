@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-"""Reverse-engineered "morning review": the ~25 charts a Claude-startups growth
-operator would read every morning, modeled on the public description of Anthropic's
-CASH loop in a 2026 public growth-team podcast: Claude reads 20 to 25 charts
-every morning and surfaces what moved.
+"""CASH-style "morning review": the ~25 charts a Claude-startups growth operator
+would read every morning, modeled on a public growth-loop description where Claude
+reads 20 to 25 charts every morning and surfaces what moved.
 
-HONESTY: this is INFERENCE from a public podcast, on a FICTIONAL cohort. It is not
-Anthropic's actual dashboards, metrics, or internal tooling. The chart SET is the
-reverse-engineering. The numbers are sample data, kept consistent with the seed-7
-cohort in the launch module so the kit tells one story.
+This is an inferred chart set on a fictional cohort. The numbers are sample data,
+kept consistent with the seed-7 cohort in the launch module so the kit tells one
+story.
 
 Run:
   python3 morning_read.py            # render morning.html + print the table
@@ -64,9 +62,8 @@ CHARTS = [
 ]
 
 GROUPS = ["Relationship", "Activation", "Retention", "Monetization", "Operating"]
-CAVEAT = ("Inference from the public CASH description in a 2026 growth-team podcast, "
-          "on a fictional cohort consistent with the launch module (seed 7). "
-          "Not Anthropic's actual dashboards or internal tools.")
+CAVEAT = ("Inference from a public CASH description, on a fictional cohort "
+          "consistent with the launch module (seed 7).")
 
 def charts_as_dicts():
     out = []
@@ -126,7 +123,7 @@ footer{{margin:30px 28px;font-size:11px;color:#9a9a9a}}
 <header><h1>Founder activation, the morning review</h1>
 <p>{html.escape(CAVEAT)} The read below is what Claude would surface (the CASH-style morning read): a human gates every outward move.</p></header>
 {sections}
-<footer>25 charts, five groups, one durable org_id. The runnable analog of the read Anthropic's growth team described on the record.</footer>
+<footer>25 charts, five groups, one durable org_id. A runnable analog of the public morning-read pattern.</footer>
 </body></html>"""
 
 def read_client():
@@ -142,7 +139,7 @@ def read_client():
 def claude_read(charts, client):
     prompt = (
       "You are the morning growth read for a Claude-for-startups activation operator, the human-gated "
-      "analog of the CASH loop Anthropic's growth team described publicly. Below are this morning's 25 "
+      "analog of a public CASH-style growth loop. Below are this morning's 25 "
       "charts with week-over-week deltas (fictional cohort). In an operator's terse voice, give exactly four "
       "short sections: WHAT MOVED, WHAT IS CONCERNING, WHAT IS INTERESTING, and THE ONE MOTION TODAY "
       "(a single experiment against the biggest leak, with the metric it should move). You PROPOSE; a human "

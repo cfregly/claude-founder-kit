@@ -1,0 +1,38 @@
+{
+  "generated": "2026-06-18 20:45:46",
+  "arms": [
+    {
+      "name": "naive (Sonnet, no cache)",
+      "model": "claude-sonnet-4-6",
+      "calls": 12,
+      "input_tokens": 67792,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 1051,
+      "p50_latency_s": 2.75,
+      "cost_usd": 0.2191
+    },
+    {
+      "name": "cached (Sonnet + prompt caching)",
+      "model": "claude-sonnet-4-6",
+      "calls": 12,
+      "input_tokens": 232,
+      "cache_creation_input_tokens": 5630,
+      "cache_read_input_tokens": 61930,
+      "output_tokens": 954,
+      "p50_latency_s": 1.85,
+      "cost_usd": 0.0547
+    },
+    {
+      "name": "routed + cached (Haiku easy / Sonnet hard)",
+      "model": "mixed",
+      "calls": 12,
+      "input_tokens": 232,
+      "cache_creation_input_tokens": 5629,
+      "cache_read_input_tokens": 61923,
+      "output_tokens": 1230,
+      "p50_latency_s": 1.48,
+      "cost_usd": 0.0325
+    }
+  ]
+}

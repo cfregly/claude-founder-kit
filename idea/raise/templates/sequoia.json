@@ -1,6 +1,6 @@
 {
   "name": "Sequoia 10-slide arc",
-  "note": "One assertion per slide. The headline is the claim; the lines are the evidence. 12 slides max; everything else is appendix.",
+  "note": "One assertion per slide. The headline is the claim, and the lines are the evidence. 12 slides max. Everything else is appendix.",
   "slides": [
     {
       "arc": "purpose",

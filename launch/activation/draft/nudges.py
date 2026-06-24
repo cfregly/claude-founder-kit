@@ -58,7 +58,7 @@ def draft_nudges(plan: dict, *, model: str | None = None) -> dict:
               "Hard caps: subject under 55 characters; body under 180 words; the first sentence names "
               "the founder's workload in their own terms; at most one metric; state any constraint "
               "directly in one plain line, never defensive 'honesty' phrasing like 'I measured it "
-              "honestly' or 'two honest caveats'. Sign neutrally, never claiming an Anthropic role.")
+              "honestly' or 'two honest caveats'. Sign neutrally as an operator note.")
     resp = c.messages.create(
         model=model,
         max_tokens=4000,

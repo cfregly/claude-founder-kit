@@ -13,7 +13,7 @@ Pair-built with Claude. That's not a disclaimer, it's the demo.
 
 ## Where this fits
 
-This is the `build` half of the **MVP** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Claude runs the judgment on every stage, and a deterministic gate verifies the output before it ships. One `make demo` from the repo root runs the whole arc live.
+This is the `build` half of the **MVP** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
 
 ## The 15-minute arc
 
@@ -39,8 +39,8 @@ cp .env.example .env          # paste your key from console.anthropic.com
 
 python 01_first_call.py
 python 02_agent_with_tools.py
-python 03_evals.py            # routed and gated per tier, writes data/last_eval.md (--judge adds an LLM judge)
-python 04_cost_engineering.py   # ~36 real calls, needs the key, writes data/last_run.md
+python 03_evals.py            # routed and gated per tier, writes data/last_eval.json (--judge adds an LLM judge)
+python 04_cost_engineering.py   # ~36 real calls, needs the key, writes data/last_run.json
 python 05_agent_sdk_repo_doctor.py   # the Agent SDK repo doctor
 ```
 
@@ -86,12 +86,12 @@ What each lever does:
   optimizations you can ship - and in this run it also cut p50 latency 46%, because the
   easy questions stopped waiting on a bigger model.
 
-Reproducibility note: these are the numbers committed in `data/last_run.md`. Re-running shifts the
-cost by a point or two and the latency more, because latency moves with load, which is exactly why
-this repo measures instead of asserts.
+Reproducibility note: these are the numbers from `data/last_run.json`. Re-running shifts the cost by
+a point or two and the latency more, because latency moves with load, which is exactly why this repo
+measures instead of asserts.
 
 > Rerun it yourself: `python 04_cost_engineering.py` writes your numbers to
-> `data/last_run.md` - quote your own run, never someone else's.
+> `data/last_run.json` and a paste-ready `data/last_run.md` - quote your own run, never someone else's.
 
 Pricing lives in [`pricing.json`](pricing.json) with a verify-before-quoting note. Rates move,
 measurements don't lie.
@@ -119,7 +119,7 @@ Two of the eight eval cases pass only when the agent says **"I don't have that."
 can decline gracefully is a feature you can sell to enterprises, not a benchmark penalty. The gate
 runs each case through the routing policy and fails on any single tier below the bar, so a
 cheaper tier cannot quietly trade quality for cost, and each run writes the per-tier result to
-`data/last_eval.md`. Before
+`data/last_eval.json`. Before
 production: keep the eval gate in CI, log tool calls for auditability (Act 2 prints its trace),
 and read Anthropic's [usage policies](https://www.anthropic.com/legal/aup) - trust is the actual
 adoption unlock for startups selling into serious industries.
@@ -144,9 +144,9 @@ docker run -p 8000:8000 -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY claude-starter
 ```
 
 Run the commands above from the repo root. [`starter/README.md`](starter/README.md) has the
-same flow plus one-command deploys for Fly.io and Render. The starter follows the same shape as
-the official [anthropics/claude-quickstarts](https://github.com/anthropics/claude-quickstarts), a
-minimal deployable Claude app you fork, with the eval and cost discipline from the repo root added
+same flow plus one-command deploys for Fly.io and Render. The starter uses the same small-app shape as
+[anthropics/claude-quickstarts](https://github.com/anthropics/claude-quickstarts), a
+minimal deployable Claude app you fork, with the eval and cost discipline from this repo added
 on top. No performance claims live in the starter: it is a skeleton to build on, and the numbers
 above are what you measure once your workload is real.
 
@@ -159,7 +159,7 @@ Packaged as a Claude Skill in [`skills/prompt-to-production/SKILL.md`](skills/pr
 - [Claude Developer Platform docs](https://docs.claude.com) - start at tool use, prompt caching, and the Agent SDK
 - [anthropics/claude-code](https://github.com/anthropics/claude-code) - the agentic coding tool this repo was pair-built with
 - [anthropics/claude-cookbooks](https://github.com/anthropics/claude-cookbooks) and [anthropics/claude-quickstarts](https://github.com/anthropics/claude-quickstarts) - patterns to steal
-- [anthropics/claude-agent-sdk-demos](https://github.com/anthropics/claude-agent-sdk-demos) - official Agent SDK patterns (pairs with Act 5)
+- [anthropics/claude-agent-sdk-demos](https://github.com/anthropics/claude-agent-sdk-demos) - Agent SDK patterns to compare with Act 5
 - [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) - the MCP server ecosystem the encore plugs into
 - [Claude for Startups](https://claude.com/programs/startups) - credits and the highest rate limits once a founder is ready to ship on the first-party API
 

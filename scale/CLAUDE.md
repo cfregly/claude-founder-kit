@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 
 ## What this repo is
 
-The scale module of claude-founder-kit is the Scale stage of Anthropic's Founder's Playbook: build a
+The scale module of claude-founder-kit is the Scale stage of a founder playbook for Claude builders: build a
 go-to-market function, compound usage into a data moat, and turn workflow lock-in
 into a switching cost. It scores a cohort into a moat readout and writes the one GTM
 motion to run next. The deterministic moat core (`scale/measure/metrics.py`,

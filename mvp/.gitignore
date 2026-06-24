@@ -10,3 +10,4 @@ node_modules/
 .DS_Store
 build/data/last_run.json
 build/data/last_run.md
+!build/data/last_run.json

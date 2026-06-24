@@ -14,7 +14,7 @@ description: >-
 
 # pitch-deck
 
-A founder runs this at the Idea stage of Anthropic's Founder's Playbook, to
+A founder runs this at the Idea stage of a founder playbook for Claude builders, to
 pressure-test the raise before they build. It builds and lints a pitch deck on
 the Sequoia arc, with a claims
 ledger and a deterministic

@@ -5,8 +5,7 @@
     ANTHROPIC_API_KEY=... python run.py prompt_caching   # one lever, real call
 
 Requires ANTHROPIC_API_KEY. Every run calls the real Anthropic API. Without a key it fails fast
-with a clear error and a non-zero exit. After a run it writes a receipt to data/last_run.md,
-which the Stop hook checks before it lets an agent stop.
+with a clear error and a non-zero exit. After a run it writes a receipt to data/last_run.md.
 """
 
 import sys

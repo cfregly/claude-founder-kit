@@ -21,7 +21,7 @@ description: >-
 
 # agent-linter
 
-A founder runs this at the MVP stage of Anthropic's Founder's Playbook, the
+A founder runs this at the MVP stage of a founder playbook for Claude builders, the
 security review before any user touches the agent. It turns vague MCP tools into
 contract-grade interfaces and grades the agent protocol and harness, with an
 OWASP and STRIDE security lens. The rule score is a deterministic gate

@@ -52,7 +52,7 @@ The default model is `claude-sonnet-4-6` for a fast, low-cost tour. Set
 This is the front door. The tools that build on these primitives are the other modules of
 [claude-founder-kit](../README.md), the repo this module lives in. The full journey runs as
 modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. One `make demo` from the
-repo root runs the whole arc live. Start with the `mvp/build` module for the path from a first call
+repo root runs the live walkthrough. Start with the `mvp/build` module for the path from a first call
 to a deployed, cost-engineered product, then `launch` and `scale` to run on a developer cohort.
 
 Every artifact passes the `quality` module, the prose and visual slop gate.

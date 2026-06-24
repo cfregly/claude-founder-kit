@@ -1,10 +1,10 @@
 # The core is stdlib only and runs offline. These power the optional layers: the
 # Claude steps (enrich, decide, draft, render), the MCP server, the local agent
 # harness, and the tests. Every one degrades gracefully when absent, so the demo
-# never needs them. Pinned to current majors; upgrade freely.
+# never needs them. Pinned to current majors. Upgrade freely.
 
-anthropic>=0.109.0       # enrich, decide, draft, render, managed-agent (needs output_config)
-claude-agent-sdk>=0.2.0  # the local Agent SDK harness (activation agent)
-mcp>=1.28.0              # the MCP server (the eleven queries as tools)
-python-dotenv>=1.0.0     # load .env without making it a hard dependency
-pytest>=8.0.0            # the test suite
+anthropic==0.109.0       # enrich, decide, draft, render, managed-agent (needs output_config)
+claude-agent-sdk==0.2.108  # the local Agent SDK harness (activation agent)
+mcp==1.28.0              # the MCP server (the eleven queries as tools)
+python-dotenv==1.0.1     # load .env without making it a hard dependency
+pytest==8.0.0            # the test suite
