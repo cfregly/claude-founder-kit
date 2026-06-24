@@ -16,6 +16,10 @@ make check    # the doc-correctness gate
 
 The full app is `streamlit run app.py` after `pip install -r requirements.txt`. The Streamlit app and the eval harness run Claude on every analysis and need `ANTHROPIC_API_KEY` set. `make demo` prints the deterministic score and then runs the live founder intervention, so it needs the key too and fails fast without it. `make check` is the doc-correctness gate and stays deterministic offline.
 
+## Value Bar
+
+Apply [../../VALUE_BAR.md](../../VALUE_BAR.md). This validator stays a candidate until it is adversarially-confirmed to add value against the founder's baseline decision process. Do not treat a high score as proof of usefulness.
+
 ## Where things are
 
 | Path | What it holds |

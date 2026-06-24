@@ -11,6 +11,10 @@ The mvp module of claude-founder-kit is the MVP stage of a founder playbook for 
 
 The order is the point: build the agent, then review its tool surface before any user sees it.
 
+## Value Bar
+
+Apply [../VALUE_BAR.md](../VALUE_BAR.md). The MVP stage is not called valuable until it is adversarially-confirmed to add value for a builder against a baseline build, eval, cost, or hardening workflow. Tests are mechanical evidence only.
+
 ## Run it
 
 ```bash

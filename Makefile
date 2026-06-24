@@ -64,6 +64,7 @@ test:
 	done
 
 check:
+	@$(PY_RUN) scripts/check_value_bar.py
 	@for m in $(MODULES); do \
 	  if [ -f $$m/Makefile ] && grep -q '^check:' $$m/Makefile; then \
 	    echo "== check: $$m =="; (cd $$m && $(MAKE) PY="$(PY_RUN)" check) || exit 1; \

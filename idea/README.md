@@ -9,6 +9,10 @@
 
 Claude runs the judgment in both tools. A deterministic score runs offline and is the gate CI re-runs. The score never needs an API key, so the gate stays reproducible.
 
+## Value Bar
+
+The Idea tools are candidates until they are adversarially-confirmed to add value for a founder deciding what to build or how to pitch it. A clean score means the artifact passed the local rules. It does not mean the advice helped unless a skeptical founder or reviewer compares it with a baseline and leaves a receipt.
+
 ## The two tools
 
 ### validate: score the signal, argue against the idea

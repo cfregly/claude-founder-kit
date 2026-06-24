@@ -18,6 +18,8 @@ description: >-
 
 # Scale stage
 
+Value bar: this skill is a candidate until it is adversarially-confirmed to add value against a baseline account-planning or GTM workflow. A moat score is mechanical evidence, not proof of a better decision.
+
 Score a cohort into a moat readout and build the GTM motion. A growth lead runs this
 at the Scale stage of a founder playbook for Claude builders, once the product has users and
 the question turns to widening the gap: compound usage into a moat, lock in the

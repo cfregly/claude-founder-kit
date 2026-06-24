@@ -21,6 +21,8 @@ description: >-
 
 # agent-linter
 
+Value bar: this skill is a candidate until it is adversarially-confirmed to add value against a baseline tool-contract or agent-security review. If that receipt is missing, call the output mechanically vetted only.
+
 A founder runs this at the MVP stage of a founder playbook for Claude builders, the
 security review before any user touches the agent. It turns vague MCP tools into
 contract-grade interfaces and grades the agent protocol and harness, with an

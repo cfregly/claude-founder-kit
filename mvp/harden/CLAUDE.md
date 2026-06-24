@@ -14,6 +14,10 @@ The idea this enforces: the model is the caller of your API and it cannot
 read your source, so the tool contract is the interface. Context is a finite budget, so a tool
 that forces the model to guess wastes both tokens and reliability.
 
+## Value Bar
+
+Apply [../../VALUE_BAR.md](../../VALUE_BAR.md). This hardening tool is not called valuable until it is adversarially-confirmed to add value against a baseline security or tool-contract review. Rule scores are mechanical evidence only.
+
 ## Run it
 
 ```bash

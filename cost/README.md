@@ -13,6 +13,10 @@ ANTHROPIC_API_KEY=... python run.py prompt_caching   # one lever, real call
 This is a real tool. Every run calls the Anthropic API, so `ANTHROPIC_API_KEY` is required. Without
 a key it fails fast with a clear error and a non-zero exit. There is no offline mode and no fallback.
 
+## Value Bar
+
+The cost levers are candidates until they are adversarially-confirmed to add value for a real workload. A receipt proves the token and cost numbers for that run. It does not prove the lever helped until a skeptical builder compares it with their baseline spend or architecture.
+
 ## A note on scope
 
 This stage is about **Claude platform cost**: the token-spend knobs the API gives you. It is not

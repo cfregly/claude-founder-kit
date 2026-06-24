@@ -14,6 +14,8 @@ description: >-
 
 # prompt-to-production
 
+Value bar: this skill is a candidate until it is adversarially-confirmed to add value against a baseline build, eval, cost, or deploy workflow. Passing receipts prove the path runs, not that it helped a builder.
+
 A founder runs this at the MVP stage of a founder playbook for Claude builders, to build
 the product, then pairs it with the agent-linter for a security review before any
 user. It takes a first Claude call to a deployable product: tools, evals, cost

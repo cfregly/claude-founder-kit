@@ -11,6 +11,10 @@ real token counts. Built to run in your first hour with the platform.
 - **Output:** five runnable steps that print real responses and measured token counts, ending in a Managed Agent that runs a tool inside a hosted sandbox
 - **What it is worth:** the platform mental model in one sitting, as code you can run and extend, not slides
 
+## Value Bar
+
+This tour is a candidate tool until it is adversarially-confirmed to add value for a first-hour platform user. A passing demo proves the calls work. It does not prove the tour helped until a skeptical user compares it with their baseline onboarding path and leaves a receipt.
+
 ## Run it in under a minute
 
 ```

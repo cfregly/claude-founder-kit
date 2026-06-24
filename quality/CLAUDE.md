@@ -16,6 +16,10 @@ make check    # the doc gate plus a self-deslop of the README
 
 The rule score needs no dependencies and no API key, so the gate runs offline in every kit module's CI. Lint anything: `python -m deslop README.md`, `python -m deslop index.html`, or pipe stdin with `echo "..." | python -m deslop -`. As a library: `from deslop import lint, lint_text, lint_html`. The Claude judge reviews every interactive run and prints advisory notes below the score, never changing it. The gate (check_docs, CI, `--min-score`) stays deterministic and never calls the API.
 
+## Value Bar
+
+Apply [../VALUE_BAR.md](../VALUE_BAR.md). The linter is not called valuable until it is adversarially-confirmed to add value against a baseline artifact review. A grade is mechanical evidence, not trust evidence.
+
 ## Where things are
 
 | Path | What it is |

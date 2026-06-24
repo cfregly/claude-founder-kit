@@ -18,6 +18,10 @@ gate that fails the build when the words stop fighting.
 - **Claude features it proves:** Claude Code skills, a claude-opus-4-8 narrative read that grades the arc the rules cannot, the draft, lint, iterate loop.
 - **Production lesson it encodes:** unsourced numbers sink decks in diligence, not in lint.
 
+## Value Bar
+
+This deck linter is a candidate until it is adversarially-confirmed to add value for a founder or skeptical pitch reviewer. A 100 score means the deck passed the rules. It does not mean the story improved unless the reviewer compares it with the prior deck and records what got clearer.
+
 ## Where this fits
 
 This is the `raise` half of the **Idea** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.

@@ -8,6 +8,10 @@ Five scripts that climb the platform stack, from one Messages API call (step 1) 
 Managed Agent running a tool in a hosted sandbox (step 5). Each prints real output and
 token counts. The headline `make demo` runs the live tour, steps 1 to 4.
 
+## Value Bar
+
+Apply [../VALUE_BAR.md](../VALUE_BAR.md). This module is not called valuable until it is adversarially-confirmed to add value for a first-hour platform user. Treat passing live calls as mechanical proof, not user proof.
+
 ## Run
 
 - `make demo` runs steps 1-4 live. Needs `ANTHROPIC_API_KEY` and fails fast without it.

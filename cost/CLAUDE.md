@@ -14,6 +14,10 @@ GPU or serving cost, which live in the separate `claude-gpu-perf-tune`. It is th
 claude-founder-kit, the cost discipline alongside the de-slop linter in `quality/`. It is built on
 shipped primitives. Where a lever needs a beta, the demo says so and never fakes a call.
 
+## Value Bar
+
+Apply [../VALUE_BAR.md](../VALUE_BAR.md). A cost lever is not called valuable until it is adversarially-confirmed to add value on a real workload against a baseline bill or token trace. Receipts are mechanical evidence only.
+
 ## Run it
 
     pip install -r requirements.txt

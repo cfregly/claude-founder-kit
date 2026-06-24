@@ -18,6 +18,8 @@ description: >-
 
 # Weekly report
 
+Value bar: this skill is a candidate until it is adversarially-confirmed to add value for an operator against a baseline weekly review. If that receipt is missing, say so before recommending the output.
+
 Produce the founder-to-builder weekly report from a cohort. The report is an
 operating document, not a dashboard: every line triggers a decision.
 

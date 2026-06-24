@@ -21,6 +21,10 @@ one GTM motion to run next.
   is loud, not a silent downgrade.
 - It is a command-line tool, not a dashboard or UI.
 
+## Value Bar
+
+The Scale readout is a candidate until it is adversarially-confirmed to add value for a growth lead choosing the next account motion. A moat score is not value by itself. A skeptical reviewer must compare it with the baseline account-planning process and record whether it improved the decision.
+
 ## Run it
 
 ```bash

@@ -13,6 +13,10 @@ and measure activation, then read the data moat and the next move.
 It is shaped by repeated founder pitch and activation sessions: pressure-test the wedge, build the
 first workflow, measure the second build, and route the next GTM motion.
 
+## Value Bar
+
+Nothing in this repo is called valuable until it is adversarially-confirmed to add value. Passing tests and gates means the work is mechanically vetted. Value needs skeptical review against a baseline, with a receipt. See [VALUE_BAR.md](VALUE_BAR.md) and [VALIDATION.md](VALIDATION.md).
+
 For the smaller wins-only Claude feature brief library, see
 [`claude-feature-hits`](https://github.com/cfregly/claude-feature-hits). This repo is the broader
 founder-journey kit. The feature brief repo is the narrower public artifact.

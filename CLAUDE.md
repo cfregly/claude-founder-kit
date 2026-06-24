@@ -23,6 +23,10 @@ are the reproducible gates and run without a key. Some modules also expose expli
 subcommands, such as JSON readouts or deterministic reports. Keep the boundary clear: live calls
 measure or generate, deterministic gates verify structure and drift.
 
+## Value Bar
+
+Apply [VALUE_BAR.md](VALUE_BAR.md) everywhere. Nothing is called valuable until it is adversarially-confirmed to add value. Tests, receipts, and doc gates make a candidate mechanically vetted, not proven useful. If a stage lacks skeptical user evidence against a baseline, say that directly.
+
 ## Run it
 
 ```bash
@@ -42,4 +46,5 @@ one alone, cd into it and run that subdir's make targets.
 - Prose is plain: no em-dashes, no semicolons in prose, no buzzwords. Numbers over adjectives.
 - Every number traces to a receipt. Reproduce before quoting, never quote from memory.
 - Every claim about Claude or the platform traces to the live docs. Verify, do not assert from memory.
+- Every value claim traces to skeptical evidence. Candidate is the default label until the value bar is met.
 - Surgical changes only. Match the existing style. Do not refactor what is not broken.

@@ -23,6 +23,10 @@ run the weekly metrics brief, using the whole Claude Developer Platform to do it
   human gates it. Fictional cohort, kept consistent with the weekly pipeline so the kit tells one
   story.
 
+## Value Bar
+
+The Launch loop is a candidate until it is adversarially-confirmed to add value for an operator running a real or realistic cohort. A reproducible report means the loop is mechanically vetted. It does not prove usefulness until a skeptical operator compares it with their baseline weekly review and records a better decision or faster action.
+
 ## Run it
 
 ```bash

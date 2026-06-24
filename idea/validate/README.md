@@ -18,6 +18,10 @@ This repo is intentionally built for live developer-audience demos:
 
 The intervention runs Claude (`claude-opus-4-8`) on every analysis, so set `ANTHROPIC_API_KEY` before you run the app or the eval harness. The deterministic scorers run without a key and are the receipt CI re-runs.
 
+## Value Bar
+
+This validator is a candidate until it is adversarially-confirmed to add value for a founder choosing a wedge. A score or intervention is not enough. A skeptical founder or reviewer must compare it with the prior decision process and record what changed.
+
 ## Relationship, Activation, Retention
 
 A founder demo should not stop at the pitch. The linter also scores the growth

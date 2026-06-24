@@ -17,6 +17,10 @@ render), so it needs `ANTHROPIC_API_KEY` and fails fast without it. The generati
 stages (enrich, decide, draft) run Claude on every run and raise a clear error with
 no key, so a misconfiguration is loud, not a silent downgrade.
 
+## Value Bar
+
+Apply [../VALUE_BAR.md](../VALUE_BAR.md). The Launch loop stays a candidate until it is adversarially-confirmed to add value against an operator's baseline activation review. Reports, gates, and drafts are mechanical evidence until a skeptical operator records what improved.
+
 ## Run it
 
 ```bash

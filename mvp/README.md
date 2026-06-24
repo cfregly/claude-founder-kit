@@ -6,6 +6,10 @@
 
 This repo bundles two co-located tools, one per half of the MVP stage. You build the agent in `build/`, then you review its tool and agent surface in `harden/` before a single user touches it. Claude runs both halves, and a deterministic gate proves each output before it ships. Each tool keeps its own working code, tests, and gate, so you can run them apart or together.
 
+## Value Bar
+
+The MVP tools are candidates until they are adversarially-confirmed to add value for a builder shipping a Claude product. Passing evals, cost receipts, and tool-contract gates proves internal quality. It does not prove user value until a skeptical builder compares the workflow with their baseline and leaves a receipt.
+
 ```bash
 make setup   # install build/ deps, one time (for the live acts)
 make demo    # both demos: the cost receipt, then the before/after lint

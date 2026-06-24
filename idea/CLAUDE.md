@@ -11,6 +11,10 @@ The idea module of claude-founder-kit is the Idea stage of a founder playbook fo
 
 In both tools the deterministic score is the gate, and Claude runs the judgment. The score runs offline and is what CI re-runs. The Claude layer (`claude-opus-4-8`) reads the score and writes the call the rules cannot, and it fires only when stdout is a TTY, so the gate stays reproducible and runs without an API key.
 
+## Value Bar
+
+Apply [../VALUE_BAR.md](../VALUE_BAR.md). The Idea tools stay candidates until they are adversarially-confirmed to add value against a founder's baseline. Do not call the score valuable by itself. It is mechanical evidence only.
+
 ## Run it
 
 ```bash

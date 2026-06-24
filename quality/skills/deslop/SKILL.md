@@ -14,6 +14,8 @@ description: >-
 
 # deslop
 
+Value bar: this skill is a candidate until it is adversarially-confirmed to add value against a baseline artifact review. A clean lint result is mechanical evidence, not proof that the artifact earned more trust.
+
 The quality discipline runs across the kit's stage docs and artifacts. It is the gate that proves the output: the credibility check every repo, deck, resume, and profile can pass through, one canonical ruleset against prose and rendered-HTML slop. The rule score is deterministic by design, that is what a gate is, and it runs offline in CI with no key. The optional semantic pass (`--judge`, default-on and TTY-gated for interactive runs) reads for the slop the rules cannot enumerate, and it never changes the score.
 
 One canonical ruleset (`deslop/slop_rules.json`), two surfaces: prose tells and

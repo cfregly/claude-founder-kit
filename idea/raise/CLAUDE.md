@@ -2,6 +2,10 @@
 
 Guidance for Claude Code, or any agent, working in this repo. Read it, then run the gates.
 
+## Value Bar
+
+Apply [../../VALUE_BAR.md](../../VALUE_BAR.md). This tool is not valuable until it is adversarially-confirmed to add value against a real deck baseline. Treat lint scores as mechanical evidence, not investor evidence.
+
 ## What this repo is
 
 The idea/raise module (pitch-deck builder and linter) of claude-founder-kit is a Sequoia-arc pitch-deck builder and a deterministic linter where every word fights for its place. A sloppy example deck scores 0/100 and fails CI. The same company rewritten on the arc scores 100/100. It enforces a claims ledger (every number carries a source tier of measured, attested, public, or modeled), the four dimensions an investor judges, and 15 rules. A renderer turns a JSON spec into a PPTX or PDF.

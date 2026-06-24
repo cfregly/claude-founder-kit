@@ -5,6 +5,8 @@ description: Use this skill to verify the demos whenever you add a lever, change
 
 Verify the repo with these tools, in order. Do not stop until they pass.
 
+Value bar: verification proves the demos are mechanically vetted, not that they are adversarially-confirmed to add value. If no skeptical workflow receipt exists, report that gap.
+
 1. Run the levers: `ANTHROPIC_API_KEY=... python run.py`. Every lever needs a key, calls the real
    API, and must finish and refresh the receipt at data/last_run.md. Without a key the run must
    fail fast with a clear key-required message and a non-zero exit.

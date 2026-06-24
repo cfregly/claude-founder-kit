@@ -12,6 +12,10 @@ motion to run next. The deterministic moat core (`scale/measure/metrics.py`,
 Claude layer (`scale/generate/gtm.py`) runs on every human readout and raises a
 clear error with no key, so a misconfiguration is loud, not a silent downgrade.
 
+## Value Bar
+
+Apply [../VALUE_BAR.md](../VALUE_BAR.md). The Scale readout is not called valuable until it is adversarially-confirmed to add value against a baseline GTM or account-planning workflow. Treat moat scores as mechanical evidence only.
+
 ## Run it
 
 ```bash

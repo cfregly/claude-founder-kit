@@ -17,6 +17,10 @@ make check    # the doc-correctness gate
 
 `make demo` assumes the deps are installed, so run `make setup` first. The five acts also run individually: `python 01_first_call.py` through `python 05_agent_sdk_repo_doctor.py`. Acts that call the API need `ANTHROPIC_API_KEY` (copy `.env.example` to `.env`). `python 04_cost_engineering.py` measures your own numbers and writes them to `data/last_run.json` plus a paste-ready `data/last_run.md`.
 
+## Value Bar
+
+Apply [../../VALUE_BAR.md](../../VALUE_BAR.md). This build path is not called valuable until it is adversarially-confirmed to add value against a builder's baseline prompt-to-production workflow. Evals and receipts make it mechanically vetted, not proven useful.
+
 ## Where things are
 
 Verify each path with `ls` before you rely on it.

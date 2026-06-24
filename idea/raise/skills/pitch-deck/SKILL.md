@@ -14,6 +14,8 @@ description: >-
 
 # pitch-deck
 
+Value bar: this skill is a candidate until it is adversarially-confirmed to add value against a baseline pitch or deck review. A better score is mechanical evidence, not proof that the story got more useful.
+
 A founder runs this at the Idea stage of a founder playbook for Claude builders, to
 pressure-test the raise before they build. It builds and lints a pitch deck on
 the Sequoia arc, with a claims
