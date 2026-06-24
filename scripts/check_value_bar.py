@@ -13,6 +13,8 @@ PHRASE = "adversarially-confirmed to add value"
 REQUIRED = [
     "README.md",
     "CLAUDE.md",
+    "GETTING_STARTED.md",
+    "TRUST.md",
     "VALUE_BAR.md",
     "VALIDATION.md",
     "first_hour/README.md",

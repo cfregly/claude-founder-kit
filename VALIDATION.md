@@ -8,8 +8,10 @@ The code, docs, and gates are internally tested. That is not the same as being a
 
 - Offline `make check` passes.
 - Offline `make test` passes.
+- Offline `make adversarial` passes.
 - Dependency resolution passes with pinned direct dependencies.
 - Live paths are documented as live and key-required.
+- Live entrypoints fail cleanly without a key.
 - Receipts exist for measured cost outputs.
 
 ## Missing Evidence
@@ -22,3 +24,5 @@ The code, docs, and gates are internally tested. That is not the same as being a
 ## Required Before Strong Claims
 
 Before any stage claims it adds value, add a receipt that follows [VALUE_BAR.md](VALUE_BAR.md). Until then, describe it as runnable, mechanically vetted, or candidate.
+
+Use [TRUST.md](TRUST.md) for the receipt template and stage trust map.

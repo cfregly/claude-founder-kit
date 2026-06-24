@@ -17,6 +17,8 @@ first workflow, measure the second build, and route the next GTM motion.
 
 Nothing in this repo is called valuable until it is adversarially-confirmed to add value. Passing tests and gates means the work is mechanically vetted. Value needs skeptical review against a baseline, with a receipt. See [VALUE_BAR.md](VALUE_BAR.md) and [VALIDATION.md](VALIDATION.md).
 
+Start with [GETTING_STARTED.md](GETTING_STARTED.md) to choose a path. Read [TRUST.md](TRUST.md) before making a value claim.
+
 For the smaller wins-only Claude feature brief library, see
 [`claude-feature-hits`](https://github.com/cfregly/claude-feature-hits). This repo is the broader
 founder-journey kit. The feature brief repo is the narrower public artifact.
@@ -32,6 +34,7 @@ make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
 make test                      # every stage's tests
 make check                     # every stage's gates
+make adversarial               # full local trust gate
 ```
 
 `make demo` is the live walkthrough and needs a key. `make check` and `make test` are deterministic
@@ -44,6 +47,7 @@ Expected local verification:
 ```bash
 make check   # doc checks and score-drift gates
 make test    # offline tests for idea, mvp, launch, scale, and quality
+make adversarial
 ```
 
 ## The stages
@@ -68,6 +72,12 @@ loop: the workshop formats, the activation motion, the metrics, and the 90-day r
 
 The Claude Code skills for these stages are bundled under `.claude/skills/`, so the whole set
 installs in one step.
+
+## Trust Docs
+
+- [GETTING_STARTED.md](GETTING_STARTED.md): how to run one path, inspect receipts, and avoid the common traps.
+- [TRUST.md](TRUST.md): what the gates check, what they do not check, and the receipt template for real value evidence.
+- [VALIDATION.md](VALIDATION.md): current evidence and missing evidence.
 
 ## License
 

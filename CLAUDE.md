@@ -34,10 +34,17 @@ make setup
 make demo     # live walkthrough, needs ANTHROPIC_API_KEY
 make test
 make check
+make adversarial
 ```
 
 Each stage runs from inside its own subdir, so each keeps its own gate, tests, and demo. To work on
 one alone, cd into it and run that subdir's make targets.
+
+## Trust Docs
+
+- [GETTING_STARTED.md](GETTING_STARTED.md) tells a new user which path to run first.
+- [TRUST.md](TRUST.md) explains what the gates check and how to record value evidence.
+- [VALIDATION.md](VALIDATION.md) states current evidence and missing evidence.
 
 ## Conventions
 
