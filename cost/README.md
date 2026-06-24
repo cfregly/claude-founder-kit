@@ -95,7 +95,7 @@ scripts/       # the self-contained deslop gate for CI
 ## Where this fits
 
 This is the `cost/` stage of [claude-founder-kit](../README.md),
-a founder playbook for Claude builders as runnable code: the founder journey from a first Claude call to a
+a founder workflow kit for Claude builders as runnable code: the founder journey from a first Claude call to a
 scaling read, one repo, a co-located tool per stage. Each stage keeps a deterministic gate, and live
 Claude calls run only where the command says a key is required.
 

@@ -24,6 +24,8 @@ jobs:
         run: |
           python eval_lint.py --selftest
           python eval_lint.py data/golden_set.jsonl
+      - name: Live entrypoints fail cleanly without a key
+        run: python scripts/check_live_entrypoints.py
       - name: Doc-correctness gate
         run: python scripts/check_docs.py
       - name: De-slop the README

@@ -2,7 +2,7 @@
 name: scale
 description: >-
   Score a software cohort into a data-moat readout and the one go-to-market motion
-  to run next, at the Scale stage of a founder playbook for Claude builders. Given a cohort
+  to run next, at the Scale stage of a founder workflow kit for Claude builders. Given a cohort
   of accounts carrying the Scale-stage signals (integrations built, workflows
   embedded, weekly-active depth, spend trend, data volume, contract tier), it
   computes a moat score (a switching-cost proxy from integration depth, workflow
@@ -21,7 +21,7 @@ description: >-
 Value bar: this skill is a candidate until it is adversarially-confirmed to add value against a baseline account-planning or GTM workflow. A moat score is mechanical evidence, not proof of a better decision.
 
 Score a cohort into a moat readout and build the GTM motion. A growth lead runs this
-at the Scale stage of a founder playbook for Claude builders, once the product has users and
+at the Scale stage of a founder workflow kit for Claude builders, once the product has users and
 the question turns to widening the gap: compound usage into a moat, lock in the
 workflows, and grow the accounts that have earned it.
 

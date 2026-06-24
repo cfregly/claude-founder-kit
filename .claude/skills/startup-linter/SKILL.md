@@ -18,7 +18,7 @@ description: >-
 
 Value bar: this skill is a candidate until it is adversarially-confirmed to add value against a founder's baseline wedge or product decision process. Scores focus the review, but they do not prove usefulness.
 
-A founder runs this at the Idea stage of a founder playbook for Claude builders, to validate before they build. It scores raw startup signal into product, GTM, and architecture decisions. Built on the Claude Developer Platform: claude-opus-4-8 reads the deterministic scores and writes the founder intervention on every run. The scoring is the gate that runs offline, and the intervention needs ANTHROPIC_API_KEY set.
+A founder runs this at the Idea stage of a founder workflow kit for Claude builders, to validate before they build. It scores raw startup signal into product, GTM, and architecture decisions. Built on the Claude Developer Platform: claude-opus-4-8 reads the deterministic scores and writes the founder intervention on every run. The scoring is the gate that runs offline, and the intervention needs ANTHROPIC_API_KEY set.
 
 Turn messy founder signal into a sharper product, GTM, and architecture
 decision in one sitting. Deterministic scoring first, then a Claude

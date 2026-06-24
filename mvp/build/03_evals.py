@@ -1,5 +1,5 @@
 """
-ACT 3 — Evals before vibes, and proof every tier is safe (minutes 6-10)
+ACT 3 — Evals before vibes, and a gate for every tier (minutes 6-10)
 =======================================================================
 A tiny eval harness over data/golden_set.jsonl. Two of the eight cases are
 *honesty* cases: the right answer is "I don't have that," and shipping an
@@ -11,7 +11,7 @@ high-consequence honesty, distinguished Fable for the adversarial edge) and gate
 each tier on its own. That order is the point. A router without an eval gate is
 not a cost optimization, it is a quality regression you have not measured yet.
 Aggregate quality can stay green while the cheap junior tier quietly tanks,
-hidden behind the stronger tiers in the average. So every tier is proven here, in
+hidden behind the stronger tiers in the average. So every tier is checked here, in
 Act 3, before Act 4 claims the 86 percent its two-tier cost routing saves. A tier
 the key cannot reach (for example access-gated Fable) is reported as unavailable,
 never faked. Every run writes a receipt to data/last_eval.json, the same way Act 4
@@ -34,6 +34,7 @@ Run:   python 03_evals.py            # code-graded, routed, gated per tier
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -198,6 +199,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--judge", action="store_true", help="add LLM-judge grading on top of code grading")
     args = parser.parse_args()
+
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        console.print("[red]ANTHROPIC_API_KEY is required for this live script.[/red]")
+        raise SystemExit(1)
 
     client = Anthropic()
     cases = [json.loads(line) for line in (ROOT / "data" / "golden_set.jsonl").read_text().splitlines() if line.strip()]

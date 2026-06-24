@@ -1,17 +1,19 @@
-# Startup Activation Playbook
+# Founder Activation Field Guide
 
-The operator's field playbook for turning founders into builders on Claude. It is the human
+An operator field guide for turning founders into builders on Claude. It is the human
 process that runs alongside the launch module's code: the loop the code measures, the motions a
 person runs, and the line where a person stops and the gate takes over. Every number here
 reproduces from the launch module's deterministic spine (seeded at 7) or traces to saved evidence.
 
 Read it with `CLAUDE.md`. State facts, trace numbers to evidence, deslop before shipping.
 
+Value bar: this guide is a candidate until it is adversarially-confirmed to add value against an operator's baseline activation motion. Treat the reference cohort as mechanical evidence, not field proof.
+
 ## 1. Thesis
 
 Activation is the work: get a founder from a first Claude call to a working build to a second build
 they start on their own, then keep them. The demo wins the trial. The eval set wins the renewal.
-This playbook turns that loop into a repeatable motion with saved output, so a win for one founder
+This guide turns that loop into a repeatable motion with saved output, so a win for one founder
 becomes a recipe the next founder runs from.
 
 ## 2. Who it is for
@@ -126,7 +128,7 @@ Every session produces more than a build.
 
 ## 7. Metrics
 
-The launch module computes these every run, so the playbook reads them, it does not invent them.
+The launch module computes these every run, so the guide reads them, it does not invent them.
 
 - **Activation.** Signups, the activation rate (first build over signup), time-to-first-value
   (signup to first call), and the biggest leak.
@@ -145,7 +147,7 @@ result. Point the loop at a real cohort and the same code reports the real numbe
 
 ## 8. The 90-day ramp
 
-Three phases: instrument and learn, ship the kit, prove and scale. The milestones are targets the
+Three phases: instrument and learn, ship the kit, then measure the next scale step. The milestones are targets the
 weekly loop drives toward, read off the launch module's metrics, not a separate cadence. The
 reference cohort above is the bar each target is measured against.
 
@@ -168,9 +170,9 @@ reference cohort above is the bar each target is measured against.
 - Exit: the motion runs at cohort volume without a bottleneck on one person, and time-to-second-
   build is measured and trending toward the 8-day reference, not widening as volume grows.
 
-**Days 61 to 90, prove and scale.**
+**Days 61 to 90, measure and scale.**
 - Run a flagship build-a-thon: first API call same-day, working build inside 7 days.
-- Write the operator playbook v1: ecosystem to activation, the motion any operator can run.
+- Write the operator guide v1: ecosystem to activation, the motion another operator can run.
 - Publish the 90-day readout: activated developers, the second-build rate, pilots, and partner
   return. Route the top 5 frictions to product issues with repro code.
 - Hand the product-qualified accounts to a named GTM owner, each with the measured handoff packet: what they built,

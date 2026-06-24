@@ -6,7 +6,7 @@
 Build a startup on Claude, from the first API call to reading the data moat. One repo, one command,
 with the live steps calling the Claude Developer Platform and the gates staying reproducible offline.
 
-This is a founder playbook for Claude builders as runnable code. Each stage is a tool a founder actually
+This is a founder workflow kit for Claude builders as runnable code. Each stage is a tool a founder actually
 uses, and the stages run in order: get to first value, build the product, review the tools, launch
 and measure activation, then read the data moat and the next move.
 
@@ -60,8 +60,8 @@ make test    # offline tests for idea, mvp, launch, scale, and quality
 
 Each stage keeps its own README, Makefile, tests, and gate. To work on one alone, `cd` into it.
 
-The Launch stage also ships the [Startup Activation Playbook](launch/STARTUP_ACTIVATION_PLAYBOOK.md),
-the operator's field guide for turning founders into builders, wired to the launch module's measured
+The Launch stage also ships the [Founder Activation Field Guide](launch/FOUNDER_ACTIVATION_FIELD_GUIDE.md),
+an operator field guide for turning founders into builders, wired to the launch module's measured
 loop: the workshop formats, the activation motion, the metrics, and the 90-day ramp.
 
 ## What ships with it

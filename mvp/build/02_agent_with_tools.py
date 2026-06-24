@@ -14,6 +14,7 @@ Run:  python 02_agent_with_tools.py "Given our burn and MRR trend, how many mont
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -95,6 +96,10 @@ def main() -> None:
         "Given our current burn and the MRR trend over the last few months, how many months "
         "of runway do we have, and what would you tell our investors in two sentences?"
     )
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        console.print("[red]ANTHROPIC_API_KEY is required for this live script.[/red]")
+        raise SystemExit(1)
+
     client = Anthropic()
     messages = [{"role": "user", "content": question}]
     console.print(Panel(question, title="founder asks", border_style="cyan"))

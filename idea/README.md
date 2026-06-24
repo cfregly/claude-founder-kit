@@ -2,7 +2,7 @@
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**The Idea stage of a founder playbook for Claude builders.** Validate the idea before you build, and pressure-test the raise. Two tools live here, co-located, each with its own working code, tests, and gate.
+**The Idea stage of a founder workflow kit for Claude builders.** Validate the idea before you build, and pressure-test the raise. Two tools live here, co-located, each with its own working code, tests, and gate.
 
 - `validate/` scores the startup signal and argues against the idea, so the weak spots surface before you write a line of product code.
 - `raise/` builds and lints the pitch deck on the Sequoia arc, so the story holds up before an investor reads it.
@@ -47,7 +47,7 @@ Each target runs the matching target inside `validate/` and `raise/`, so every e
 
 ## Where this fits
 
-This is the **Idea** module of [claude-founder-kit](../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
+This is the **Idea** module of [claude-founder-kit](../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The kit names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
 
 ## License
 

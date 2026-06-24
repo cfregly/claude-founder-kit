@@ -9,7 +9,7 @@ else
 PY_RUN := $(PY)
 endif
 
-.PHONY: help setup demo test check \
+.PHONY: help setup demo test check adversarial \
         demo-first_hour demo-idea demo-mvp demo-launch demo-scale demo-quality demo-cost
 
 help:
@@ -19,6 +19,7 @@ help:
 	@echo "  make demo-<stage>    one stage: first_hour idea mvp launch scale quality cost"
 	@echo "  make test            run every stage's tests"
 	@echo "  make check           run every stage's gates"
+	@echo "  make adversarial     run checks and tests that enforce the value bar"
 
 setup:
 	$(PY) -m pip install -r requirements.txt
@@ -70,3 +71,5 @@ check:
 	    echo "== check: $$m =="; (cd $$m && $(MAKE) PY="$(PY_RUN)" check) || exit 1; \
 	  fi; \
 	done
+
+adversarial: check test

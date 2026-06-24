@@ -2,7 +2,7 @@
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**The MVP stage of a founder playbook for Claude builders: build the product, then a security review before any user touches it.**
+**The MVP stage of a founder workflow kit for Claude builders: build the product, then a security review before any user touches it.**
 
 This repo bundles two co-located tools, one per half of the MVP stage. You build the agent in `build/`, then you review its tool and agent surface in `harden/` before a single user touches it. Claude runs both halves, and a deterministic gate proves each output before it ships. Each tool keeps its own working code, tests, and gate, so you can run them apart or together.
 
@@ -41,7 +41,7 @@ The order is the point. `build/` produces an agent with a tool surface, and `har
 
 ## Where this fits
 
-This is the **MVP** module of [claude-founder-kit](../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
+This is the **MVP** module of [claude-founder-kit](../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The kit names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
 
 ## Layout
 

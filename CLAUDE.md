@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in claude-founder-kit. Read it, 
 
 ## What this repo is
 
-claude-founder-kit is a founder playbook for Claude builders as runnable code: the journey from a founder's
+claude-founder-kit is a founder workflow kit for Claude builders as runnable code: the journey from a founder's
 first Claude call to a scaling read, in one repo. Each stage is a co-located tool that keeps its own
 working code, tests, and gate.
 

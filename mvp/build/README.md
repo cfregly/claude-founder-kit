@@ -13,7 +13,7 @@ Pair-built with Claude. That's not a disclaimer, it's the demo.
 
 ## Where this fits
 
-This is the `build` half of the **MVP** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The playbook names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
+This is the `build` half of the **MVP** module of [claude-founder-kit](../../README.md). The full journey runs as modules in one repo: first_hour, idea, mvp, launch, scale, quality, cost. The kit names what a founder does at each stage, and these are the runnable tools that do it. Each stage keeps a deterministic gate, and live Claude calls run only where the command says a key is required. One `make demo` from the repo root runs the live walkthrough when a key is set.
 
 ## Value Bar
 
@@ -25,7 +25,7 @@ This build path is a candidate until it is adversarially-confirmed to add value 
 |---|---|---|
 | 0-2 | `01_first_call.py` | First streaming call. See tokens and cost before minute three. |
 | 2-6 | `02_agent_with_tools.py` | Give the model hands. Tool descriptions are API contracts. |
-| 6-10 | `03_evals.py` | Evals before vibes: two *honesty* cases, routed across the model ladder and gated per tier (junior Haiku to distinguished Fable), so every tier is proven before Act 4 claims its savings. Wire it into CI. |
+| 6-10 | `03_evals.py` | Evals before vibes: two *honesty* cases, routed across the model ladder and gated per tier (junior Haiku to distinguished Fable), so every available tier clears a recorded gate before Act 4 claims its savings. Wire it into CI. |
 | 10-15 | `04_cost_engineering.py` | Same workload, 3 ways: naive vs cached vs routed. Measured, not asserted. |
 | encore | `mcp_server/` | The same tools, made portable over MCP for Claude Code / Desktop. |
 | 15+ | `05_agent_sdk_repo_doctor.py` | The Claude Agent SDK scans this repo and proposes concrete improvements. |

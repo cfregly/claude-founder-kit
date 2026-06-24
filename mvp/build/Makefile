@@ -2,7 +2,7 @@
 PY ?= python
 
 .DEFAULT_GOAL := help
-.PHONY: help setup demo test check
+.PHONY: help setup demo test check adversarial
 
 help:
 	@printf 'mvp/build\n\n'
@@ -10,6 +10,7 @@ help:
 	@printf '  make demo    Measure the cost table live, ~36 real calls (needs ANTHROPIC_API_KEY)\n'
 	@printf '  make test    Run the eval-set self-test\n'
 	@printf '  make check   Run the doc-correctness gate\n'
+	@printf '  make adversarial  Run the full local trust gate\n'
 
 setup:
 	$(PY) -m pip install -q -r requirements.txt
@@ -20,6 +21,9 @@ demo:
 
 test:
 	$(PY) eval_lint.py --selftest
+	$(PY) scripts/check_live_entrypoints.py
 
 check:
 	$(PY) scripts/check_docs.py
+
+adversarial: check test

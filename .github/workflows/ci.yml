@@ -20,6 +20,8 @@ jobs:
         run: make check
       - name: Tests
         run: make test
+      - name: Adversarial value bar
+        run: make adversarial
 
   live:
     # A small online smoke: real Claude calls on the repository secret. GitHub does

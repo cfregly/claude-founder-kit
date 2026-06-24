@@ -4,7 +4,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 
 ## What this repo is
 
-The mvp module of claude-founder-kit is the MVP stage of a founder playbook for Claude builders: build the product, then a security review before any user touches it. It bundles two co-located tools, each self-contained with its own package, tests, and gate:
+The mvp module of claude-founder-kit is the MVP stage of a founder workflow kit for Claude builders: build the product, then a security review before any user touches it. It bundles two co-located tools, each self-contained with its own package, tests, and gate:
 
 - [`build/`](build/) takes a founder from a first Claude API call to an evaluated, cost-engineered, deployable agent. Five acts: a first streaming call, tools as contracts, evals in CI including honesty cases, cost engineering (caching plus routing), and an MCP encore. Its `starter/` is a forkable FastAPI app.
 - [`harden/`](harden/) is the security review of the agent surface. It turns vague MCP tools into contract-grade interfaces, scored against 16 rules with an OWASP and STRIDE security lens, and grades an agent protocol and a harness manifest.

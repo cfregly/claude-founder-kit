@@ -1,4 +1,4 @@
-"""The Scale stage of a founder playbook for Claude builders.
+"""The Scale stage of a founder workflow kit for Claude builders.
 
 A deterministic moat core (stdlib only, the receipt and the CI gate) plus a
 mandatory Claude layer that reads the moat readout and writes the GTM motion and

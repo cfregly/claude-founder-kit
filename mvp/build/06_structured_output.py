@@ -11,6 +11,7 @@ Run:  python 06_structured_output.py
 
 import json
 import os
+import sys
 
 from anthropic import Anthropic
 from dotenv import load_dotenv
@@ -33,6 +34,10 @@ SCHEMA = {
 }
 
 def main() -> None:
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        print("error: ANTHROPIC_API_KEY is required for this live script.", file=sys.stderr)
+        raise SystemExit(1)
+
     client = Anthropic()  # reads ANTHROPIC_API_KEY from the environment
     note = "Account Alpha signed up for the Pro plan with 12 seats."
     print(f"\n>>> extract structured fields from: {note}\n")
