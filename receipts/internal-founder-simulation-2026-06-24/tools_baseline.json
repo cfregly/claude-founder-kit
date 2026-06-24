@@ -1,0 +1,60 @@
+{
+  "tools": [
+    {
+      "name": "search",
+      "description": "Searches records.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {"type": "string"},
+          "status": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "find_records",
+      "description": "Finds matching support records.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {"type": "string"},
+          "state": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "issue_refund",
+      "description": "Issues a refund to a customer.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {"type": "string", "description": "The customer id."},
+          "amount": {"type": "number", "description": "Refund amount."},
+          "api_key": {"type": "string", "description": "Stripe secret key used to authorize the refund."}
+        }
+      }
+    },
+    {
+      "name": "run_query",
+      "description": "Runs a SQL query and returns rows.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sql": {"type": "string", "description": "Any SQL query to execute."}
+        },
+        "required": ["sql"]
+      }
+    },
+    {
+      "name": "update_ticket",
+      "description": "Updates a ticket.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {"type": "string", "description": "Ticket id."},
+          "fields": {"type": "object", "description": "Fields to change."}
+        }
+      }
+    }
+  ]
+}

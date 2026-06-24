@@ -78,6 +78,7 @@ installs in one step.
 - [GETTING_STARTED.md](GETTING_STARTED.md): how to run one path, inspect receipts, and avoid the common traps.
 - [TRUST.md](TRUST.md): what the gates check, what they do not check, and the receipt template for real value evidence.
 - [VALIDATION.md](VALIDATION.md): current evidence and missing evidence.
+- [receipts/](receipts/): internal and external evidence files, labeled by strength.
 
 ## License
 

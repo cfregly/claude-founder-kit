@@ -38,6 +38,12 @@ Those require a baseline, a skeptical reviewer, and a receipt.
 | Quality | De-slop rules and examples | A reviewer compares before and after on a real artifact |
 | Cost | Usage-object receipts | A builder compares the lever against a baseline bill or token trace |
 
+## Current Internal Evidence
+
+[receipts/internal-founder-simulation-2026-06-24/receipt.md](receipts/internal-founder-simulation-2026-06-24/receipt.md) records one internal founder simulation. It shows the kit catching a weak eval set, unsafe MCP tool contracts, and concrete launch or scale motions on a realistic scenario.
+
+This is useful evidence, but it is not external proof. It does not replace a skeptical user running the kit on their own workflow.
+
 ## Value Receipt Template
 
 Copy this into an issue, PR, or `receipts/` file when a stage earns stronger language.
