@@ -16,3 +16,4 @@ Only an external value receipt can support a claim that a stage was adversariall
 | Receipt | Label | What it supports |
 | --- | --- | --- |
 | [internal-founder-simulation-2026-06-24](internal-founder-simulation-2026-06-24/receipt.md) | internal simulation with live calls | The kit found weak eval coverage, risky tool contracts, a too-broad wedge, concrete launch or scale motions, and live cost reductions on a realistic founder scenario |
+| [claude-idea-to-pmf-2026-06-24](claude-idea-to-pmf-2026-06-24/receipt.md) | candidate startup trial | The kit narrowed a broad PMF-system idea into a seven-day buyer-evidence wedge, but no external skeptical user has tested it yet |

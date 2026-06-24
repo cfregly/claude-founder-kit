@@ -1,0 +1,73 @@
+
+[live: claude-opus-4-8, 1648 in / 1685 out]
+# Common Folks PMF: Founder Intervention
+
+## 1. Value proposition rewrite
+
+Get five real buyer conversations or one honest kill decision in seven days, before you waste months building the wrong thing.
+
+## 2. The product wedge for the next 30 days
+
+Push the kill decision, not the build path. Most idea-validation tools sell hope. Yours sells the rare thing nontechnical founders cannot do alone: stop early with dignity.
+
+Concrete moves:
+- Ship one workflow end to end: idea capture, forced narrow buyer, discovery script, five outreach notes, reply tracking, decision. Do not add a sixth surface.
+- Make the outreach notes the hero. That is the step where a nurse or contractor freezes. If your notes get a reply that a chatbot's would not, you have a product.
+- Add a concierge tier where you personally write the five notes and prep the demo. Charge for it. This teaches you what to automate and funds the build.
+
+Assumption: you have not yet run 20 real founders through the full loop. If you have, ignore this and tell me your reply rate.
+
+The decision to defend: ship narrow and opinionated. Resist requests to support "any idea" or "let me skip the buyer step." The constraint is the product.
+
+## 3. Architecture decision
+
+**Model routing.** The deterministic note suggests Opus for everything. Do not. Split by step:
+- Idea capture, narrowing, script generation: Sonnet-class. These are structured and cheap.
+- Skeptical reviewer that grades evidence quality and blocks weak signal: Opus-class. This is the consequential step where confidence theater must be caught.
+- Outreach note drafting: Sonnet-class with a tight template, then human or Opus review for the first 100 users.
+
+Rough math: if a sprint runs 15 to 25 model calls and 3 are Opus, your blended cost per sprint stays well under $2. At $99 a sprint you have room. Track it anyway.
+
+**Tools and MCP.** You need three real tools, not a chatbot:
+- A reply-and-objection logger (your system of record).
+- An outreach tracker tied to the founder's actual contacts.
+- An evidence grader that classifies each signal as strong, weak, or synthetic.
+
+Build these as your own data layer. Do not let them live inside a model provider's memory.
+
+**Prompt caching.** The note says false. Reconsider. Your discovery methodology, evidence rubric, and anti-false-confidence rules are static and reused across every founder. Cache them. That is your largest repeated token block and your cheapest win.
+
+**Data boundaries.** The buyer graph and objection history are the asset. Store them in your database, not in model context windows or provider-side memory. Pass only the slice needed per call. This is also your platform-risk answer made concrete.
+
+**Evals.** Build these before you scale:
+- Evidence grader accuracy: does it correctly label a synthetic persona as weak? Test against 50 hand-labeled cases.
+- Outreach reply rate: A/B your generated notes against a plain-template control.
+- Kill-decision quality: sample decisions and check that each traces to a real buyer signal, not model enthusiasm.
+
+## 4. Platform-risk answer
+
+The score gave you a 3, which is right. Your defense is sound but state it sharper.
+
+ChatGPT and Claude generate advice. They do not own the founder's buyer graph, the reply history, the objection log, or the rule that blocks a build until real people respond. Those compound. A founder who runs three experiments through you has a private evidence trail that gets more useful each time. A chatbot starts cold every session.
+
+The risk is not the model provider cloning you. It is a founder deciding the loop is simple enough to run in a Claude thread for free. Beat that by making the discipline automatic and the record permanent. The value is enforcement plus memory, not generation.
+
+## 5. Metrics to track this week
+
+Your seven-day metrics are good for the founder. Track the business too:
+- Activation rate: percent of signups who send all five outreach notes. This is your real funnel.
+- Reply rate on generated notes versus a control. If your notes do not beat a template, the wedge is weak.
+- Time to first sent outreach. Friction lives here.
+- Percent of sprints reaching a clear continue, narrow, or kill decision.
+- Cost per completed sprint, model spend included.
+- Concierge attach rate and what fraction convert to a second sprint.
+
+Hold one number above all: percent of users who send all five notes. Everything downstream depends on it.
+
+## 6. What I would tell you in 30 seconds
+
+Your value prop is the strongest part of this. The wedge is the kill decision, not the build. Most of these tools die because they let founders feel busy. Yours blocks that, which is why it can work.
+
+Two risks. First, you have not proven your generated outreach notes get replies a free chatbot would not. Prove that this month with a real test. Second, do not route everything to Opus and skip caching. Split your models and cache your rubric.
+
+Run 20 founders through the full loop yourself, by hand if needed. Watch where they freeze. Then automate that one step.
