@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = ROOT.parent
-PIN = ROOT / "receipt_pin.json"
+REGISTRY = REPO_ROOT / "companions" / "registry.json"
 DOCS = [ROOT / "README.md", ROOT / "CLAUDE.md"]
 PHRASE = "adversarially-confirmed to add value"
 REQUIRED_TOKENS = [
@@ -45,24 +45,31 @@ def check_links(path: Path, text: str, failures: list[str]) -> None:
 
 def main() -> int:
     failures: list[str] = []
-    pin = json.loads(PIN.read_text(encoding="utf-8"))
-    commit = pin.get("pinned_commit", "")
+    registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    entry = next((item for item in registry.get("companions", [])
+                  if item.get("id") == "tool-tuning"), None)
+    if entry is None:
+        failures.append("registry.json: missing tool-tuning companion")
+        entry = {}
+    commit = entry.get("commit", "")
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
-        failures.append("receipt_pin.json: pinned_commit must be a 40 character lowercase SHA")
-    if commit not in pin.get("receipt_url", ""):
-        failures.append("receipt_pin.json: receipt_url must include pinned_commit")
-    if pin.get("receipt_path", "") not in pin.get("receipt_url", ""):
-        failures.append("receipt_pin.json: receipt_url must include receipt_path")
-    if not (REPO_ROOT / pin.get("founder_kit_receipt", "")).is_file():
-        failures.append("receipt_pin.json: founder_kit_receipt must resolve")
-    joined_commands = "\n".join(pin.get("commands", []))
+        failures.append("registry.json: tool-tuning commit must be a 40 character lowercase SHA")
+    if commit not in entry.get("ledger_url", ""):
+        failures.append("registry.json: tool-tuning ledger_url must include commit")
+    if entry.get("ledger", "") not in entry.get("ledger_url", ""):
+        failures.append("registry.json: tool-tuning ledger_url must include ledger")
+    if not (REPO_ROOT / entry.get("receipt", "")).is_file():
+        failures.append("registry.json: tool-tuning receipt must resolve")
+    joined_commands = "\n".join(entry.get("commands", []))
     for token in ("optimize-tools", "model-matrix", "grind-harness"):
         if token not in joined_commands:
-            failures.append(f"receipt_pin.json: missing command token {token}")
+            failures.append(f"registry.json: missing command token {token}")
 
     for directory in ("claude_agent_harness_optimization", "evals", "recipes"):
         if (ROOT / directory).exists():
             failures.append(f"{directory}: companion implementation must not be vendored")
+    if (ROOT / "receipt_pin.json").exists():
+        failures.append("receipt_pin.json: use companions/registry.json as the pin source")
 
     for doc in DOCS:
         text = doc.read_text(encoding="utf-8")

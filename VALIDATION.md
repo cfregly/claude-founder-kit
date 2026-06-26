@@ -13,7 +13,7 @@ The code, docs, and gates are internally tested. That is not the same as being a
 - Live paths are documented as live and key-required.
 - Live entrypoints fail cleanly without a key.
 - Receipts exist for measured cost outputs.
-- Tool tuning pins the companion harness repo commit and confirmed-improvements ledger without copying that implementation.
+- The companion registry pins tool tuning, grounding, and Managed Agents repos without copying their implementations.
 - One internal founder simulation receipt with live Claude calls exists in [receipts/internal-founder-simulation-2026-06-24/receipt.md](receipts/internal-founder-simulation-2026-06-24/receipt.md).
 
 ## Missing Evidence

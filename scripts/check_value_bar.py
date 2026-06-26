@@ -17,6 +17,7 @@ REQUIRED = [
     "TRUST.md",
     "VALUE_BAR.md",
     "VALIDATION.md",
+    "companions/README.md",
     "first_hour/README.md",
     "first_hour/CLAUDE.md",
     "idea/README.md",

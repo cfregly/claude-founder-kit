@@ -10,6 +10,7 @@ The repo can tell you whether the code, docs, receipts, and gates agree. It cann
 | --- | --- | --- |
 | Value-bar gate | `python scripts/check_value_bar.py` | Missing value-bar language, overclaimed wording, official-sounding drift |
 | Root doc and test pass | `make check && make test` | Stage doc correctness, score drift, offline tests, compile checks |
+| Companion registry gate | `make check-companions` | Broken companion URLs, missing receipts, bad pins, missing tags |
 | Live-entrypoint gate | `cd mvp/build && python scripts/check_live_entrypoints.py` | Broken live scripts, tracebacks without a key, unclear key failures |
 | Full adversarial pass | `make adversarial` | The full local gate stack a reviewer should run before trusting the repo |
 | CI deterministic job | `.github/workflows/ci.yml` | `make check`, `make test`, and `make adversarial` on push and pull request |

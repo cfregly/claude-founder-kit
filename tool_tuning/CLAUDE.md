@@ -18,7 +18,7 @@ Apply [../VALUE_BAR.md](../VALUE_BAR.md). This recipe is not called valuable unt
 
 - Keep `claude-agent-harness-optimization` separate.
 - Do not copy its package, eval matrices, recipes, or tests into this repo.
-- Update `receipt_pin.json`, [README.md](README.md), and the local receipt together when the companion pin changes.
+- Update [../companions/registry.json](../companions/registry.json), [README.md](README.md), and the local receipt together when the companion pin changes.
 - Keep `make tune-tools` as the simple founder-facing entrypoint from the repo root.
 - Run `make check` and `make test` from this directory before committing.
 

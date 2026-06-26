@@ -23,6 +23,7 @@ The command prints the pinned companion workflow. It does not make live calls an
 | --- | --- |
 | Repo | [`claude-agent-harness-optimization`](https://github.com/cfregly/claude-agent-harness-optimization) |
 | Commit | `efdc801b6e8e4d9cf1e1c32899c8d95325f79304` |
+| Tag | `founder-kit-tool-tuning-2026-06-26` |
 | Ledger | [`docs/confirmed-improvements.md`](https://github.com/cfregly/claude-agent-harness-optimization/blob/efdc801b6e8e4d9cf1e1c32899c8d95325f79304/docs/confirmed-improvements.md) |
 | Local receipt | [`../receipts/tool-tuning-companion-pin-2026-06-26/receipt.md`](../receipts/tool-tuning-companion-pin-2026-06-26/receipt.md) |
 
@@ -63,4 +64,4 @@ make check
 make test
 ```
 
-The gate checks the pin, the ledger URL, the local receipt link, the command names, and the no-vendoring boundary.
+The gate checks the [companion registry](../companions/registry.json), the ledger URL, the local receipt link, the command names, and the no-vendoring boundary.

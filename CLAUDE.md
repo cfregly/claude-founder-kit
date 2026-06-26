@@ -34,6 +34,8 @@ Apply [VALUE_BAR.md](VALUE_BAR.md) everywhere. Nothing is called valuable until 
 make setup
 make demo     # live walkthrough, needs ANTHROPIC_API_KEY
 make tune-tools
+make companions
+make check-companions
 make test
 make check
 make adversarial
@@ -51,6 +53,7 @@ one alone, cd into it and run that subdir's make targets.
 ## Conventions
 
 - Run make check and make test before you commit.
+- Run make check-companions when you change companions/registry.json or a companion pin.
 - Each stage keeps its own gates. Do not move a stage's gate up to the root or weaken it.
 - Keep `claude-agent-harness-optimization` separate from `tool_tuning/`. The founder-kit recipe pins it and points to it. It does not vendor it.
 - Prose is plain: no em-dashes, no semicolons in prose, no buzzwords. Numbers over adjectives.

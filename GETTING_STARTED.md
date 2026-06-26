@@ -49,7 +49,7 @@ Look for generated outputs before you trust a claim.
 | --- | --- |
 | `mvp/build/data/last_eval.json` | Which eval tiers ran, passed, or were unavailable for your key |
 | `mvp/build/data/last_run.json` | Cost, latency, tokens, cache reads, and routing result for the cost benchmark |
-| `tool_tuning/receipt_pin.json` | The pinned companion harness commit, ledger, and commands |
+| `companions/registry.json` | The pinned companion repo commits, ledgers, receipts, and commands |
 | `cost/data/last_run_receipt.md` | Token and cost details for the cost lever run |
 | `launch/examples/readout.json` | Reference launch cohort readout used by deterministic launch checks |
 

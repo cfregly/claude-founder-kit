@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "companions": [
+    {
+      "id": "tool-tuning",
+      "name": "Tune your tools",
+      "stage": "tool_tuning",
+      "status": "candidate",
+      "repo": "https://github.com/cfregly/claude-agent-harness-optimization",
+      "commit": "efdc801b6e8e4d9cf1e1c32899c8d95325f79304",
+      "tag": "founder-kit-tool-tuning-2026-06-26",
+      "ledger": "docs/confirmed-improvements.md",
+      "ledger_url": "https://github.com/cfregly/claude-agent-harness-optimization/blob/efdc801b6e8e4d9cf1e1c32899c8d95325f79304/docs/confirmed-improvements.md",
+      "receipt": "receipts/tool-tuning-companion-pin-2026-06-26/receipt.md",
+      "checked_on": "2026-06-25",
+      "commands": [
+        "git clone https://github.com/cfregly/claude-agent-harness-optimization.git",
+        "cd claude-agent-harness-optimization",
+        "git checkout founder-kit-tool-tuning-2026-06-26",
+        "python3.11 -m venv .venv",
+        "source .venv/bin/activate",
+        "pip install -e .",
+        "python -m claude_agent_harness_optimization optimize-tools evals/examples/agent_audit_bundle.json --markdown",
+        "python -m claude_agent_harness_optimization model-matrix evals/model_matrix/coding_tool_selection.json --markdown",
+        "python -m claude_agent_harness_optimization grind-harness evals/model_matrix/coding_tool_selection.json --env-file .env --live --concurrency 8 --heldout-cases \"find python files,read known file\" --markdown"
+      ],
+      "pin_bump_requires": [
+        "old pin",
+        "new pin",
+        "what changed",
+        "commands run",
+        "why founder-kit should move"
+      ]
+    },
+    {
+      "id": "grounding",
+      "name": "Ground answers with provenance",
+      "stage": "mvp",
+      "status": "candidate",
+      "repo": "https://github.com/cfregly/claude-grounding",
+      "commit": "e4e72ff351304b877c9292d6424efdd03dd2c01e",
+      "tag": "founder-kit-grounding-2026-06-26",
+      "ledger": "README.md",
+      "ledger_url": "https://github.com/cfregly/claude-grounding/blob/e4e72ff351304b877c9292d6424efdd03dd2c01e/README.md",
+      "receipt": "receipts/grounding-companion-pin-2026-06-26/receipt.md",
+      "checked_on": "2026-06-26",
+      "commands": [
+        "git clone https://github.com/cfregly/claude-grounding.git",
+        "cd claude-grounding",
+        "git checkout founder-kit-grounding-2026-06-26",
+        "python3.11 -m venv .venv",
+        "source .venv/bin/activate",
+        "pip install -r requirements.txt",
+        "python scripts/deslop_check.py",
+        "python -m compileall context_grounding run.py scripts",
+        "python -m unittest discover -s tests -q",
+        "env -u ANTHROPIC_API_KEY PYTHON_DOTENV_DISABLED=1 python run.py",
+        "ANTHROPIC_API_KEY=... python run.py citations"
+      ],
+      "pin_bump_requires": [
+        "old pin",
+        "new pin",
+        "what changed",
+        "commands run",
+        "why founder-kit should move"
+      ]
+    },
+    {
+      "id": "managed-agents",
+      "name": "Evaluate Managed Agents",
+      "stage": "mvp",
+      "status": "candidate",
+      "repo": "https://github.com/cfregly/claude-managed-agents",
+      "commit": "e2364b026401aafe6aa77aeb87a29809b096800a",
+      "tag": "founder-kit-managed-agents-2026-06-26",
+      "ledger": "README.md",
+      "ledger_url": "https://github.com/cfregly/claude-managed-agents/blob/e2364b026401aafe6aa77aeb87a29809b096800a/README.md",
+      "receipt": "receipts/managed-agents-companion-pin-2026-06-26/receipt.md",
+      "checked_on": "2026-06-26",
+      "commands": [
+        "git clone https://github.com/cfregly/claude-managed-agents.git",
+        "cd claude-managed-agents",
+        "git checkout founder-kit-managed-agents-2026-06-26",
+        "python3.11 -m venv .venv",
+        "source .venv/bin/activate",
+        "pip install -r requirements.txt",
+        "python scripts/deslop_check.py",
+        "python -m compileall managed_agents run.py scripts",
+        "python -m unittest discover -s tests -q",
+        "env -u ANTHROPIC_API_KEY PYTHON_DOTENV_DISABLED=1 python run.py",
+        "ANTHROPIC_API_KEY=... python run.py",
+        "ANTHROPIC_API_KEY=... python run.py --cleanup"
+      ],
+      "pin_bump_requires": [
+        "old pin",
+        "new pin",
+        "what changed",
+        "commands run",
+        "why founder-kit should move"
+      ]
+    }
+  ]
+}

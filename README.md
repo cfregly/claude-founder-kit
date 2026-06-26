@@ -33,6 +33,8 @@ cp .env.example .env           # fill ANTHROPIC_API_KEY for live demos
 make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
 make tune-tools                # print the pinned companion harness workflow
+make companions                # list pinned companion repos
+make check-companions          # verify companion URLs and pins
 make test                      # every stage's tests
 make check                     # every stage's gates
 make adversarial               # full local trust gate
@@ -73,6 +75,9 @@ loop: the workshop formats, the activation motion, the metrics, and the 90-day r
 The Tool tuning recipe keeps `claude-agent-harness-optimization` separate and pins the companion
 repo from founder-kit. It is the bridge to `optimize-tools`, `model-matrix`, `grind-harness`, and
 the confirmed-improvements ledger without duplicating the implementation.
+
+The [Companion Registry](companions/README.md) is the index for deeper repos that founder-kit points
+to without vendoring. It currently pins tool tuning, grounding, and Managed Agents companions.
 
 ## What ships with it
 
