@@ -11,6 +11,7 @@ working code, tests, and gate.
 - `first_hour/` the platform ladder, one call up to a managed agent
 - `idea/` validate the signal, lint the raise
 - `mvp/` prompt to production, then a tool security review
+- `tool_tuning/` thin recipe that points to the companion harness optimization repo
 - `launch/` capture a cohort, measure activation, gate the weekly motion
 - `scale/` score the data moat and the next GTM motion
 - `quality/` the de-slop linter
@@ -32,6 +33,7 @@ Apply [VALUE_BAR.md](VALUE_BAR.md) everywhere. Nothing is called valuable until 
 ```bash
 make setup
 make demo     # live walkthrough, needs ANTHROPIC_API_KEY
+make tune-tools
 make test
 make check
 make adversarial
@@ -50,6 +52,7 @@ one alone, cd into it and run that subdir's make targets.
 
 - Run make check and make test before you commit.
 - Each stage keeps its own gates. Do not move a stage's gate up to the root or weaken it.
+- Keep `claude-agent-harness-optimization` separate from `tool_tuning/`. The founder-kit recipe pins it and points to it. It does not vendor it.
 - Prose is plain: no em-dashes, no semicolons in prose, no buzzwords. Numbers over adjectives.
 - Every number traces to a receipt. Reproduce before quoting, never quote from memory.
 - Every claim about Claude or the platform traces to the live docs. Verify, do not assert from memory.

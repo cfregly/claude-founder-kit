@@ -33,6 +33,7 @@ Those require a baseline, a skeptical reviewer, and a receipt.
 | Idea | Offline scoring and deck lint gates | A founder or reviewer compares the output with the prior decision or pitch |
 | MVP build | Eval lint, live-entrypoint checks, cost receipts | A builder compares it with their normal prompt-to-production workflow |
 | MVP harden | Tool and harness rule tests | A security or agent reviewer compares findings with a baseline review |
+| Tool tuning | Pinned companion repo commit and local recipe gate | A builder compares tuned tool contracts with their current tool failures |
 | Launch | Deterministic reference cohort and gated report | An operator compares it with their weekly activation review |
 | Scale | Offline moat scoring tests | A growth lead compares it with their account-planning workflow |
 | Quality | De-slop rules and examples | A reviewer compares before and after on a real artifact |

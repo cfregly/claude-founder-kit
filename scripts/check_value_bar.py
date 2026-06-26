@@ -31,6 +31,8 @@ REQUIRED = [
     "mvp/build/CLAUDE.md",
     "mvp/harden/README.md",
     "mvp/harden/CLAUDE.md",
+    "tool_tuning/README.md",
+    "tool_tuning/CLAUDE.md",
     "launch/README.md",
     "launch/CLAUDE.md",
     "launch/FOUNDER_ACTIVATION_FIELD_GUIDE.md",

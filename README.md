@@ -7,8 +7,8 @@ Build a startup on Claude, from the first API call to reading the data moat. One
 with the live steps calling the Claude Developer Platform and the gates staying reproducible offline.
 
 This is a founder workflow kit for Claude builders as runnable code. Each stage is a tool a founder actually
-uses, and the stages run in order: get to first value, build the product, review the tools, launch
-and measure activation, then read the data moat and the next move.
+uses, and the stages run in order: get to first value, build the product, tune the tools, launch and
+measure activation, then read the data moat and the next move.
 
 It is shaped by repeated founder pitch and activation sessions: pressure-test the wedge, build the
 first workflow, measure the second build, and route the next GTM motion.
@@ -32,6 +32,7 @@ make setup                     # install every stage's deps
 cp .env.example .env           # fill ANTHROPIC_API_KEY for live demos
 make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
+make tune-tools                # print the pinned companion harness workflow
 make test                      # every stage's tests
 make check                     # every stage's gates
 make adversarial               # full local trust gate
@@ -57,6 +58,7 @@ make adversarial
 | First hour | `first_hour/` | the platform ladder, one API call up to a managed agent |
 | Idea | `idea/` | score the startup signal, then lint the raise on the Sequoia arc |
 | MVP | `mvp/` | prompt to production, then a security review of the agent tools |
+| Tool tuning | `tool_tuning/` | thin recipe for the companion harness repo that tunes tool contracts |
 | Launch | `launch/` | capture a cohort, measure activation, gate the weekly motion |
 | Scale | `scale/` | score the data moat and the GTM motion to run next |
 | Quality | `quality/` | the de-slop linter every document in this repo passes |
@@ -67,6 +69,10 @@ Each stage keeps its own README, Makefile, tests, and gate. To work on one alone
 The Launch stage also ships the [Founder Activation Field Guide](launch/FOUNDER_ACTIVATION_FIELD_GUIDE.md),
 an operator field guide for turning founders into builders, wired to the launch module's measured
 loop: the workshop formats, the activation motion, the metrics, and the 90-day ramp.
+
+The Tool tuning recipe keeps `claude-agent-harness-optimization` separate and pins the companion
+repo from founder-kit. It is the bridge to `optimize-tools`, `model-matrix`, `grind-harness`, and
+the confirmed-improvements ledger without duplicating the implementation.
 
 ## What ships with it
 

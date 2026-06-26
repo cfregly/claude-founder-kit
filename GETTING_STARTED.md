@@ -23,6 +23,7 @@ This does not prove the kit helped a founder. It means the repo is mechanically 
 | Pressure-test an idea or pitch | `idea/` | `make demo-idea` |
 | Build a Claude app path with evals and cost receipts | `mvp/build/` | `cd mvp/build && python 03_evals.py` |
 | Review MCP tools and agent boundaries | `mvp/harden/` | `cd mvp/harden && make demo` |
+| Tune tool names, descriptions, schemas, and harness behavior | `tool_tuning/` | `make tune-tools` |
 | Measure a launch cohort and gate the weekly motion | `launch/` | `make demo-launch` |
 | Score moat and GTM motion | `scale/` | `make demo-scale` |
 | De-slop docs before shipping | `quality/` | `cd quality && python -m deslop README.md` |
@@ -48,6 +49,7 @@ Look for generated outputs before you trust a claim.
 | --- | --- |
 | `mvp/build/data/last_eval.json` | Which eval tiers ran, passed, or were unavailable for your key |
 | `mvp/build/data/last_run.json` | Cost, latency, tokens, cache reads, and routing result for the cost benchmark |
+| `tool_tuning/receipt_pin.json` | The pinned companion harness commit, ledger, and commands |
 | `cost/data/last_run_receipt.md` | Token and cost details for the cost lever run |
 | `launch/examples/readout.json` | Reference launch cohort readout used by deterministic launch checks |
 
