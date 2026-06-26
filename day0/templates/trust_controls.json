@@ -18,6 +18,24 @@
       "post_public_message"
     ]
   },
+  "logs": {
+    "required_fields": [
+      "log_event_id",
+      "run_id",
+      "case_id",
+      "actor",
+      "intent",
+      "permission",
+      "rollout_decision",
+      "fallback",
+      "source_ids",
+      "monitoring",
+      "trace_present",
+      "log_hash"
+    ],
+    "retention": "keep audit logs long enough to debug incidents, billing, and customer disputes",
+    "redaction": "do not log API keys, raw secrets, or unnecessary customer payloads"
+  },
   "monitoring": {
     "defaults": {
       "eval_pass_rate": 1.0,

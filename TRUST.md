@@ -8,7 +8,7 @@ The repo can tell you whether the code, docs, receipts, and gates agree. It cann
 
 | Gate | Command | What it catches |
 | --- | --- | --- |
-| Day-0 trust gate | `make day0 && cd day0 && make check && make test` | Missing evals, permissions, monitoring, rollback, or stopping conditions before live use |
+| Day-0 trust gate | `make day0 && cd day0 && make check && make test` | Missing evals, permissions, logs, monitoring, rollback, or stopping conditions before live use |
 | Value-bar gate | `python scripts/check_value_bar.py` | Missing value-bar language, overclaimed wording, official-sounding drift |
 | Root doc and test pass | `make check && make test` | Stage doc correctness, score drift, offline tests, compile checks |
 | Companion registry gate | `make check-companions` | Broken companion URLs, missing receipts, bad pins, missing tags |
@@ -31,7 +31,7 @@ Those require a baseline, a skeptical reviewer, and a receipt.
 
 | Stage | Current evidence | Receipt needed before a value claim |
 | --- | --- | --- |
-| Day 0 | Keyless trust receipt with eval, permission, monitoring, rollback, and stop fixtures | A builder compares the controls with their current launch checklist |
+| Day 0 | Keyless trust receipt with eval, permission, log, monitoring, rollback, and stop fixtures | A builder compares the controls with their current launch checklist |
 | First hour | Live API ladder and transcript shape | A new platform user compares it with their baseline onboarding path |
 | Idea | Offline scoring and deck lint gates | A founder or reviewer compares the output with the prior decision or pitch |
 | MVP build | Eval lint, live-entrypoint checks, cost receipts | A builder compares it with their normal prompt-to-production workflow |

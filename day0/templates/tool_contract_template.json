@@ -22,5 +22,5 @@
     "type": "object",
     "fields": ["org_id", "row_count", "events", "source_ids", "caveats"]
   },
-  "trace_fields": ["run_id", "tool_name", "caller_type", "input_hash", "row_count", "output_bytes"]
+  "trace_fields": ["run_id", "log_event_id", "tool_name", "caller_type", "input_hash", "row_count", "output_bytes"]
 }

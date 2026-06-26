@@ -28,6 +28,7 @@ No API key is required. The demo is deterministic so it can run in CI and on a f
 | --- | --- | --- |
 | Evals | `evals/template.jsonl` | Golden cases cover win, honesty, permission, rollback, and stop behavior |
 | Permissions | `templates/trust_controls.json` | Read-only work can run, outward actions ask, destructive actions are denied |
+| Logs | `templates/trust_controls.json` | Each run emits audit fields for actor, intent, permission, decision, fallback, and hash |
 | Monitoring | `templates/trust_controls.json` | Each run reports correctness, latency, fallback, policy, and cost signals |
 | Rollback | `templates/rollout_gate.json` | Canary regressions route back to the direct path |
 | Stopping conditions | `templates/rollout_gate.json` | Wrong answers, policy drift, failure spikes, and cost regressions stop rollout |
@@ -40,10 +41,11 @@ Before a workflow is called production-ready, write these down:
 1. The claim: what workload Claude should improve.
 2. The eval: what fixture or trace would catch a wrong answer.
 3. The permission boundary: what can run, what asks, and what never runs.
-4. The monitoring signals: what gets logged on every task.
-5. The rollout gate: offline, shadow, canary, then default.
-6. The rollback path: where traffic goes when the canary fails.
-7. The stopping conditions: which failures pause or stop rollout.
+4. The logs: what audit fields are saved on every task.
+5. The monitoring signals: what gets aggregated from the logs and traces.
+6. The rollout gate: offline, shadow, canary, then default.
+7. The rollback path: where traffic goes when the canary fails.
+8. The stopping conditions: which failures pause or stop rollout.
 
 ## Where To Go Next
 

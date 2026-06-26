@@ -77,12 +77,38 @@ def rollout_decision(case: dict[str, Any], gate: dict[str, Any], observed: dict[
     return {"stage": stage, "decision": "stop", "failures": failures, "rollback_to": None}
 
 
+def log_entry(
+    case: dict[str, Any],
+    run_id: str,
+    permission: str,
+    rollout: dict[str, Any],
+    observed: dict[str, Any],
+    evidence: dict[str, Any],
+) -> dict[str, Any]:
+    entry = {
+        "log_event_id": "log_" + stable_run_id("log", {"run_id": run_id, "case_id": case["id"]}),
+        "run_id": run_id,
+        "case_id": case["id"],
+        "actor": "day0_harness",
+        "intent": case["input"]["intent"],
+        "permission": permission,
+        "rollout_decision": rollout["decision"],
+        "fallback": "direct_path" if rollout["decision"] == "rollback" else None,
+        "source_ids": evidence["source_ids"],
+        "monitoring": observed,
+        "trace_present": True,
+    }
+    entry["log_hash"] = hashlib.sha256(json.dumps(entry, sort_keys=True).encode("utf-8")).hexdigest()[:12]
+    return entry
+
+
 def answer_for_case(case: dict[str, Any], controls: dict[str, Any], gate: dict[str, Any]) -> dict[str, Any]:
     intent = case["input"]["intent"]
     permission, reason = permission_decision(intent, controls)
     observed = monitor_snapshot(case, controls)
     rollout = rollout_decision(case, gate, observed)
     stop_condition = rollout["decision"] in {"rollback", "stop"} or permission == "deny"
+    run_id = stable_run_id(case["id"], case["input"])
 
     evidence = {
         "source_ids": ["evt_001", "evt_002", "evt_003"],
@@ -95,7 +121,7 @@ def answer_for_case(case: dict[str, Any], controls: dict[str, Any], gate: dict[s
         evidence["caveats"] = [reason]
 
     return {
-        "run_id": stable_run_id(case["id"], case["input"]),
+        "run_id": run_id,
         "case_id": case["id"],
         "claim": case["claim"],
         "permission": permission,
@@ -106,6 +132,7 @@ def answer_for_case(case: dict[str, Any], controls: dict[str, Any], gate: dict[s
         "stopping_condition": stop_condition,
         "fallback": "direct_path" if rollout["decision"] == "rollback" else None,
         "evidence": evidence,
+        "logs": log_entry(case, run_id, permission, rollout, observed, evidence),
     }
 
 
@@ -130,7 +157,7 @@ def run_suite() -> dict[str, Any]:
     return {
         "stage": "day0",
         "status": "pass" if passed == len(results) else "fail",
-        "controls": ["evals", "permissions", "monitoring", "rollback", "stopping_conditions"],
+        "controls": ["evals", "permissions", "logs", "monitoring", "rollback", "stopping_conditions"],
         "evals": {"passed": passed, "total": len(results)},
         "results": results,
         "next_live_steps": [

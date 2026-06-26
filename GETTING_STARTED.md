@@ -50,6 +50,7 @@ Look for generated outputs before you trust a claim.
 | Artifact | What it tells you |
 | --- | --- |
 | `day0/evals/template.jsonl` | Win, honesty, permission, rollback, and stop-condition fixtures |
+| `day0/templates/trust_controls.json` | Permissions, logs, monitoring signals, and redaction rules |
 | `day0/templates/rollout_gate.json` | Offline, shadow, canary, default, rollback, and stopping conditions |
 | `mvp/build/data/last_eval.json` | Which eval tiers ran, passed, or were unavailable for your key |
 | `mvp/build/data/last_run.json` | Cost, latency, tokens, cache reads, and routing result for the cost benchmark |

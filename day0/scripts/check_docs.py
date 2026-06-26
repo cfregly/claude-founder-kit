@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-REQUIRED_TERMS = ["evals", "permissions", "monitoring", "rollback", "stopping conditions"]
+REQUIRED_TERMS = ["evals", "permissions", "logs", "monitoring", "rollback", "stopping conditions"]
 
 
 def load_json(path: Path) -> object:
@@ -43,12 +43,17 @@ def main() -> int:
     for signal in ("eval_pass_rate", "latency_p95_ms", "fallback_rate", "policy_denial_rate"):
         if signal not in controls["monitoring"]["signals"]:
             failures.append(f"monitoring signal missing: {signal}")
+    for field in ("log_event_id", "run_id", "case_id", "intent", "permission", "rollout_decision", "log_hash"):
+        if field not in controls["logs"]["required_fields"]:
+            failures.append(f"log field missing: {field}")
     if gate["stages"] != ["offline", "shadow", "canary", "default"]:
         failures.append("rollout stages must be offline, shadow, canary, default")
     if not gate["stopping_conditions"]:
         failures.append("stopping conditions are empty")
     if tool["name"] != "fetch_activation_events":
         failures.append("unexpected tool template name")
+    if "log_event_id" not in tool["trace_fields"]:
+        failures.append("tool template trace fields must include log_event_id")
     if len(cases) < 5:
         failures.append("eval template needs at least five cases")
     for expected_id in ("win_case", "honesty_case", "permission_ask_case", "rollback_case", "stop_case"):

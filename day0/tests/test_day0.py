@@ -15,8 +15,16 @@ class Day0TrustTests(unittest.TestCase):
         receipt = demo.run_suite()
         self.assertEqual(
             receipt["controls"],
-            ["evals", "permissions", "monitoring", "rollback", "stopping_conditions"],
+            ["evals", "permissions", "logs", "monitoring", "rollback", "stopping_conditions"],
         )
+
+    def test_every_result_has_a_log_entry(self) -> None:
+        receipt = demo.run_suite()
+        for result in receipt["results"]:
+            self.assertEqual(result["logs"]["run_id"], result["run_id"])
+            self.assertEqual(result["logs"]["case_id"], result["case_id"])
+            self.assertTrue(result["logs"]["trace_present"])
+            self.assertIn("log_hash", result["logs"])
 
     def test_destructive_action_fails_closed(self) -> None:
         receipt = demo.run_suite()

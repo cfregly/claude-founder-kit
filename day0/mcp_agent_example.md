@@ -13,5 +13,5 @@ controls to real Claude calls.
 | Agent SDK harness | `launch/activation/harness/agent_sdk.py` |
 | Managed Agents shape | `launch/activation/harness/managed_agent.py` |
 
-Before moving a live path beyond demo traffic, attach the day-0 evals, permissions, monitoring,
-rollback, and stopping conditions to the workflow.
+Before moving a live path beyond demo traffic, attach the day-0 evals, permissions, logs,
+monitoring, rollback, and stopping conditions to the workflow.

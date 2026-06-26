@@ -17,6 +17,7 @@
     "fallback spike",
     "latency regression",
     "all-in cost regression",
-    "missing trace"
+    "missing trace",
+    "missing audit log"
   ]
 }

@@ -37,7 +37,7 @@ demo: demo-day0 demo-first_hour demo-idea demo-mvp demo-tool_tuning demo-launch 
 day0: demo-day0
 
 demo-day0:
-	@echo "== day 0: evals, permissions, monitoring, rollback, stopping conditions =="
+	@echo "== day 0: evals, permissions, logs, monitoring, rollback, stopping conditions =="
 	@cd day0 && $(MAKE) PY="$(PY_RUN)" demo
 
 demo-first_hour:
