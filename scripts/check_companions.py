@@ -121,6 +121,8 @@ def main() -> int:
             fail(f"{entry_id}: ledger_url must include commit", failures)
         if entry["ledger"] not in entry["ledger_url"]:
             fail(f"{entry_id}: ledger_url must include ledger path", failures)
+        if entry["ledger"] != "docs/confirmed-improvements.md":
+            fail(f"{entry_id}: ledger must be docs/confirmed-improvements.md", failures)
         if not (ROOT / entry["receipt"]).is_file():
             fail(f"{entry_id}: receipt does not exist: {entry['receipt']}", failures)
         commands = entry["commands"]
