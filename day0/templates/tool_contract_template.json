@@ -1,0 +1,26 @@
+{
+  "name": "fetch_activation_events",
+  "description": "Return activation events for one organization. Read-only. Use this for internal measurement and eval fixtures. Do not use it to send messages, grant credits, delete data, or mutate customer records.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "org_id": {
+        "type": "string",
+        "description": "Stable organization id to read activation events for."
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100,
+        "description": "Maximum event rows returned."
+      }
+    },
+    "required": ["org_id"],
+    "additionalProperties": false
+  },
+  "returns": {
+    "type": "object",
+    "fields": ["org_id", "row_count", "events", "source_ids", "caveats"]
+  },
+  "trace_fields": ["run_id", "tool_name", "caller_type", "input_hash", "row_count", "output_bytes"]
+}

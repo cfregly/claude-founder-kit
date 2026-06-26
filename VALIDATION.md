@@ -9,6 +9,7 @@ The code, docs, and gates are internally tested. That is not the same as being a
 - Offline `make check` passes.
 - Offline `make test` passes.
 - Offline `make adversarial` passes.
+- Day-0 trust controls run keylessly for evals, permissions, monitoring, rollback, and stopping conditions.
 - Dependency resolution passes with pinned direct dependencies.
 - Live paths are documented as live and key-required.
 - Live entrypoints fail cleanly without a key.

@@ -18,6 +18,8 @@ REQUIRED = [
     "VALUE_BAR.md",
     "VALIDATION.md",
     "companions/README.md",
+    "day0/README.md",
+    "day0/CLAUDE.md",
     "first_hour/README.md",
     "first_hour/CLAUDE.md",
     "idea/README.md",

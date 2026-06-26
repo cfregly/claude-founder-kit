@@ -32,6 +32,7 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 make setup                     # install every stage's deps
 cp .env.example .env           # fill ANTHROPIC_API_KEY for live demos
+make day0                      # run the keyless trust receipt
 make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
 make tune-tools                # print the pinned companion harness workflow
@@ -60,6 +61,7 @@ make adversarial
 
 | Stage | Dir | What it does |
 | --- | --- | --- |
+| Day 0 | `day0/` | evals, permissions, monitoring, rollback, and stopping conditions before live users |
 | First hour | `first_hour/` | the platform ladder, one API call up to a managed agent |
 | Idea | `idea/` | score the startup signal, then lint the raise on the Sequoia arc |
 | MVP | `mvp/` | prompt to production, then a security review of the agent tools |
@@ -91,6 +93,7 @@ installs in one step.
 ## Trust Docs
 
 - [GETTING_STARTED.md](GETTING_STARTED.md): how to run one path, inspect receipts, and avoid the common traps.
+- [day0/](day0/): the keyless trust path for evals, permissions, monitoring, rollback, and stopping conditions.
 - [TRUST.md](TRUST.md): what the gates check, what they do not check, and the receipt template for real value evidence.
 - [VALIDATION.md](VALIDATION.md): current evidence and missing evidence.
 - [receipts/](receipts/): internal and external evidence files, labeled by strength.

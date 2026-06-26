@@ -1,7 +1,7 @@
 # claude-founder-kit: build a startup on Claude, idea to scale.
 # The top-level demo is live. Checks and tests stay deterministic and keyless.
 
-MODULES := first_hour idea mvp tool_tuning launch scale quality cost
+MODULES := day0 first_hour idea mvp tool_tuning launch scale quality cost
 PY ?= python
 ifneq ($(findstring /,$(PY)),)
 PY_RUN := $(abspath $(PY))
@@ -9,14 +9,15 @@ else
 PY_RUN := $(PY)
 endif
 
-.PHONY: help setup demo test check adversarial tune-tools companions companion check-companions \
-        demo-first_hour demo-idea demo-mvp demo-tool_tuning demo-launch demo-scale demo-quality demo-cost
+.PHONY: help setup demo test check adversarial tune-tools companions companion check-companions day0 \
+        demo-day0 demo-first_hour demo-idea demo-mvp demo-tool_tuning demo-launch demo-scale demo-quality demo-cost
 
 help:
 	@echo "claude-founder-kit"
 	@echo "  make setup           install every stage's deps"
 	@echo "  make demo            run the live walkthrough (needs ANTHROPIC_API_KEY)"
-	@echo "  make demo-<stage>    one stage: first_hour idea mvp tool_tuning launch scale quality cost"
+	@echo "  make day0            run the keyless day-0 trust receipt"
+	@echo "  make demo-<stage>    one stage: day0 first_hour idea mvp tool_tuning launch scale quality cost"
 	@echo "  make tune-tools      print the pinned companion harness workflow"
 	@echo "  make companions      list pinned companion repos"
 	@echo "  make companion ID=x  print one pinned companion workflow"
@@ -29,9 +30,15 @@ setup:
 	$(PY) -m pip install -r requirements.txt
 	$(PY) -m pip install -e quality
 
-demo: demo-first_hour demo-idea demo-mvp demo-tool_tuning demo-launch demo-scale demo-quality demo-cost
+demo: demo-day0 demo-first_hour demo-idea demo-mvp demo-tool_tuning demo-launch demo-scale demo-quality demo-cost
 	@echo ""
 	@echo "founder-kit: live walkthrough completed."
+
+day0: demo-day0
+
+demo-day0:
+	@echo "== day 0: evals, permissions, monitoring, rollback, stopping conditions =="
+	@cd day0 && $(MAKE) PY="$(PY_RUN)" demo
 
 demo-first_hour:
 	@echo "== first hour: one call up to a managed agent =="

@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "always": [
+      "summarize_activation",
+      "summarize_missing_metric",
+      "fetch_internal_events",
+      "score_eval_fixture"
+    ],
+    "ask": [
+      "send_activation_email",
+      "create_sales_task",
+      "open_support_ticket"
+    ],
+    "never": [
+      "delete_customer_data",
+      "charge_customer",
+      "grant_credits",
+      "post_public_message"
+    ]
+  },
+  "monitoring": {
+    "defaults": {
+      "eval_pass_rate": 1.0,
+      "latency_p95_ms": 1200,
+      "fallback_rate": 0.0,
+      "policy_denial_rate": 0.0,
+      "cost_per_successful_task_usd": 0.03
+    },
+    "signals": [
+      "eval_pass_rate",
+      "latency_p95_ms",
+      "fallback_rate",
+      "policy_denial_rate",
+      "cost_per_successful_task_usd",
+      "tool_error_rate",
+      "trace_missing_rate"
+    ]
+  }
+}

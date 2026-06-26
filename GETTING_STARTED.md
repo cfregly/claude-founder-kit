@@ -19,6 +19,7 @@ This does not prove the kit helped a founder. It means the repo is mechanically 
 
 | If you need to | Start here | Command |
 | --- | --- | --- |
+| Add day-0 trust controls before live users | `day0/` | `make day0` |
 | See the platform path from first call to agent | `first_hour/` | `make demo-first_hour` |
 | Pressure-test an idea or pitch | `idea/` | `make demo-idea` |
 | Build a Claude app path with evals and cost receipts | `mvp/build/` | `cd mvp/build && python 03_evals.py` |
@@ -48,6 +49,8 @@ Look for generated outputs before you trust a claim.
 
 | Artifact | What it tells you |
 | --- | --- |
+| `day0/evals/template.jsonl` | Win, honesty, permission, rollback, and stop-condition fixtures |
+| `day0/templates/rollout_gate.json` | Offline, shadow, canary, default, rollback, and stopping conditions |
 | `mvp/build/data/last_eval.json` | Which eval tiers ran, passed, or were unavailable for your key |
 | `mvp/build/data/last_run.json` | Cost, latency, tokens, cache reads, and routing result for the cost benchmark |
 | `companions/registry.json` | The pinned companion repo commits, ledgers, receipts, and commands |

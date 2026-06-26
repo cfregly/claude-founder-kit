@@ -1,0 +1,22 @@
+{
+  "stages": ["offline", "shadow", "canary", "default"],
+  "rollback_to": "direct_path",
+  "thresholds": {
+    "min_eval_pass_rate": 0.98,
+    "max_latency_p95_ms": 2500,
+    "max_fallback_rate": 0.05,
+    "max_policy_denial_rate": 0.08,
+    "max_cost_per_successful_task_usd": 0.1
+  },
+  "stopping_conditions": [
+    "wrong answer",
+    "row count mismatch",
+    "schema violation",
+    "permission boundary drift",
+    "policy denial spike",
+    "fallback spike",
+    "latency regression",
+    "all-in cost regression",
+    "missing trace"
+  ]
+}
