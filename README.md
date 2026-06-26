@@ -19,9 +19,11 @@ Nothing in this repo is called valuable until it is adversarially-confirmed to a
 
 Start with [GETTING_STARTED.md](GETTING_STARTED.md) to choose a path. Read [TRUST.md](TRUST.md) before making a value claim.
 
-For the smaller wins-only Claude feature brief library, see
-[`claude-feature-hits`](https://github.com/cfregly/claude-feature-hits). This repo is the broader
-founder-journey kit. The feature brief repo is the narrower public artifact.
+Start here, then branch only when you need a deeper proof. This repo is the broader founder-journey
+kit. [`claude-feature-hits`](https://github.com/cfregly/claude-feature-hits) holds the promoted
+Claude feature proofs. [`claude-agent-harness-optimization`](https://github.com/cfregly/claude-agent-harness-optimization)
+holds the tool-contract tuning workbench. The companion registry pins both so those moving repos stay
+reproducible.
 
 ## Run it
 
@@ -34,6 +36,7 @@ make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
 make tune-tools                # print the pinned companion harness workflow
 make companions                # list pinned companion repos
+make companion ID=feature-hits # print the pinned feature-proof workflow
 make check-companions          # verify companion URLs and pins
 make test                      # every stage's tests
 make check                     # every stage's gates
@@ -77,7 +80,8 @@ repo from founder-kit. It is the bridge to `optimize-tools`, `model-matrix`, `gr
 the confirmed-improvements ledger without duplicating the implementation.
 
 The [Companion Registry](companions/README.md) is the index for deeper repos that founder-kit points
-to without vendoring. It currently pins tool tuning, grounding, and Managed Agents companions.
+to without vendoring. It currently pins promoted feature proofs, tool tuning, grounding, and Managed
+Agents companions.
 
 ## What ships with it
 

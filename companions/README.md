@@ -16,6 +16,7 @@ until a skeptical builder compares the companion with a baseline and leaves a re
 
 | ID | Stage | Status | Repo | Pin |
 | --- | --- | --- | --- | --- |
+| `feature-hits` | `cost` | candidate | [`claude-feature-hits`](https://github.com/cfregly/claude-feature-hits) | `founder-kit-feature-hits-2026-06-26` |
 | `tool-tuning` | `tool_tuning` | candidate | [`claude-agent-harness-optimization`](https://github.com/cfregly/claude-agent-harness-optimization) | `founder-kit-tool-tuning-2026-06-26` |
 | `grounding` | `mvp` | candidate | [`claude-grounding`](https://github.com/cfregly/claude-grounding) | `founder-kit-grounding-ledger-2026-06-26` |
 | `managed-agents` | `mvp` | candidate | [`claude-managed-agents`](https://github.com/cfregly/claude-managed-agents) | `founder-kit-managed-agents-ledger-2026-06-26` |
@@ -24,6 +25,7 @@ until a skeptical builder compares the companion with a baseline and leaves a re
 
 ```bash
 make companions
+make companion ID=feature-hits
 make companion ID=grounding
 make check-companions
 make check-companions CLONE=1

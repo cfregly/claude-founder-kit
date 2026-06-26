@@ -2,6 +2,36 @@
   "schema_version": 1,
   "companions": [
     {
+      "id": "feature-hits",
+      "name": "Promoted Claude feature proofs",
+      "stage": "cost",
+      "status": "candidate",
+      "repo": "https://github.com/cfregly/claude-feature-hits",
+      "commit": "842034c4dcd72cf6fe065eb7e9f57eaac2ed4f5a",
+      "tag": "founder-kit-feature-hits-2026-06-26",
+      "ledger": "docs/confirmed-improvements.md",
+      "ledger_url": "https://github.com/cfregly/claude-feature-hits/blob/842034c4dcd72cf6fe065eb7e9f57eaac2ed4f5a/docs/confirmed-improvements.md",
+      "receipt": "receipts/feature-hits-companion-pin-2026-06-26/receipt.md",
+      "checked_on": "2026-06-26",
+      "commands": [
+        "git clone https://github.com/cfregly/claude-feature-hits.git",
+        "cd claude-feature-hits",
+        "git checkout founder-kit-feature-hits-2026-06-26",
+        "python3.11 -m venv .venv",
+        "source .venv/bin/activate",
+        "pip install -r requirements.txt",
+        "make ci",
+        "ANTHROPIC_API_KEY=... make check"
+      ],
+      "pin_bump_requires": [
+        "old pin",
+        "new pin",
+        "what changed",
+        "commands run",
+        "why founder-kit should move"
+      ]
+    },
+    {
       "id": "tool-tuning",
       "name": "Tune your tools",
       "stage": "tool_tuning",
