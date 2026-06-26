@@ -47,6 +47,18 @@ Before a workflow is called production-ready, write these down:
 7. The rollback path: where traffic goes when the canary fails.
 8. The stopping conditions: which failures pause or stop rollout.
 
+## Founder Access Ladder
+
+| Step | Founder question | Artifact |
+| --- | --- | --- |
+| Build | What workload and narrow tool are we testing? | tool contract plus fixture |
+| Test | What eval catches a wrong answer or unsafe action? | win, honesty, permission, rollback, and stop cases |
+| Control | What gets logged, denied, monitored, and rolled back? | `trust_controls.json` and `rollout_gate.json` |
+| Access | What evidence earns the next level? | offline, shadow, canary, then default gate |
+
+Avoid broad tools, raw customer payloads in logs, default rollout without fallback, and access that
+advances without a passing eval, trace, log, owner, and stop condition.
+
 ## Where To Go Next
 
 - First API call: `make demo-first_hour`

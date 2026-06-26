@@ -4,6 +4,10 @@ Thin founder-kit recipe for the moment when a Claude app has real tools and the 
 
 This recipe does not copy the harness implementation. It points to the companion repo that owns tool-contract tuning, MCP selection evals, model matrices, and harness grinding.
 
+Use it after you can name the workload. Build the narrow tool contract, test it with a held-out
+tool-selection eval, avoid broad or side-effectful tools without policy, and only then widen access
+from offline to shadow, canary, and default.
+
 ## Value Bar
 
 The recipe is a candidate until it is adversarially-confirmed to add value for a real tool workflow. The pin and gates prove the reference is reproducible. They do not prove a founder saved time, reduced mistakes, or improved reliability until a skeptical builder compares it with a baseline and leaves a receipt.

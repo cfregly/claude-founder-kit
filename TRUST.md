@@ -4,6 +4,10 @@ Current status: mechanically checked, not externally confirmed.
 
 The repo can tell you whether the code, docs, receipts, and gates agree. It cannot tell you that a founder, builder, or operator got value until a skeptical user tests it against a baseline. That is the bar: adversarially-confirmed to add value.
 
+The trust path is workload first. A founder should be able to point to the workload, the eval, the
+logs, the controls, the fallback, and the stop trigger before asking for more access. Offline earns
+shadow, shadow earns canary, and canary earns default only when the evidence still holds.
+
 ## What the Gates Check
 
 | Gate | Command | What it catches |

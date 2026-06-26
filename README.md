@@ -10,6 +10,10 @@ This is a founder workflow kit for Claude builders as runnable code. Each stage 
 uses, and the stages run in order: get to first value, build the product, tune the tools, launch and
 measure activation, then read the data moat and the next move.
 
+The operating loop is the same at every stage: show the workload, define the eval, add logs and
+controls, then earn the next access level. A workflow should not move from offline to shadow, canary,
+or default until the evidence and stop conditions are visible.
+
 It is shaped by repeated founder pitch and activation sessions: pressure-test the wedge, build the
 first workflow, measure the second build, and route the next GTM motion.
 
@@ -61,7 +65,7 @@ make adversarial
 
 | Stage | Dir | What it does |
 | --- | --- | --- |
-| Day 0 | `day0/` | evals, permissions, logs, monitoring, rollback, and stopping conditions before live users |
+| Day 0 | `day0/` | workload, eval, logs, controls, rollback, and stopping conditions before live users |
 | First hour | `first_hour/` | the platform ladder, one API call up to a managed agent |
 | Idea | `idea/` | score the startup signal, then lint the raise on the Sequoia arc |
 | MVP | `mvp/` | prompt to production, then a security review of the agent tools |

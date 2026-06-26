@@ -17,6 +17,10 @@ This does not prove the kit helped a founder. It means the repo is mechanically 
 
 ## 2. Pick the Job
 
+If a workflow touches customer data or takes action, start with the day-0 ladder: show the workload,
+define the eval, add logs and controls, then earn the next access level. Offline comes before
+shadow, shadow before canary, and canary before default.
+
 | If you need to | Start here | Command |
 | --- | --- | --- |
 | Add day-0 trust controls before live users | `day0/` | `make day0` |
