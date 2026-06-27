@@ -5,7 +5,7 @@ PY ?= python
 
 help:
 	@printf 'day0: trust controls before the first live user\n\n'
-	@printf '  make demo   Run the deterministic trust receipt\n'
+	@printf '  make demo   Run the deterministic trust gate\n'
 	@printf '  make check  Validate docs, templates, and control coverage\n'
 	@printf '  make test   Run the trust harness tests\n'
 

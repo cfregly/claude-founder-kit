@@ -16,7 +16,7 @@ help:
 	@echo "claude-founder-kit"
 	@echo "  make setup           install every stage's deps"
 	@echo "  make demo            run the live walkthrough (needs ANTHROPIC_API_KEY)"
-	@echo "  make day0            run the keyless day-0 trust receipt"
+	@echo "  make day0            run the keyless day-0 trust gate"
 	@echo "  make demo-<stage>    one stage: day0 first_hour idea mvp tool_tuning launch scale quality cost"
 	@echo "  make tune-tools      print the pinned companion harness workflow"
 	@echo "  make companions      list pinned companion repos"

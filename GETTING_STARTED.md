@@ -26,7 +26,7 @@ shadow, shadow before canary, and canary before default.
 | Add day-0 trust controls before live users | `day0/` | `make day0` |
 | See the platform path from first call to agent | `first_hour/` | `make demo-first_hour` |
 | Pressure-test an idea or pitch | `idea/` | `make demo-idea` |
-| Build a Claude app path with evals and cost receipts | `mvp/build/` | `cd mvp/build && python 03_evals.py` |
+| Build a Claude app path with evals and cost outputs | `mvp/build/` | `cd mvp/build && python 03_evals.py` |
 | Run promoted Claude feature proofs | companion `feature-hits` | `make companion ID=feature-hits` |
 | Debug prompt-cache misses | companion `prompt-cache` | `make companion ID=prompt-cache` |
 | Review MCP tools and agent boundaries | `mvp/harden/` | `cd mvp/harden && make demo` |
@@ -48,7 +48,7 @@ make demo-mvp
 
 Use one stage first. The full `make demo` walks the whole kit, which is useful for a tour but noisy when you are trying to understand one job.
 
-## 4. Inspect the Receipts
+## 4. Inspect the Evidence
 
 Look for generated outputs before you trust a claim.
 
@@ -65,15 +65,15 @@ Look for generated outputs before you trust a claim.
 | `cost/data/last_run_receipt.md` | Token and cost details for the cost lever run |
 | `launch/examples/readout.json` | Reference launch cohort readout used by deterministic launch checks |
 
-Generated receipts are mechanical evidence. They are useful, but they are not the same as user value.
+Generated evidence files are mechanical evidence. They are useful, but they are not the same as user value.
 
 ## 5. Apply the Value Bar
 
-Nothing here is called valuable until it is adversarially-confirmed to add value. To test a stage for real value, run it against a baseline workflow, let a skeptical user reject it, record the objection, and save the receipt. Use [TRUST.md](TRUST.md) for the template.
+Nothing here is called valuable until it is adversarially-confirmed to add value. To test a stage for real value, run it against a baseline workflow, let a skeptical user reject it, record the objection, and save the evidence. Use [TRUST.md](TRUST.md) for the template.
 
 ## 6. Common Failure Modes
 
 - Missing key: live scripts exit with an explicit `ANTHROPIC_API_KEY` error.
 - Model access: gated models may show as unavailable. That is an access gap, not a pass.
-- Cost claims: rerun the benchmark and quote your own receipt.
-- Value claims: if there is no baseline and skeptical receipt, call the output candidate or mechanically checked.
+- Cost claims: rerun the benchmark and quote your own measured output.
+- Value claims: if there is no baseline and skeptical evidence, call the output candidate or mechanically checked.

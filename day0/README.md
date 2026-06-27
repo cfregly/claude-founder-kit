@@ -8,8 +8,8 @@ data or takes actions.
 
 This stage is a candidate until it is adversarially-confirmed to add value for a real builder taking
 a Claude workflow toward production. A passing demo proves the controls run. It does not prove a
-startup shipped more safely until a skeptical reviewer compares it with the prior workflow and leaves
-a receipt.
+startup shipped more safely until a skeptical reviewer compares it with the prior workflow and saves
+the evidence.
 
 ## Run It
 
@@ -62,7 +62,7 @@ advances without a passing eval, trace, log, owner, and stop condition.
 ## Where To Go Next
 
 - First API call: `make demo-first_hour`
-- Build with evals and cost receipts: `cd mvp/build && python 03_evals.py`
+- Build with evals and cost outputs: `cd mvp/build && python 03_evals.py`
 - Review tool and agent boundaries: `cd mvp/harden && make demo`
 - Run promoted feature proofs: `make companion ID=feature-hits`
 - Tune tool contracts: `make tune-tools`

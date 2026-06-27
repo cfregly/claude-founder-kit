@@ -2,7 +2,7 @@
 
 Current status: mechanically checked, not externally confirmed.
 
-The repo can tell you whether the code, docs, receipts, and gates agree. It cannot tell you that a founder, builder, or operator got value until a skeptical user tests it against a baseline. That is the bar: adversarially-confirmed to add value.
+The repo can tell you whether the code, docs, evidence files, and gates agree. It cannot tell you that a founder, builder, or operator got value until a skeptical user tests it against a baseline. That is the bar: adversarially-confirmed to add value.
 
 The trust path is workload first. A founder should be able to point to the workload, the eval, the
 logs, the controls, the fallback, and the stop trigger before asking for more access. Offline earns
@@ -29,22 +29,22 @@ shadow, shadow earns canary, and canary earns default only when the evidence sti
 - They do not prove the cost pattern helps your workload.
 - They do not prove a security reviewer found the same risks as the local rules.
 
-Those require a baseline, a skeptical reviewer, and a receipt.
+Those require a baseline, a skeptical reviewer, and saved evidence.
 
 ## Stage Trust Map
 
-| Stage | Current evidence | Receipt needed before a value claim |
+| Stage | Current evidence | Evidence needed before a value claim |
 | --- | --- | --- |
-| Day 0 | Keyless trust receipt with eval, permission, log, monitoring, rollback, and stop fixtures | A builder compares the controls with their current launch checklist |
+| Day 0 | Keyless trust gate with eval, permission, log, monitoring, rollback, and stop fixtures | A builder compares the controls with their current launch checklist |
 | First hour | Live API ladder and transcript shape | A new platform user compares it with their baseline onboarding path |
 | Idea | Offline scoring and deck lint gates | A founder or reviewer compares the output with the prior decision or pitch |
-| MVP build | Eval lint, live-entrypoint checks, cost receipts | A builder compares it with their normal prompt-to-production workflow |
+| MVP build | Eval lint, live-entrypoint checks, cost outputs | A builder compares it with their normal prompt-to-production workflow |
 | MVP harden | Tool and harness rule tests | A security or agent reviewer compares findings with a baseline review |
 | Tool tuning | Pinned companion repo commit and local recipe gate | A builder compares tuned tool contracts with their current tool failures |
 | Launch | Deterministic reference cohort and gated report | An operator compares it with their weekly activation review |
 | Scale | Offline moat scoring tests | A growth lead compares it with their account-planning workflow |
 | Quality | De-slop rules and examples | A reviewer compares before and after on a real artifact |
-| Cost | Usage-object receipts | A builder compares the lever against a baseline bill or token trace |
+| Cost | Usage-object outputs | A builder compares the lever against a baseline bill or token trace |
 
 ## Current Internal Evidence
 

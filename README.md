@@ -19,7 +19,7 @@ first workflow, measure the second build, and route the next GTM motion.
 
 ## Value Bar
 
-Nothing in this repo is called valuable until it is adversarially-confirmed to add value. Passing tests and gates means the work is mechanically vetted. Value needs skeptical review against a baseline, with a receipt. See [VALUE_BAR.md](VALUE_BAR.md) and [VALIDATION.md](VALIDATION.md).
+Nothing in this repo is called valuable until it is adversarially-confirmed to add value. Passing tests and gates means the work is mechanically vetted. Value needs skeptical review against a baseline, with saved evidence. See [VALUE_BAR.md](VALUE_BAR.md) and [VALIDATION.md](VALIDATION.md).
 
 Start with [GETTING_STARTED.md](GETTING_STARTED.md) to choose a path. Read [TRUST.md](TRUST.md) before making a value claim.
 
@@ -37,7 +37,7 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 make setup                     # install every stage's deps
 cp .env.example .env           # fill ANTHROPIC_API_KEY for live demos
-make day0                      # run the keyless trust receipt
+make day0                      # run the keyless trust gate
 make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
 make tune-tools                # print the pinned companion harness workflow
@@ -98,9 +98,9 @@ installs in one step.
 
 ## Trust Docs
 
-- [GETTING_STARTED.md](GETTING_STARTED.md): how to run one path, inspect receipts, and avoid the common traps.
+- [GETTING_STARTED.md](GETTING_STARTED.md): how to run one path, inspect measured outputs, and avoid the common traps.
 - [day0/](day0/): the keyless trust path for evals, permissions, logs, monitoring, rollback, and stopping conditions.
-- [TRUST.md](TRUST.md): what the gates check, what they do not check, and the receipt template for real value evidence.
+- [TRUST.md](TRUST.md): what the gates check, what they do not check, and the template for real value evidence.
 - [VALIDATION.md](VALIDATION.md): current evidence and missing evidence.
 - [receipts/](receipts/): internal and external evidence files, labeled by strength.
 
