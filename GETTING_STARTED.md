@@ -61,7 +61,7 @@ Look for generated outputs before you trust a claim.
 | `mvp/build/data/last_run.json` | Cost, latency, tokens, cache reads, and routing result for the cost benchmark |
 | `companions/registry.json` | The pinned companion repo commits, ledgers, receipts, and commands |
 | `receipts/feature-hits-rigor-companion-pin-2026-06-27/receipt.md` | The pinned feature-hits commit and commands |
-| `receipts/prompt-cache-companion-pin-2026-06-27/receipt.md` | The pinned prompt-cache commit and commands |
+| `receipts/prompt-cache-rigor-companion-pin-2026-06-27/receipt.md` | The pinned prompt-cache commit and commands |
 | `cost/data/last_run_receipt.md` | Token and cost details for the cost lever run |
 | `launch/examples/readout.json` | Reference launch cohort readout used by deterministic launch checks |
 

@@ -23,7 +23,7 @@ until a skeptical builder compares the companion with a baseline and leaves a re
 | `tool-tuning` | `tool_tuning` | candidate | [`claude-agent-harness-optimization`](https://github.com/cfregly/claude-agent-harness-optimization) | `founder-kit-tool-tuning-2026-06-26` |
 | `grounding` | `mvp` | candidate | [`claude-grounding`](https://github.com/cfregly/claude-grounding) | `founder-kit-grounding-ledger-2026-06-26` |
 | `managed-agents` | `mvp` | candidate | [`claude-managed-agents`](https://github.com/cfregly/claude-managed-agents) | `founder-kit-managed-agents-rigor-2026-06-27` |
-| `prompt-cache` | `cost` | candidate | [`claude-prompt-cache`](https://github.com/cfregly/claude-prompt-cache) | `founder-kit-prompt-cache-2026-06-27` |
+| `prompt-cache` | `cost` | candidate | [`claude-prompt-cache`](https://github.com/cfregly/claude-prompt-cache) | `founder-kit-prompt-cache-rigor-2026-06-27` |
 
 ## Commands
 
