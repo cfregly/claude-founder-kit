@@ -28,6 +28,7 @@ shadow, shadow before canary, and canary before default.
 | Pressure-test an idea or pitch | `idea/` | `make demo-idea` |
 | Build a Claude app path with evals and cost receipts | `mvp/build/` | `cd mvp/build && python 03_evals.py` |
 | Run promoted Claude feature proofs | companion `feature-hits` | `make companion ID=feature-hits` |
+| Debug prompt-cache misses | companion `prompt-cache` | `make companion ID=prompt-cache` |
 | Review MCP tools and agent boundaries | `mvp/harden/` | `cd mvp/harden && make demo` |
 | Tune tool names, descriptions, schemas, and harness behavior | `tool_tuning/` | `make tune-tools` |
 | Measure a launch cohort and gate the weekly motion | `launch/` | `make demo-launch` |
@@ -59,7 +60,8 @@ Look for generated outputs before you trust a claim.
 | `mvp/build/data/last_eval.json` | Which eval tiers ran, passed, or were unavailable for your key |
 | `mvp/build/data/last_run.json` | Cost, latency, tokens, cache reads, and routing result for the cost benchmark |
 | `companions/registry.json` | The pinned companion repo commits, ledgers, receipts, and commands |
-| `receipts/feature-hits-companion-pin-2026-06-26/receipt.md` | The pinned feature-hits commit and commands |
+| `receipts/feature-hits-rigor-companion-pin-2026-06-27/receipt.md` | The pinned feature-hits commit and commands |
+| `receipts/prompt-cache-companion-pin-2026-06-27/receipt.md` | The pinned prompt-cache commit and commands |
 | `cost/data/last_run_receipt.md` | Token and cost details for the cost lever run |
 | `launch/examples/readout.json` | Reference launch cohort readout used by deterministic launch checks |
 

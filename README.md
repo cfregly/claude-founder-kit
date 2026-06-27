@@ -26,7 +26,8 @@ Start with [GETTING_STARTED.md](GETTING_STARTED.md) to choose a path. Read [TRUS
 Start here, then branch only when you need a deeper proof. This repo is the broader founder-journey
 kit. [`claude-feature-hits`](https://github.com/cfregly/claude-feature-hits) holds the promoted
 Claude feature proofs. [`claude-agent-harness-optimization`](https://github.com/cfregly/claude-agent-harness-optimization)
-holds the tool-contract tuning workbench. The companion registry pins both so those moving repos stay
+holds the tool-contract tuning workbench. [`claude-prompt-cache`](https://github.com/cfregly/claude-prompt-cache)
+holds the cache-miss diagnostic utility. The companion registry pins the moving repos so recipes stay
 reproducible.
 
 ## Run it
@@ -42,6 +43,7 @@ make demo-mvp                  # run one stage on its own
 make tune-tools                # print the pinned companion harness workflow
 make companions                # list pinned companion repos
 make companion ID=feature-hits # print the pinned feature-proof workflow
+make companion ID=prompt-cache # print the pinned cache-diagnostic workflow
 make check-companions          # verify companion URLs and pins
 make test                      # every stage's tests
 make check                     # every stage's gates
@@ -87,7 +89,7 @@ the confirmed-improvements ledger without duplicating the implementation.
 
 The [Companion Registry](companions/README.md) is the index for deeper repos that founder-kit points
 to without vendoring. It currently pins promoted feature proofs, tool tuning, grounding, and Managed
-Agents companions.
+Agents, and prompt-cache diagnostics companions.
 
 ## What ships with it
 
