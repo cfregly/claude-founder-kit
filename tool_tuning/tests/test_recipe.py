@@ -28,6 +28,9 @@ class ToolTuningRecipeTest(unittest.TestCase):
         self.assertIn("optimize-tools", rendered)
         self.assertIn("model-matrix", rendered)
         self.assertIn("grind-harness", rendered)
+        self.assertIn("tool_tuning_before_bundle.json", rendered)
+        self.assertIn("agent_audit_bundle.json", rendered)
+        self.assertIn("name, use_when, avoid_when", rendered)
         self.assertIn(entry["commit"], rendered)
         self.assertIn(entry["tag"], rendered)
 

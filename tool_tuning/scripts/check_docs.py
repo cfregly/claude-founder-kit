@@ -15,8 +15,10 @@ DOCS = [ROOT / "README.md", ROOT / "CLAUDE.md"]
 PHRASE = "adversarially-confirmed to add value"
 REQUIRED_TOKENS = [
     "claude-agent-harness-optimization",
-    "efdc801b6e8e4d9cf1e1c32899c8d95325f79304",
+    "200397d848367dcffab9607ca93254de6b187c33",
     "docs/confirmed-improvements.md",
+    "tool_tuning_before_bundle.json",
+    "agent_audit_bundle.json",
     "optimize-tools",
     "model-matrix",
     "grind-harness",

@@ -6,9 +6,11 @@ Guidance for working on the `tool_tuning/` recipe.
 
 `tool_tuning/` is a thin founder-kit recipe called "Tune your tools." It points builders to the companion `claude-agent-harness-optimization` repo for tool-contract tuning, MCP selection evals, model matrices, and harness grinding.
 
-The companion repo is pinned at commit `efdc801b6e8e4d9cf1e1c32899c8d95325f79304`. The pinned receipt is `docs/confirmed-improvements.md` at that commit.
+The companion repo is pinned at commit `200397d848367dcffab9607ca93254de6b187c33`. The pinned receipt is `docs/confirmed-improvements.md` at that commit.
 
-The founder-facing commands are `optimize-tools`, `model-matrix`, and `grind-harness`.
+The founder-facing commands are `optimize-tools`, `model-matrix`, and `grind-harness`. The pinned
+before and after optimizer examples are `tool_tuning_before_bundle.json` and
+`agent_audit_bundle.json`.
 
 ## Value Bar
 

@@ -63,6 +63,10 @@ def render(entry: dict) -> str:
     lines = [
         f"# {entry['name']}",
         "",
+        "Tune one tool means pick one callable and tighten its name, use_when, avoid_when,",
+        "input_schema, output contract, context controls, error guidance, examples, negative",
+        "guidance, and held-out cases.",
+        "",
         "This founder-kit recipe does not copy harness code.",
         "It points to the pinned companion workbench for tool contract tuning.",
         "",
@@ -79,7 +83,8 @@ def render(entry: dict) -> str:
     lines.extend(
         [
             "",
-            "Use optimize-tools for a first contract pass.",
+            "First watch the weak bundle fail. Then run the passing bundle.",
+            "Use optimize-tools for the first contract pass.",
             "Use model-matrix when tool choice depends on model or harness.",
             "Use grind-harness only after you have live eval cases and held-out checks.",
         ]
