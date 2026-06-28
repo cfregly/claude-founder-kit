@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-24 13:28:48",
+  "generated": "2026-06-28 13:08:34",
   "arms": [
     {
       "name": "naive (Sonnet, no cache)",
@@ -8,9 +8,9 @@
       "input_tokens": 67792,
       "cache_creation_input_tokens": 0,
       "cache_read_input_tokens": 0,
-      "output_tokens": 1047,
-      "p50_latency_s": 2.11,
-      "cost_usd": 0.2191
+      "output_tokens": 1043,
+      "p50_latency_s": 2.44,
+      "cost_usd": 0.219
     },
     {
       "name": "cached (Sonnet + prompt caching)",
@@ -19,9 +19,9 @@
       "input_tokens": 232,
       "cache_creation_input_tokens": 5630,
       "cache_read_input_tokens": 61930,
-      "output_tokens": 1035,
-      "p50_latency_s": 2.18,
-      "cost_usd": 0.0559
+      "output_tokens": 1070,
+      "p50_latency_s": 2.37,
+      "cost_usd": 0.0564
     },
     {
       "name": "routed + cached (Haiku easy / Sonnet hard)",
@@ -30,9 +30,9 @@
       "input_tokens": 232,
       "cache_creation_input_tokens": 5629,
       "cache_read_input_tokens": 61923,
-      "output_tokens": 1151,
-      "p50_latency_s": 1.71,
-      "cost_usd": 0.0314
+      "output_tokens": 1191,
+      "p50_latency_s": 1.64,
+      "cost_usd": 0.0322
     }
   ]
 }

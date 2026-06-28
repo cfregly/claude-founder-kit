@@ -1,6 +1,8 @@
 # Receipts
 
-Receipts are evidence files. They do not all carry the same weight.
+Receipts are evidence files. They do not all carry the same weight. This index is the public entry
+point. Individual receipt bodies may preserve local reproduction commands, local paths, or exact
+operator notes so the evidence stays auditable.
 
 ## Receipt Labels
 

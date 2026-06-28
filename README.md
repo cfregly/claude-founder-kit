@@ -3,23 +3,19 @@
 [![ci](https://github.com/cfregly/claude-founder-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/cfregly/claude-founder-kit/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Build a startup on Claude, from the first API call to reading the data moat. One repo, one command,
-with the live steps calling the Claude Developer Platform and the gates staying reproducible offline.
+Build on Claude from first API call to launch, activation, and scale. This repo is a runnable
+founder workflow kit: each stage has code, tests, gates, and a clear evidence boundary.
 
-This is a founder workflow kit for Claude builders as runnable code. Each stage is a tool a founder actually
-uses, and the stages run in order: get to first value, build the product, tune the tools, launch and
-measure activation, then read the data moat and the next move.
-
-The operating loop is the same at every stage: show the workload, define the eval, add logs and
-controls, then earn the next access level. A workflow should not move from offline to shadow, canary,
-or default until the evidence and stop conditions are visible.
-
-It is shaped by repeated founder pitch and activation sessions: pressure-test the wedge, build the
-first workflow, measure the second build, and route the next GTM motion.
+Use it when you want a concrete path through Claude builder work: get to first value, build the
+product path, tune tools, launch to a cohort, measure activation, and read the next move. The loop
+is the same at every stage: name the workload, define the eval, add logs and controls, then earn the
+next access level.
 
 ## Value Bar
 
-Nothing in this repo is called valuable until it is adversarially-confirmed to add value. Passing tests and gates means the work is mechanically vetted. Value needs skeptical review against a baseline, with saved evidence. See [VALUE_BAR.md](VALUE_BAR.md) and [VALIDATION.md](VALIDATION.md).
+Nothing in this repo is called valuable until it is adversarially-confirmed to add value. Passing
+tests and gates means the work is mechanically vetted. Value needs skeptical review against a
+baseline, with saved evidence. See [VALUE_BAR.md](VALUE_BAR.md) and [VALIDATION.md](VALIDATION.md).
 
 Start with [GETTING_STARTED.md](GETTING_STARTED.md) to choose a path. Read [TRUST.md](TRUST.md) before making a value claim.
 
@@ -102,7 +98,8 @@ installs in one step.
 - [day0/](day0/): the keyless trust path for evals, permissions, logs, monitoring, rollback, and stopping conditions.
 - [TRUST.md](TRUST.md): what the gates check, what they do not check, and the template for real value evidence.
 - [VALIDATION.md](VALIDATION.md): current evidence and missing evidence.
-- [receipts/](receipts/): internal and external evidence files, labeled by strength.
+- [receipts/README.md](receipts/README.md): evidence index and strength labels. Some receipt bodies
+  preserve local reproduction commands, so treat the index as the public entrypoint.
 
 ## License
 
