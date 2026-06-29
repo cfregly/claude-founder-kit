@@ -22,25 +22,29 @@ import re
 ROOT = pathlib.Path(__file__).resolve().parents[2]  # the launch/ module root
 EXAMPLES = ROOT / "outreach-examples"
 
-# The signal words per brief. ptc = cost at scale (an agent that fans out over data it then crunches).
-# citations = accuracy to ship (answers over the user's own documents that must be verifiable). These
+# The signal words per brief. programmatic_tool_calling = cost at scale for an agent that fans out over data it then crunches.
+# citations = accuracy to ship for answers over the user's own documents that must be verifiable. These
 # mirror the segmentation note in outreach-examples/README.md.
 SIGNALS = {
-    "ptc": ["ops", "observability", "monitor", "log", "trace", "usage",
-            "meter", "billing", "account", "cohort", "analytic", "incident", "pipeline", "ingest",
-            "scrape", "crawl", "rollup", "roll-up", "telemetry", "dashboard"],
+    "programmatic_tool_calling": ["ops", "observability", "monitor", "log", "trace", "usage",
+                                  "meter", "billing", "account", "cohort", "analytic", "incident", "pipeline", "ingest",
+                                  "scrape", "crawl", "rollup", "roll-up", "telemetry", "dashboard"],
     "citations": ["document", "contract", "record", "filing", "claim", "policy", "policies",
                   "complian", "regulat", "legal", "law", "health", "clinical", "medical", "patient",
                   "fintech", "finance", "insurance", "kyc", "diligence", "knowledge base", "citation",
                   "source", "ground"],
     # agent = a long-running or stateful code agent: the sandbox keeps files and state across turns.
     # The words are specific (sandbox, isolated workspace, test code) so the generic word agent, which
-    # nearly every AI startup uses, does not over-fire here or on ptc (it was dropped from ptc above).
+    # nearly every AI startup uses, does not over-fire here or on programmatic tool calling.
     "agent": ["sandbox", "isolated", "workspace", "container", "test code", "before production",
               "before deployment", "coding agent", "digital twin", "stateful", "long-running",
               "long running", "multi-step", "notebook", "data agent", "code interpreter"],
 }
-BRIEF_EMAIL = {"ptc": "ptc-email.md", "citations": "citations-email.md", "agent": "agent-email.md"}
+BRIEF_EMAIL = {
+    "programmatic_tool_calling": "programmatic_tool_calling-email.md",
+    "citations": "citations-email.md",
+    "agent": "agent-email.md",
+}
 
 
 def _hits(text: str, words: list) -> int:
@@ -52,7 +56,7 @@ def _hits(text: str, words: list) -> int:
 
 def classify(one_liner: str) -> tuple[str, dict]:
     """Score a one-line description against each brief's signal words. Returns (brief, scores), where
-    brief is 'ptc', 'citations', 'agent', or 'unrouted' when there is no signal or the top two tie."""
+    brief is 'programmatic_tool_calling', 'citations', 'agent', or 'unrouted' when there is no signal or the top two tie."""
     text = (one_liner or "").lower()
     scores = {brief: _hits(text, words) for brief, words in SIGNALS.items()}
     top = max(scores, key=scores.get)
@@ -87,7 +91,7 @@ def _fill(template: str, row: dict) -> str:
 # same brief, but the opener names what the company actually builds. The phrases are noun phrases so they
 # drop into "Quick tip for ...". The first matching use case wins, else the segment default.
 USE_CASES = {
-    "ptc": [
+    "programmatic_tool_calling": [
         (("usage", "billing", "meter", "plan-limit", "plan limit"), "an agent that rolls up usage across accounts"),
         (("log", "trace", "incident", "observability", "monitor"), "an agent that triages logs and traces across services"),
         (("analytic", "dashboard", "report", "bi "), "an agent that aggregates rows to answer a question"),
@@ -109,9 +113,11 @@ USE_CASES = {
         (("data", "csv", "analytic", "notebook", "model"), "a data agent that builds up state across turns"),
     ],
 }
-_USE_CASE_DEFAULT = {"ptc": "an agent that calls a tool many times",
-                     "citations": "a product that answers over your users' own documents",
-                     "agent": "a multi-step agent that keeps its sandbox state across turns"}
+_USE_CASE_DEFAULT = {
+    "programmatic_tool_calling": "an agent that calls a tool many times",
+    "citations": "a product that answers over your users' own documents",
+    "agent": "a multi-step agent that keeps its sandbox state across turns",
+}
 
 
 def use_case(one_liner: str, brief: str) -> str:
@@ -134,8 +140,8 @@ def _personalize(draft: str, phrase: str) -> str:
 # The body anchors in the two templates. The --refine pass replaces these with company-specific phrases
 # so the whole email matches the workload, not just the opener. They are exact substrings of the
 # committed templates; a test asserts they still exist so the substitution never silently no-ops.
-PTC_WORKLOAD_ANCHOR = "your app calls your own tool to answer a question and that tool returns a lot of results"
-PTC_TOOL_ANCHOR = "query_region_sales"
+PROGRAMMATIC_TOOL_CALLING_WORKLOAD_ANCHOR = "your app calls your own tool to answer a question and that tool returns a lot of results"
+PROGRAMMATIC_TOOL_CALLING_TOOL_ANCHOR = "query_region_sales"
 CITATIONS_DOC_ANCHOR = "a contract, a policy, or a support doc"
 
 
@@ -148,12 +154,12 @@ def _apply_body(text: str, brief: str, body: str, tool_name: str = "") -> str:
     """Substitute the company-specific body phrases into a draft at the known anchors. Pure: the model
     supplies only the short phrases, so the numbers, the code structure, and the links cannot drift."""
     body = _sanitize(body)
-    if brief == "ptc":
+    if brief == "programmatic_tool_calling":
         if body:
-            text = text.replace(PTC_WORKLOAD_ANCHOR, body)
+            text = text.replace(PROGRAMMATIC_TOOL_CALLING_WORKLOAD_ANCHOR, body)
         tool = _sanitize(tool_name).replace(" ", "_")
         if tool:
-            text = text.replace(PTC_TOOL_ANCHOR, tool)
+            text = text.replace(PROGRAMMATIC_TOOL_CALLING_TOOL_ANCHOR, tool)
     elif brief == "citations" and body:
         text = text.replace(CITATIONS_DOC_ANCHOR, body)
     return text
@@ -194,7 +200,7 @@ def route(batch_path, *, outbox=None) -> dict:
 def _summary(routed: list, outbox: pathlib.Path) -> dict:
     return {
         "total": len(routed),
-        "ptc": sum(1 for r in routed if r["brief"] == "ptc"),
+        "programmatic_tool_calling": sum(1 for r in routed if r["brief"] == "programmatic_tool_calling"),
         "citations": sum(1 for r in routed if r["brief"] == "citations"),
         "agent": sum(1 for r in routed if r["brief"] == "agent"),
         "unrouted": sum(1 for r in routed if r["brief"] == "unrouted"),
@@ -217,7 +223,7 @@ ROUTE_TOOL = {
                     "type": "object",
                     "properties": {
                         "company": {"type": "string"},
-                        "brief": {"type": "string", "enum": ["ptc", "citations", "agent", "neither"]},
+                        "brief": {"type": "string", "enum": ["programmatic_tool_calling", "citations", "agent", "neither"]},
                         "why": {"type": "string"},
                     },
                     "required": ["company", "brief", "why"],
@@ -230,7 +236,7 @@ ROUTE_TOOL = {
 
 _SYSTEM = (
     "You route a startup to one of three Claude feature briefs by its bottleneck, or to neither. "
-    "ptc (programmatic tool calling) is for builders whose bottleneck is cost at scale: an agent that "
+    "programmatic tool calling is for builders whose bottleneck is cost at scale: an agent that "
     "calls a tool many times over data it then crunches, so the bill grows with the data. citations is "
     "for builders whose bottleneck is accuracy to ship: a product that answers over the user's own "
     "documents where a wrong source is a non-starter. agent (code execution state) is for builders whose "
@@ -270,7 +276,7 @@ _DEEPEN_SYSTEM = (
     "founder. Always say 'your', never 'its' or 'their'. Plain language, no em-dashes, no semicolons, no "
     "buzzwords. The opener and the body must NOT restate the same phrase: the opener names the job, the "
     "body names the data, so the reader never hears the same words twice in two lines.\n"
-    "ptc (cost at scale): `opener` is a noun phrase after 'Quick tip for ' naming the agent's job in one "
+    "programmatic tool calling (cost at scale): `opener` is a noun phrase after 'Quick tip for ' naming the agent's job in one "
     "action, for example 'an on-call agent that finds the root cause of an incident'. `body` names the "
     "data its tool returns and completes 'If <body>, every result it pulls back lands in the model "
     "context', singular and starting with 'your', and it must not repeat the opener's verb, for example "
@@ -330,10 +336,10 @@ def _classify_unrouted(summary: dict, *, c, model: str, outbox: pathlib.Path) ->
 
 
 def _deepen_bodies(summary: dict, *, c, model: str, outbox: pathlib.Path) -> dict:
-    """Rewrite every routed draft's body to the company's workload: the example sentence and, for ptc,
+    """Rewrite every routed draft's body to the company's workload: the example sentence and, for programmatic tool calling,
     the code tool name. Claude returns only the short phrases; the substitution is deterministic, so the
     numbers and links never move. This closes the gap between a personalized opener and a generic body."""
-    routed = [r for r in summary["routed"] if r["brief"] in ("ptc", "citations")]
+    routed = [r for r in summary["routed"] if r["brief"] in ("programmatic_tool_calling", "citations")]
     if not routed:
         return summary
     listing = "\n".join(f"- {r['company']} [{r['brief']}]: {r['one_liner']}" for r in routed)

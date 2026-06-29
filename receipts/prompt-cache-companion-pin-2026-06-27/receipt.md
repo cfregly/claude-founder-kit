@@ -31,6 +31,6 @@ git push origin founder-kit-prompt-cache-2026-06-27
 
 ## Why Founder-Kit Should Move
 
-Prompt-cache diagnostics are a day-zero cost and reliability control. The utility shows the typed
+Prompt-cache diagnostics are a pilot-check cost and reliability control. The utility shows the typed
 Claude cache-miss reason when the beta returns it, keeps an app-side request diff baseline visible,
 and avoids presenting the diagnostic as a competitive feature hit.

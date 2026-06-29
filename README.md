@@ -8,8 +8,8 @@ founder workflow kit: each stage has code, tests, gates, and a clear evidence bo
 
 Use it when you want a concrete path through Claude builder work: get to first value, build the
 product path, tune tools, launch to a cohort, measure activation, and read the next move. The loop
-is the same at every stage: name the workload, define the eval, add logs and controls, then earn the
-next access level.
+is the same at every stage: name the workflow, write the proof case, keep the receipt, then earn
+the next access level.
 
 ## Value Bar
 
@@ -33,7 +33,7 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 make setup                     # install every stage's deps
 cp .env.example .env           # fill ANTHROPIC_API_KEY for live demos
-make day0                      # run the keyless trust gate
+make pilot-check               # run the keyless pilot check
 make demo                      # run the live walkthrough across stages
 make demo-mvp                  # run one stage on its own
 make tune-tools                # print the pinned companion harness workflow
@@ -43,7 +43,7 @@ make companion ID=prompt-cache # print the pinned cache-diagnostic workflow
 make check-companions          # verify companion URLs and pins
 make test                      # every stage's tests
 make check                     # every stage's gates
-make adversarial               # full local trust gate
+make adversarial               # full local value-bar gate
 ```
 
 `make demo` is the live walkthrough and needs `ANTHROPIC_API_KEY` from `.env` or the shell. `make check` and `make test` are deterministic
@@ -63,7 +63,7 @@ make adversarial
 
 | Stage | Dir | What it does |
 | --- | --- | --- |
-| Day 0 | `day0/` | workload, eval, logs, controls, rollback, and stopping conditions before live users |
+| Pilot check | `pilot_check/` | workflow, proof case, receipt, approval queue, fallback, and kill switch before pilot customers |
 | First hour | `first_hour/` | the platform ladder, one API call up to a managed agent |
 | Idea | `idea/` | score the startup signal, then lint the raise on the Sequoia arc |
 | MVP | `mvp/` | prompt to production, then a security review of the agent tools |
@@ -95,7 +95,7 @@ installs in one step.
 ## Trust Docs
 
 - [GETTING_STARTED.md](GETTING_STARTED.md): how to run one path, inspect measured outputs, and avoid the common traps.
-- [day0/](day0/): the keyless trust path for evals, permissions, logs, monitoring, rollback, and stopping conditions.
+- [pilot_check/](pilot_check/): the keyless pilot-check path for proof cases, receipts, approval queue, fallback, and kill switch.
 - [TRUST.md](TRUST.md): what the gates check, what they do not check, and the template for real value evidence.
 - [VALIDATION.md](VALIDATION.md): current evidence and missing evidence.
 - [receipts/README.md](receipts/README.md): evidence index and strength labels. Some receipt bodies

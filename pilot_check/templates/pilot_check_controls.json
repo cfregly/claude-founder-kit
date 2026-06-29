@@ -1,14 +1,13 @@
 {
   "permissions": {
     "always": [
-      "summarize_activation",
-      "summarize_missing_metric",
-      "fetch_internal_events",
-      "score_eval_fixture"
+      "rank_customer_risk",
+      "read_customer_evidence",
+      "score_programmatic_tool_calling_receipt"
     ],
     "ask": [
-      "send_activation_email",
       "create_sales_task",
+      "send_customer_update",
       "open_support_ticket"
     ],
     "never": [
@@ -26,15 +25,17 @@
       "actor",
       "intent",
       "permission",
+      "pilot_check",
+      "access_level",
       "rollout_decision",
       "fallback",
-      "source_ids",
+      "receipt_source",
       "monitoring",
       "trace_present",
       "log_hash"
     ],
-    "retention": "keep audit logs long enough to debug incidents, billing, and customer disputes",
-    "redaction": "do not log API keys, raw secrets, or unnecessary customer payloads"
+    "retention": "keep audit logs long enough to debug pilot decisions, billing, and customer disputes",
+    "redaction": "log handles and decisions, not API keys, raw secrets, or unnecessary customer payloads"
   },
   "monitoring": {
     "defaults": {
@@ -42,7 +43,7 @@
       "latency_p95_ms": 1200,
       "fallback_rate": 0.0,
       "policy_denial_rate": 0.0,
-      "cost_per_successful_task_usd": 0.03
+      "cost_per_successful_task_usd": 0.08
     },
     "signals": [
       "eval_pass_rate",
@@ -51,7 +52,8 @@
       "policy_denial_rate",
       "cost_per_successful_task_usd",
       "tool_error_rate",
-      "trace_missing_rate"
+      "trace_missing_rate",
+      "receipt_missing_rate"
     ]
   }
 }

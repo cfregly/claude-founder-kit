@@ -1,0 +1,83 @@
+{
+  "access_level": "pilot_candidate",
+  "accounts": {
+    "expected": [
+      "acct_1842",
+      "acct_2199",
+      "acct_7731"
+    ],
+    "mode_a": [
+      "acct_1842",
+      "acct_2199",
+      "acct_7731"
+    ],
+    "mode_b": [
+      "acct_1842",
+      "acct_2199",
+      "acct_7731"
+    ]
+  },
+  "basis": "ptc_cost_receipt",
+  "answers": {
+    "mode_a": [
+      "acct_1842",
+      "acct_2199",
+      "acct_7731"
+    ],
+    "mode_b": [
+      "acct_1842",
+      "acct_2199",
+      "acct_7731"
+    ]
+  },
+  "claim": {
+    "input_reduction_pct": 68.5,
+    "mode_a_billed_input_tokens": 54993,
+    "mode_b_billed_input_tokens": 17341,
+    "same_answer": true,
+    "saved_token_api_usd": null
+  },
+  "expected_answer": [
+    "acct_1842",
+    "acct_2199",
+    "acct_7731"
+  ],
+  "cost_scope": {
+    "code_execution_runtime_floor_usd": 0.0042,
+    "code_execution_runtime_is_separate": true,
+    "token_api_cost_usd": 0.08
+  },
+  "fallback": "direct_path",
+  "model": {
+    "id": "claude-sonnet-4-6",
+    "key": "sonnet",
+    "label": "Claude Sonnet 4.6"
+  },
+  "receipt_source": "programmatic_tool_calling/sample.txt",
+  "schema_version": "ptc-cost-receipt-v1",
+  "trace_gate": {
+    "caller_path": "code_execution_20260120",
+    "caller_path_drift": false,
+    "container_count": 1,
+    "correctness": true,
+    "fallback_reason": null,
+    "final_bytes": 3498,
+    "passed": true,
+    "problems": [],
+    "raw_tool_bytes": 148305,
+    "server_tool_blocks": 3
+  },
+  "workload": "customer_evidence_programmatic_tool_calling",
+  "workflow": {
+    "answer_kind": "ordered_account_ids",
+    "example_inputs": [
+      "support_tickets",
+      "product_logs",
+      "usage_metering",
+      "crm_notes",
+      "compliance_docs"
+    ],
+    "name": "customer_evidence_programmatic_tool_calling",
+    "tool_name": "query_customer_evidence"
+  }
+}

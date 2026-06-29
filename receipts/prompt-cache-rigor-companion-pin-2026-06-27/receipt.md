@@ -35,6 +35,6 @@ git push origin founder-kit-prompt-cache-rigor-2026-06-27
 - New pin: `5d5d3f1c61143ed482dbd7f0c84c71b1bb79f753`
 - What changed: prompt-cache README and agent instructions now say the utility is not adversarially-confirmed to add value without an external builder receipt.
 - Commands run: `make ci`, `ANTHROPIC_API_KEY=... make check`, `make companion ID=prompt-cache`, `make check-companions`, and `make check-companions CLONE=1`.
-- Why founder-kit should move: founder-kit should point at companion repos that preserve the day-zero trust language and do not overstate utility receipts as value proof.
+- Why founder-kit should move: founder-kit should point at companion repos that preserve the pilot-check trust language and do not overstate utility receipts as value proof.
 
 This receipt records a reproducible companion pin. It is not an external value receipt.

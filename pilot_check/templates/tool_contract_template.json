@@ -1,0 +1,35 @@
+{
+  "name": "your_narrow_product_tool",
+  "description": "Return the minimum product evidence needed for one fan-out workflow. Read-only. Use this for proof cases and pilot checks before live customer action. Do not use it to send messages, grant credits, delete data, mutate customer records, or expose broad database access.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "source": {
+        "type": "string",
+        "description": "One bounded evidence source or shard for the product workflow."
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 500,
+        "description": "Maximum raw evidence rows returned to the reducer."
+      }
+    },
+    "required": ["source"],
+    "additionalProperties": false
+  },
+  "returns": {
+    "type": "object",
+    "fields": ["answer", "source_ids", "caveats", "row_count", "fallback"]
+  },
+  "trace_fields": [
+    "run_id",
+    "log_event_id",
+    "tool_name",
+    "caller_type",
+    "input_hash",
+    "row_count",
+    "output_bytes",
+    "fallback_reason"
+  ]
+}

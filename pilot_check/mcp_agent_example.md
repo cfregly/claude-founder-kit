@@ -1,6 +1,6 @@
 # MCP And Agent Pointer
 
-The day-0 stage stays keyless. Use these existing live paths when you are ready to connect the trust
+The pilot-check stage stays keyless. Use these existing live paths when you are ready to connect the trust
 controls to real Claude calls.
 
 | Job | Existing path |
@@ -13,5 +13,5 @@ controls to real Claude calls.
 | Agent SDK harness | `launch/activation/harness/agent_sdk.py` |
 | Managed Agents shape | `launch/activation/harness/managed_agent.py` |
 
-Before moving a live path beyond demo traffic, attach the day-0 evals, permissions, logs,
+Before moving a live path beyond demo traffic, attach the pilot-check evals, permissions, logs,
 monitoring, rollback, and stopping conditions to the workflow.

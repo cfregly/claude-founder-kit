@@ -36,11 +36,11 @@ CHARTS = [
   ("Relationship", "partner_arch_review", "Partner portfolio to arch review", 60, 55, "%", True, "good", "VC/accelerator partner activation"),
 
   ("Activation", "signups", "Signups (wk)", 12, 9, "", True, "good", "the funnel mouth"),
-  ("Activation", "first_call_rate", "Signup to first API call", 83, 78, "%", True, "good", "day-zero experience, the first lever"),
+  ("Activation", "first_call_rate", "Signup to first API call", 83, 78, "%", True, "good", "first-session experience, the first lever"),
   ("Activation", "first_build_rate", "First call to first build", 80, 72, "%", True, "good", "the build that proves intent"),
   ("Activation", "activation_rate", "Activation rate", 67, 61, "%", True, "good", "reached the activation bar"),
   ("Activation", "ttfv_days", "Time-to-first-value (median)", 2.0, 2.6, "d", False, "good", "the aha clock, shorter is better"),
-  ("Activation", "day01_dropoff", "Day-0/Day-1 drop-off", 17, 22, "%", False, "good", "the first friction point to watch"),
+  ("Activation", "first_session_day1_dropoff", "First-session to day-1 drop-off", 17, 22, "%", False, "good", "the first friction point to watch"),
   ("Activation", "activation_by_pod", "Activation, best vs worst pod", "Code 78% / API 50%", "Code 74% / API 47%", "", True, "watch", "which audience pod is leaking"),
 
   ("Retention", "ttsb_days", "Time-to-second-build (median)", 8, 9, "d", False, "good", "the leading indicator of retention"),

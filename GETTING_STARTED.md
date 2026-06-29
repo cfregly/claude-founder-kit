@@ -17,13 +17,13 @@ This does not prove the kit helped a founder. It means the repo is mechanically 
 
 ## 2. Pick the Job
 
-If a workflow touches customer data or takes action, start with the day-0 ladder: show the workload,
-define the eval, add logs and controls, then earn the next access level. Offline comes before
-shadow, shadow before canary, and canary before default.
+If a workflow touches customer data or takes action, start with the pilot-check ladder: show the workload,
+write the proof case, keep the receipt, define the approval queue, then earn the next access level.
+Offline comes before shadow, shadow before pilot, and pilot before default.
 
 | If you need to | Start here | Command |
 | --- | --- | --- |
-| Add day-0 trust controls before live users | `day0/` | `make day0` |
+| Add pilot-check controls before pilot customers | `pilot_check/` | `make pilot-check` |
 | See the platform path from first call to agent | `first_hour/` | `make demo-first_hour` |
 | Pressure-test an idea or pitch | `idea/` | `make demo-idea` |
 | Build a Claude app path with evals and cost outputs | `mvp/build/` | `cd mvp/build && python 03_evals.py` |
@@ -54,9 +54,9 @@ Look for generated outputs before you trust a claim.
 
 | Artifact | What it tells you |
 | --- | --- |
-| `day0/evals/template.jsonl` | Win, honesty, permission, rollback, and stop-condition fixtures |
-| `day0/templates/trust_controls.json` | Permissions, logs, monitoring signals, and redaction rules |
-| `day0/templates/rollout_gate.json` | Offline, shadow, canary, default, rollback, and stopping conditions |
+| `pilot_check/evals/template.jsonl` | Proof cases for same answer, lower cost, approval, fallback, and kill switch |
+| `pilot_check/templates/pilot_check_controls.json` | Approval queue, receipt fields, pilot health signals, and redaction rules |
+| `pilot_check/templates/access_levels.json` | Offline, shadow, pilot, default, fallback, and kill-switch conditions |
 | `mvp/build/data/last_eval.json` | Which eval tiers ran, passed, or were unavailable for your key |
 | `mvp/build/data/last_run.json` | Cost, latency, tokens, cache reads, and routing result for the cost benchmark |
 | `companions/registry.json` | The pinned companion repo commits, ledgers, receipts, and commands |

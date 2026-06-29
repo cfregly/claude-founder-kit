@@ -8,7 +8,7 @@ If your app calls your own tool to answer a question and that tool returns a lot
 result it pulls back lands in the model's context, and you pay for all of them, even the ones that turn
 out irrelevant.
 
-[Programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) (PTC) fixes that. Claude runs your tool inside a code
+[Programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) fixes that. Claude runs your tool inside a code
 sandbox, keeps only the results that matter, and passes just those to the model. The rest never reach
 the context, so you are not billed for them.
 
@@ -30,8 +30,8 @@ Same task and model (Sonnet 4.6), with and without it:
 
 | | input tokens billed | why |
 |---|---:|---|
-| without PTC | 9,451 | every result lands in the model's context |
-| with PTC | 6,828 | only the relevant results reach the model |
+| without programmatic tool calling | 9,451 | every result lands in the model's context |
+| with programmatic tool calling | 6,828 | only the relevant results reach the model |
 
 28% fewer billed input tokens on this demo, and the saving grows with the size of the fan-out.
 

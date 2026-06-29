@@ -6,7 +6,7 @@ before and after number from the matching brief, and links the one-command run. 
 sent mail. The `{first_name}` and `{your_name}` placeholders and the neutral sign-off are meant to be
 filled in.
 
-- [ptc-email.md](ptc-email.md): programmatic tool calling, for cost and speed in agents that call a tool a lot.
+- [programmatic_tool_calling-email.md](programmatic_tool_calling-email.md): programmatic tool calling, for cost and speed in agents that call a tool a lot.
 - [citations-email.md](citations-email.md): Citations, for accuracy in a product that answers over user docs.
 - [agent-email.md](agent-email.md): code execution state, for reliability in a multi-step agent that keeps its sandbox state across turns.
 

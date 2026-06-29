@@ -8,8 +8,8 @@ with no translation layer, and why a number cannot drift between stages.
 
 from __future__ import annotations
 
-# The Relationship -> Activation -> Retention loop, in order. Day 0 is the
-# touchpoint. A stage a founder never reached is simply absent.
+# The Relationship -> Activation -> Retention loop, in order. The touchpoint is
+# the first observed stage. A stage a founder never reached is simply absent.
 STAGES = [
     "touchpoint", "signup", "first_call", "first_build",
     "second_build", "weekly_active", "production", "handoff",

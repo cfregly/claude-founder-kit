@@ -4,15 +4,15 @@ Current status: mechanically checked, not externally confirmed.
 
 The repo can tell you whether the code, docs, evidence files, and gates agree. It cannot tell you that a founder, builder, or operator got value until a skeptical user tests it against a baseline. That is the bar: adversarially-confirmed to add value.
 
-The trust path is workload first. A founder should be able to point to the workload, the eval, the
-logs, the controls, the fallback, and the stop trigger before asking for more access. Offline earns
-shadow, shadow earns canary, and canary earns default only when the evidence still holds.
+The trust path is workflow first. A founder should be able to point to the workflow, proof case,
+receipt, approval queue, fallback, and kill switch before asking for more access. Offline earns
+shadow, shadow earns pilot, and pilot earns default only when the evidence still holds.
 
 ## What the Gates Check
 
 | Gate | Command | What it catches |
 | --- | --- | --- |
-| Day-0 trust gate | `make day0 && cd day0 && make check && make test` | Missing evals, permissions, logs, monitoring, rollback, or stopping conditions before live use |
+| Pilot-check gate | `make pilot-check && cd pilot_check && make check && make test` | Missing proof case, receipt, approval queue, fallback, or kill switch before pilot use |
 | Value-bar gate | `python scripts/check_value_bar.py` | Missing value-bar language, overclaimed wording, official-sounding drift |
 | Root doc and test pass | `make check && make test` | Stage doc correctness, score drift, offline tests, compile checks |
 | Companion registry gate | `make check-companions` | Broken companion URLs, missing receipts, bad pins, missing tags |
@@ -35,7 +35,7 @@ Those require a baseline, a skeptical reviewer, and saved evidence.
 
 | Stage | Current evidence | Evidence needed before a value claim |
 | --- | --- | --- |
-| Day 0 | Keyless trust gate with eval, permission, log, monitoring, rollback, and stop fixtures | A builder compares the controls with their current launch checklist |
+| Pilot check | Keyless pilot check with proof case, receipt, approval queue, fallback, and kill-switch fixtures | A builder compares the controls with their current launch checklist |
 | First hour | Live API ladder and transcript shape | A new platform user compares it with their baseline onboarding path |
 | Idea | Offline scoring and deck lint gates | A founder or reviewer compares the output with the prior decision or pitch |
 | MVP build | Eval lint, live-entrypoint checks, cost outputs | A builder compares it with their normal prompt-to-production workflow |

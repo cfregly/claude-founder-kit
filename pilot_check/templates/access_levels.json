@@ -1,5 +1,5 @@
 {
-  "stages": ["offline", "shadow", "canary", "default"],
+  "stages": ["offline", "shadow", "pilot", "default"],
   "rollback_to": "direct_path",
   "thresholds": {
     "min_eval_pass_rate": 0.98,
@@ -10,14 +10,18 @@
   },
   "stopping_conditions": [
     "wrong answer",
-    "row count mismatch",
+    "mode B does not beat mode A billed input",
+    "trace gate fails",
+    "caller-path drift",
+    "missing code-execution container",
+    "fallback reason present",
     "schema violation",
     "permission boundary drift",
     "policy denial spike",
     "fallback spike",
     "latency regression",
     "all-in cost regression",
-    "missing trace",
+    "missing receipt",
     "missing audit log"
   ]
 }
