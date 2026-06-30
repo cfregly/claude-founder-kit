@@ -21,7 +21,7 @@ Follow-up: update this receipt when the feature-hits pin changes
 ## Commands Run
 
 ```bash
-cd /Users/admin/dev/anthropic/takehome-experiments/claude-feature-hits
+cd /Users/admin/dev/anthropic/claude-feature-hits
 make ci
 make check
 git tag founder-kit-feature-hits-2026-06-26

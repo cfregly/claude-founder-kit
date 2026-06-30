@@ -28,7 +28,7 @@ No API key is required for the default sample. To check a founder's own workflow
 receipt from the programmatic tool calling comparison:
 
 ```bash
-cd ../takehome-experiments/claude-feature-hits
+cd ../claude-feature-hits
 make programmatic_tool_calling RECEIPT_OUT=/tmp/programmatic_tool_calling_receipt.json
 cd ../../claude-founder-kit
 make pilot-check RECEIPT=/tmp/programmatic_tool_calling_receipt.json
