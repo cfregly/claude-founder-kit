@@ -1,7 +1,7 @@
-# AGENTS.md
+# PROTOCOL.md
 
 Operating protocol for a customer-support triage agent. This is the kind of
-file `python -m contract_doctor --protocol examples/AGENTS.md` grades.
+file `python -m contract_doctor --protocol examples/PROTOCOL.md` grades.
 
 ## Always do
 - Read the customer's full ticket and the linked order before replying.

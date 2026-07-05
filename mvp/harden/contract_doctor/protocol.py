@@ -1,10 +1,10 @@
-"""Lint an agent operating protocol (AGENTS.md / SKILL.md style).
+"""Lint an agent operating protocol document.
 
 The tool linter scores the agent's *tools*; this scores the agent's *rules of
-engagement*. The motion, from the AGENTS.md convention and the agent-developer
-community: declare boundaries grouped into always-do / ask-first / never-do,
-plus a failure plan and a success metric. An agent with no stated boundaries
-acts on a guess, which is how autonomy turns into incidents.
+engagement*. A useful protocol declares boundaries grouped into always-do,
+ask-first, and never-do buckets, plus a failure plan and a success metric. An
+agent with no stated boundaries acts on a guess, which is how autonomy turns
+into incidents.
 
 A protocol starts at 100; each missing element is a finding. Same severity
 weights as the tool linter: error -15, warn -8, info -3.

@@ -166,11 +166,10 @@ C ≥65, D ≥50, F below.
 ## Lint the agent protocol, not just the tools
 
 Tools are half the contract. The agent's rules of engagement are the other
-half. Lint a protocol doc (AGENTS.md or a SKILL.md) for the boundaries an agent
-needs, grouped the way the AGENTS.md convention does:
+half. Lint a protocol doc for the boundaries an agent needs:
 
 ```bash
-python -m contract_doctor --protocol examples/AGENTS.md
+python -m contract_doctor --protocol examples/PROTOCOL.md
 ```
 
 It checks for always-do, ask-first, and never-do boundaries, a failure plan,

@@ -34,8 +34,7 @@ def main(argv=None) -> int:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("source", nargs="?", help="tools JSON file or FastMCP server .py")
-    parser.add_argument("--protocol", help="lint an agent protocol doc (AGENTS.md / "
-                        "SKILL.md style) for always / ask-first / never boundaries and "
+    parser.add_argument("--protocol", help="lint an agent protocol doc for always / ask-first / never boundaries and "
                         "a failure plan, instead of tools")
     parser.add_argument("--json", action="store_true", dest="as_json")
     parser.add_argument("--min-score", type=int, default=70)

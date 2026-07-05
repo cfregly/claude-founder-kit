@@ -64,9 +64,9 @@ honest, never moving because Claude ran. Pass `--no-judge` for a
 deterministic-only run.
 
 ### 5. Write the agent protocol
-For the agent itself, declare boundaries the way the AGENTS.md convention does:
-group instructions into always-do, ask-first, and never-do, and add a failure
-plan and a success metric. An agent with no stated boundaries acts on a guess.
+For the agent itself, declare boundaries in a protocol document: group
+instructions into always-do, ask-first, and never-do, and add a failure plan and
+a success metric. An agent with no stated boundaries acts on a guess.
 
 ### 6. Grade the harness
 Describe the architecture as a manifest (subagents and their return contracts,

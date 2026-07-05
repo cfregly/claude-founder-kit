@@ -7,7 +7,7 @@ Guidance for Claude Code, or any agent, working in this repo. Read it, then run 
 The mvp/harden module of claude-founder-kit turns vague MCP tools into contract-grade agent interfaces. It reads the
 wire format an MCP server publishes (the `tools/list` response) and scores each tool against 16
 rules, including an OWASP and STRIDE security lens and a tool-discovery check. It also grades an
-agent protocol (AGENTS.md), a harness manifest, and a SKILL.md. A vague example server scores
+agent protocol, a harness manifest, and a SKILL.md. A vague example server scores
 14/100. The contract-grade rewrite scores 100/100.
 
 The idea this enforces: the model is the caller of your API and it cannot
