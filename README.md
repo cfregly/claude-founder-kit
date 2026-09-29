@@ -47,9 +47,10 @@ make adversarial               # full local value-bar gate
 ```
 
 `make demo` is the live walkthrough and needs `ANTHROPIC_API_KEY` from `.env` or the shell. `make check` and `make test` are deterministic
-and do not need a key. `.env` is ignored and must stay local. CI runs those gates on every push and pull request, then runs a push-only
-live smoke on a repository secret for a small core path. Measured run outputs live in each stage's
-`data/` directory when you regenerate them.
+and do not need a key. `.env` is ignored and must stay local. CI runs the deterministic gates on every push and pull request.
+The paid API smoke is a separate manual workflow. Run it from Actions > live smoke > Run workflow, or use `gh workflow run live.yml`,
+after confirming the repository's Anthropic API account has credits. It fails if the secret is missing or a real call fails.
+Measured run outputs live in each stage's `data/` directory when you regenerate them.
 
 Expected local verification:
 
